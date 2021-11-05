@@ -1,0 +1,396 @@
+#app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    background: #050617;  
+}
+
+html,body{
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+div{
+  margin:0 auto;
+}
+
+b{
+  font: 20px 'Rubik' ;
+  font-weight: bold;
+  color: #2588B2;
+  padding-right: 20px;
+}
+
+p{
+  font: 20px 'Rubik' ;
+  color: #ffffff;
+}
+
+b.bar{
+  cursor: pointer; 
+  padding-right: 80px;
+}
+
+b.bar:hover{
+  color: #15a0db;
+}
+
+
+button{
+  font: 15px 'Rubik' ;
+  font-weight: bold;
+  color: #ffffff;
+  background: #2588B2;
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  overflow: hidden;
+  border: 2px solid #ffffff;
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.1) 
+}
+
+button.white{
+  font: 20px 'Rubik' ;
+  font-weight: bold;
+  color: #2588B2;
+  background: #ffffff;
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  overflow: hidden;
+  border: 2px solid #2588B2;
+  width: 180px;
+  height: 60px;
+}
+
+button.white:hover {
+  transform: scale(1.2)
+}
+
+button.big{
+  font: 20px 'Rubik' ;
+  font-weight: bold;
+  color: #ffffff;
+  background: #2588B2;
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  overflow: hidden;
+  border: 2px solid #ffffff;
+  width: 220px;
+  height: 60px;
+}
+
+button.big:hover {
+  transform: scale(1.2) 
+}
+
+.title{
+  font: 35px 'Rubik' ;
+  font-weight: bold;
+  color: #2588B2;
+  cursor: pointer; 
+  position: relative;
+  top: 11px;
+  left: 20px;
+  float: left;
+}
+
+.rank{
+  width:200px; 
+  height:200px; 
+  max-width:200px; 
+  padding-top: 180px;
+  padding-right: 120px;
+}
+
+
+.logo{
+  width:60px; 
+  height:60px; 
+  max-width:100px; 
+  cursor: pointer; 
+  padding-left: 20px;
+  float: left;
+}
+
+.logoB{
+  width:120px; 
+  height:120px; 
+  max-width:120px; 
+  padding-left: 20px;
+  padding-top: 40px;
+  float: left;
+}
+
+.bsc{
+  width:30px; 
+  height:30px; 
+  max-width:30px; 
+}
+
+img.media{
+   width:80px; 
+   height:auto; 
+   max-width:80px; 
+   margin-right: 30px; 
+   margin-top: 15px; 
+   position:relative; 
+   cursor: pointer; 
+}
+
+img.mediaS{
+   width:50px; 
+   height:auto; 
+   max-width:50px; 
+   margin-right: 10px; 
+   margin-top: 5px; 
+   position:relative; 
+   cursor: pointer; 
+}
+
+img.media:hover{
+  transform: scale(1.2)
+}
+
+img.mediaS:hover{
+  transform: scale(1.2)
+}
+
+.top{
+  background: url("./assets/B1.png");
+  background-size: 100%;
+  height: 500px;
+  min-height: 500px;
+  min-width: 1200px;
+  max-width: 2000px;
+  background-repeat: no-repeat;
+  margin:0 auto;
+}
+
+.mid{
+  background: url("./assets/B2.png");
+  background-size: 100%;
+  height: 400px;
+  min-height: 500px;
+  min-width: 1200px;
+  max-width: 2000px;
+  background-repeat: no-repeat;
+  margin:0 auto;
+}
+
+.mid2{
+  background: url("./assets/B3.png");
+  background-size: 100%;
+  height: 200px;
+  min-height: 200px;
+  min-width: 1200px;
+  max-width: 2000px;
+  margin:0 auto;
+  background-repeat: no-repeat;
+}
+
+.mid3{
+  background: url("./assets/B5.png");
+  background-size: 100%;
+  height: 600px;
+  width: 1100px;
+  min-height: 600px;
+  min-width: 1100px;
+  max-width: 1100px;
+  margin:0 auto;
+  background-repeat: no-repeat;
+}
+
+.how{
+  background: url("./assets/B7.png");
+  background-size: 100%;
+  height: 600px;
+  min-height: 600px;
+  min-width: 900px;
+  max-width: 900px;
+  margin:0 auto;
+  margin-top: 20px; 
+  background-repeat: no-repeat;
+}
+
+.bot{
+  background: url("./assets/Bg.gif");
+  background-size: 100%;
+  height: 800px;
+  min-height: 800px;
+  min-width: 1300px;
+  max-width: 2000px;
+  margin:0 auto;
+  background-repeat: no-repeat;
+}
+
+.fodder{
+  background: url("./assets/B6.png");
+  background-size: 100%;
+  height: 200px;
+  min-height: 200px;
+  min-width: 1700px;
+  max-width: 2000px;
+  margin:0 auto;
+  background-repeat: no-repeat;
+}
+
+.line{
+  background: #ffffff;
+  height: 2px;
+  width: 3000px;
+  margin-bottom: 50px; 
+  margin-top: 20px;
+}
+
+
+.rectangleWhite {
+  margin:auto;
+  height: 40px;
+  width: 800px;
+  background-color: #ffffff;
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+}
+.rectangleBlue {
+  margin:auto;
+  height: 40px;
+  background-color: #2588B2;
+  transition: width 4s linear;
+  transition-delay: 0s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 0px;
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+}
+
+
+
+@media screen and (max-width: 700px){
+
+  .top{ 
+    height: 300px;
+    min-height: 300px;
+    min-width: 500px;
+    max-width: 1000px;
+}
+
+}
+/*@media screen and (max-width: 1000px){
+
+  body {
+   transform: scale(0.6);
+   transform-origin: 0 0;
+   background: #050617;   
+  }
+
+  html,body{
+    overflow-x: visible;
+}
+
+ 
+}
+
+@media screen and (max-width: 700px){
+
+  body {
+   transform: scale(0.34);
+   transform-origin: 0 0;
+   background: #050617;   
+  }
+
+}
+*/
+
+
+
+
+/*@media screen and (max-width: 1400px){
+
+  b{
+  font: 20px 'Rubik' ;
+  font-weight: bold;
+  color: #2588B2;
+  margin-right: 60px;
+}
+
+.title{
+  font: 40px 'Rubik' ;
+  font-weight: bold;
+  color: #2588B2;
+  margin-right: 120px;
+}
+
+}
+
+@media screen and (max-width: 960px){
+
+  b{
+  font: 15px 'Rubik' ;
+  font-weight: bold;
+  color: #2588B2;
+  margin-right: 45px;
+}
+
+.title{
+  font: 30px 'Rubik' ;
+  font-weight: bold;
+  color: #2588B2;
+  margin-right: 90px;
+}
+
+}
+
+ @media screen and (max-width: 700px){
+
+  b{
+  font: 10px 'Rubik' ;
+  font-weight: bold;
+  color: #2588B2;
+  margin-right: 30px;
+}
+
+.title{
+  font: 20px 'Rubik' ;
+  font-weight: bold;
+  color: #2588B2;0
+}
+
+}
+
+@media screen and (max-width: 560px){
+
+  b{
+  font: 5px 'Rubik' ;
+  font-weight: bold;
+  color: #2588B2;
+  margin-right: 15px;
+}
+
+.title{
+  font: 10px 'Rubik' ;
+  font-weight: bold;
+  color: #2588B2;
+  margin-right: 30px;
+}
+  
+
+} */
+
