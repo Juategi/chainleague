@@ -9,7 +9,7 @@
         <b class="bar">Whitepaper</b>
         <b class="bar" @click="goto('roadmap')">Roadmap</b>
         <b class="bar"  @click="goto('team')">Team</b> 
-         <button style="margin-left:25px; bottom:15px">Sign up</button>
+         <button style="margin-left:25px; bottom:15px" @click="signup">Sign up</button>
       </div>
     </div>
     
@@ -155,30 +155,47 @@
 
 <script>
 import Vue3autocounter from 'vue3-autocounter';
-import './styles.css'
+import { useRouter } from 'vue-router'
 
 scroll = false
 
 export default ({
+  name: 'Home',
   mounted(){
     this.$refs.counter.start();
   },
   components: {
     'vue3-autocounter': Vue3autocounter
   },
-  data(){
-    return {
-     
+  
+  setup(){
+    const router = useRouter()
+
+    const goto = (refName) => {
+      var element = this.$refs[refName];
+      var top = element.offsetTop;
+      window.scrollTo(0, top);
     }
+    
+    const signup = ()  => {
+      console.log(router)
+      router.push({ name: 'Signup' })
+    }
+
+    //return{goto, signup}
   },
+
   methods: {
     goto(refName) {
       var element = this.$refs[refName];
       var top = element.offsetTop;
       window.scrollTo(0, top);
+    },
+    signup() {
+      console.log(this.$router)
+      this.$router.push({ name: 'Signup' })
     }
-},
-  
+  }
 
 })
 </script>
