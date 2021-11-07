@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Signup from '../views/Signup.vue'
 import Home from '../views/Home.vue'
+import NotFound from '../views/NotFound.vue'
 
 const routes = [
   {
@@ -20,8 +21,8 @@ const routes = [
   },
   {
     path:'/:catchAll(.*)',
-    name: 'Home',
-    component: Home
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
@@ -29,5 +30,7 @@ const router = createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
+
+
 
 export default router

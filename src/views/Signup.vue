@@ -38,22 +38,23 @@
     </div> 
   <div v-else-if="riot">
     <RiotVerification />
-    <div class="submit">
-        <button @click="signup">Continue</button>
-    </div>
   </div>
 
   <div v-else-if="wallet">
-    <Wallet/>
-    <div class="submit">
-        <button @click="signup">Continue</button>
-    </div>
+    <Wallet/> 
+  </div>
+  <div v-else-if="end">
+    <End v-bind:myReferal="this.myReferal"/>
+  </div>
+  <div class="submit">
+      <button @click="signup">Continue</button>
   </div>
 </template>
 
 <script>
 import RiotVerification from '../views/RiotVerification.vue'
 import Wallet from '../views/Wallet.vue'
+import End from '../views/End.vue'
 
 export default {
   data() {
@@ -66,14 +67,17 @@ export default {
       server:'',
       passwordError: '',
       walletId: '',
+      myReferal:'eeeeee',
       sign: true,
       riot: false,
       wallet: false,
+      end: false
     }
   },
   components: {
     Wallet,
-    RiotVerification
+    RiotVerification,
+    End
   },
   methods: {
     handleSubmit() {
@@ -94,7 +98,7 @@ export default {
       }  
     },
     signup(){
-      
+
     }
   }
 }
