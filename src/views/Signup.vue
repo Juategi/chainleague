@@ -41,7 +41,7 @@
   </div>
 
   <div v-else-if="wallet">
-    <Wallet/> 
+    <Wallet v-bind:walletId="this.walletId"/> 
   </div>
   <div v-else-if="end">
     <End v-bind:myReferal="this.myReferal"/>
