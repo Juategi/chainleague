@@ -143,6 +143,12 @@ button.big:hover {
   max-width:200px; 
 }
 
+.ga{
+  width:520px; 
+  height:80px; 
+  max-width:520px; 
+}
+
 img.media{
    width:80px; 
    height:auto; 
