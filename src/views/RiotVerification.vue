@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  props: ['email','referal','password', 'cpassword','summoners','server', 'walletId'],
+  
 }
 </script>
 

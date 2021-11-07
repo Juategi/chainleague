@@ -47,7 +47,7 @@
     <End v-bind:myReferal="this.myReferal"/>
   </div>
   <div class="submit" v-if="!sign">
-      <button @click="signup">Continue</button>
+      <button @click="handleSubmit">Continue</button>
   </div>
 </template>
 
@@ -81,21 +81,25 @@ export default {
   },
   methods: {
     handleSubmit() {
-      console.log(this.sign)
         this.passwordError = this.password.length > 5 || this.password != this.cpassword ?
         '' : 'Passwords must match and be at least 6 characters long'
-      if (!this.passwordError) {
-        this.sign = false;
-        this.riot = true;
-        /*this.$router.push({ name: 'Riot', params: {
-            email: this.email,
-            referal: this.referal,
-            password: this.password,
-            cpassword: this.cpassword,
-            summoners: this.summoners,
-            server: this.server
-          } })*/
-      }  
+        console.log(this.sign)
+        console.log(this.riot)
+        console.log(this.wallet)
+        console.log(this.end)
+        if(!this.passwordError && this.sign){
+          this.sign = false
+          this.riot = true
+        }
+        else if(this.riot){
+          this.riot = false
+          this.wallet = true
+        }
+        else if(this.wallet){
+          this.wallet = false
+          this.end = true
+        }
+
     },
     login(){
       this.$router.push({ name: 'Login'}) 
