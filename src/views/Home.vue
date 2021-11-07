@@ -188,7 +188,6 @@ export default ({
       window.scrollTo(0, top);
     },
     signup() {
-      this.$parent.show = false
       this.$router.push({ name: 'Signup' })
     }
   }

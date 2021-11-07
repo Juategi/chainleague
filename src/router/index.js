@@ -18,6 +18,11 @@ const routes = [
     name: 'Signup',
     component: Signup
   },
+  {
+    path:'/:catchAll(.*)',
+    name: 'Home',
+    component: Home
+  }
 ]
 
 const router = createRouter({

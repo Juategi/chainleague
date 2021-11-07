@@ -1,7 +1,6 @@
 <template>
-   <div >
-     <div>
-       <b>Sign up</b> 
+   <div v-if="sign">
+     <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">Already have an account? <span style="font-weight: bold; cursor: pointer;" >Log in</span></p> 
      </div>
     <form @submit.prevent="handleSubmit">
@@ -31,18 +30,31 @@
           <option value="KR">KR</option>
           <option value="OCE">OCE</option>
           </select>
-
-          
-
-          <div class="submit">
-            <button>Continue</button>
-          </div>
+            <div class="submit">
+              <button>Continue</button>
+            </div>      
         </div>
     </form>
     </div> 
+  <div v-else-if="riot">
+    <RiotVerification />
+    <div class="submit">
+        <button @click="signup">Continue</button>
+    </div>
+  </div>
+
+  <div v-else-if="wallet">
+    <Wallet/>
+    <div class="submit">
+        <button @click="signup">Continue</button>
+    </div>
+  </div>
 </template>
 
 <script>
+import RiotVerification from '../views/RiotVerification.vue'
+import Wallet from '../views/Wallet.vue'
+
 export default {
   data() {
     return {
@@ -52,21 +64,37 @@ export default {
       cpassword: '',
       summoners:'',
       server:'',
-      passwordError: ''
+      passwordError: '',
+      walletId: '',
+      sign: true,
+      riot: false,
+      wallet: false,
     }
+  },
+  components: {
+    Wallet,
+    RiotVerification
   },
   methods: {
     handleSubmit() {
+      console.log(this.sign)
         this.passwordError = this.password.length > 5 || this.password != this.cpassword ?
         '' : 'Passwords must match and be at least 6 characters long'
       if (!this.passwordError) {
-        // make request to database to save user
-        console.log('email: ', this.email)
-        console.log('password: ', this.password)
-        console.log('role: ', this.role)
-        console.log('skills: ', this.skills)
-        console.log('terms accepted: ', this.terms)
+        this.sign = false;
+        this.riot = true;
+        /*this.$router.push({ name: 'Riot', params: {
+            email: this.email,
+            referal: this.referal,
+            password: this.password,
+            cpassword: this.cpassword,
+            summoners: this.summoners,
+            server: this.server
+          } })*/
       }  
+    },
+    signup(){
+      
     }
   }
 }
@@ -118,6 +146,7 @@ label {
 .submit {
     text-align: center;
     margin-top: 100px;
+    margin-right: 100px;
 }
 
 form {
