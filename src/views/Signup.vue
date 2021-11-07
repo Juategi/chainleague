@@ -46,7 +46,7 @@
   <div v-else-if="end">
     <End v-bind:myReferal="this.myReferal"/>
   </div>
-  <div class="submit">
+  <div class="submit" v-if="!sign">
       <button @click="signup">Continue</button>
   </div>
 </template>
@@ -67,7 +67,7 @@ export default {
       server:'',
       passwordError: '',
       walletId: '',
-      myReferal:'eeeeee',
+      myReferal:'',
       sign: true,
       riot: false,
       wallet: false,

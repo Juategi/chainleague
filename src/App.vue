@@ -1,7 +1,7 @@
 <template>
   <div v-bind:class="{ top: $route.name == 'Home' }">
     <div style="margin-top: 10px; height: 70px; width: 100%; float: left; overflow:hidden; position:relative">  
-      <div @click="home">
+      <div @click="home" v-if="$route.name != 'NotFound'">
         <img src="./assets/icon.svg" class="logo">
         <b class="title" >Chain League</b>
       </div>
