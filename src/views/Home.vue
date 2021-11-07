@@ -34,7 +34,7 @@
 
   <div style=" height:370px; overflow: hidden; margin-top:50px">
     <p style="font-weight: bold; font-size: 30px;">Sign up to win our give away!</p>
-    <p >Participate in our give away, the more referrals you get, the more chances of winning</p>
+    <p >Participate in our give away, the more referals you get, the more chances of winning</p>
     <img src="../assets/ga.png" class="ga" >
     <div style="margin-right: 130px; padding-top:20px; padding-bottom:20px" >
       <button  @click="signup">Sign up</button>

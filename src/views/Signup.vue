@@ -1,7 +1,7 @@
 <template>
    <div v-if="sign">
      <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">Already have an account? <span style="font-weight: bold; cursor: pointer;" >Log in</span></p> 
+       <p style="font: 20px 'Rubik'; color: #2588B2; ">Already have an account? <span style="font-weight: bold; cursor: pointer;" @click="login">Log in</span></p> 
      </div>
     <form @submit.prevent="handleSubmit">
         <div style="display: inline-block; width: 100%">
@@ -97,8 +97,8 @@ export default {
           } })*/
       }  
     },
-    signup(){
-
+    login(){
+      this.$router.push({ name: 'Login'}) 
     }
   }
 }
