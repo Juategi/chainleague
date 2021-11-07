@@ -32,10 +32,13 @@
     </div>  
   </div>
 
-  <div style=" height:320px; overflow: hidden; margin-top:50px">
+  <div style=" height:370px; overflow: hidden; margin-top:50px">
     <p style="font-weight: bold; font-size: 30px;">Sign up to win our give away!</p>
     <p >Participate in our give away, the more referrals you get, the more chances of winning</p>
     <img src="../assets/ga.png" class="ga" >
+    <div style="margin-right: 130px; padding-top:20px; padding-bottom:20px" >
+      <button  @click="signup">Sign up</button>
+    </div>
     <p style="margin-top: 40px;">We will distribute the prize among 10 winners, they will receive their CLG in their wallets on March 2022</p>      
   </div>  
 
@@ -86,7 +89,7 @@
   <div class="bot">
       <p style="padding-top: 200px; font-weight: bold; font-size: 35px">What is League of Legends?</p>
       <p style="font-size: 25px; cursor: pointer; color: #ffffff" href="https://www.leagueoflegends.com/">Check the website</p>     
-      <p style="margin-top: 140px; font-weight: bold; font-size: 35px">+100 million players around the world</p>  
+      <p style="margin-top: 140px; font-weight: bold; font-size: 35px">+180 million players around the world</p>  
       <p style="margin-top: 140px; font-weight: bold; font-size: 20px">Disclaimer:</p>  
       <p style="font-size: 20px">We are not owned or associated with Riot Games or any of its brands  </p>        
   </div>
