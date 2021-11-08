@@ -117,9 +117,10 @@ export default {
             this.riot = true
           }
         }
-        else if(this.riot){
-          const key = 'RGAPI-43fb775e-043e-446f-985c-da8b9c211ad7'
-          const api = 'https://' + this.server.toLowerCase() +'1.api.pvp.net/api/lol/euw/v4/third-party-code/by-summoner/'+this.summoners
+        else if(this.riot){ 'https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/b%27Ridyckz%27?api_key=RGAPI-43fb775e-043e-446f-985c-da8b9c211ad7'
+          const key = '?api_key=RGAPI-43fb775e-043e-446f-985c-da8b9c211ad7'
+          const summoner = 'https://euw1.api.riotgames.com/lol/summoners/v4/summoners/by-name/' + this.summoners + key
+          const code = 'https://' + this.server.toLowerCase() +'1.api.pvp.net/api/lol/platform/v4/third-party-code/by-summoner/' + key
           this.riot = false
           this.wallet = true
         }
