@@ -7,6 +7,7 @@
         <div style="display: inline-block; width: 100%">
           <label>Email</label>
           <input type="email" v-model="email" required>
+          <div v-if="emailError" class="error">{{ emailError }}</div>
 
           <label>Referal (optional)</label>
           <input type="text" v-model="referal">
@@ -21,6 +22,7 @@
 
           <label>Summoner's name</label>
           <input type="text" v-model="summoners" required>
+          <div v-if="summonerError" class="error">{{summonerError }}</div>
 
           <label>Server</label>
           <select v-model="server" required>
@@ -71,6 +73,8 @@ export default {
       passwordError: '',
       walletId: '',
       myReferal:'',
+      summonerError: '',
+      emailError: '',
       sign: true,
       riot: false,
       wallet: false,
@@ -83,23 +87,33 @@ export default {
     End
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
         this.passwordError = this.password.length > 5 || this.password != this.cpassword ?
         '' : 'Passwords must match and be at least 6 characters long'
         console.log(this.sign)
         console.log(this.riot)
         console.log(this.wallet)
         console.log(this.end)
-        if(!this.passwordError && this.sign){
-          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((data) => {
-            console.log('Successfully registered!');
-            this.$router.push({ name: 'Home'}) 
-          }).catch(error => {
-            console.log(error.code)
-            alert(error.message);
-          });
-          //this.sign = false
-          //this.riot = true
+        var usersRef = firebase.firestore().collection("/users");
+        if(!this.passwordError && this.sign){      
+          const query1 = await usersRef.where('summoners', '==', this.summoners).where('server', '==', this.server).get();
+          const query2 = await usersRef.where('email', '==', this.email).get();
+          if(!query1.empty){
+            this.summonerError = "Already exists an account with that Summoner's name in the same server"
+          }
+          else{
+            this.summonerError = ""
+          }
+          if(!query2.empty){
+            this.emailError = "Already exists an account with that email"
+          }
+          else{
+             this.emailError = ""
+          }
+          if(query1.empty && query2.empty){
+            this.sign = false
+            this.riot = true
+          }
         }
         else if(this.riot){
           this.riot = false
@@ -109,8 +123,30 @@ export default {
           this.wallet = false
           this.end = true
         }
-        else if(this.end){
-           
+        else if(this.end){   
+          /*
+           firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((data) => {
+            console.log('Successfully registered!');
+            usersRef.doc("aaa").set({
+            email: this.email,
+            referal: this.referal,          
+            summoners: this.summoners,
+            server: this.server,
+            wallet: this.walletId,
+            myReferal: this.myReferal,
+          })
+          .then(function(docRef) {
+              console.log("User created with ID: ", docRef);
+          })
+          .catch(function(error) {
+              console.error("Error adding User: ", error);
+          });
+            this.$router.push({ name: 'Home'}) 
+          }).catch(error => {
+            console.log(error.code)
+            alert(error.message);
+          });          
+          */
         }
 
     },
