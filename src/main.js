@@ -1,9 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import AppS from './AppS.vue'
 import router from './router'
 import Vue3Autocounter from 'vue3-autocounter';
 //import firebase from "firebase";
-import { initializeApp } from "firebase/app";
+import firebase from 'firebase/compat/app';
 import './styles.css';
 
 const firebaseConfig = {
@@ -23,7 +24,15 @@ const firebaseConfig = {
 };
 
 
-initializeApp(firebaseConfig);
 
-//createApp(App).use(router).component('vue3-autocounter', Vue3Autocounter).mount('#app')
+firebase.initializeApp(firebaseConfig);
+let init = false;
+/*firebase.auth().onAuthStateChanged(() =>{
+    console.log("changed!!");
+    console.log(firebase.auth().currentUser)
+    if(firebase.auth().currentUser){
+        Vue.prototype.$user =  firebase.auth().currentUser
+    } 
+})*/
 createApp(App).use(router).mount('#app')
+//createApp(App).use(router).component('vue3-autocounter', Vue3Autocounter).mount('#app')

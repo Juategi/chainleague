@@ -48,7 +48,7 @@
     </div>   
 
     <div style="margin-left: 400px; width: 20%; float: left; overflow: hidden; margin-top:50px">
-      <vue3-autocounter ref='counter' :startAmount='0' :endAmount='200000' :duration='3' prefix='+' suffix=' holders' separator=',' decimalSeparator='.' :decimals='0' :autoinit='false' style="font: 25px 'Rubik' ; font-weight: bold; color:#ffffff"  @finished='alert(`Counting finished!`)' />
+      <!--<vue3-autocounter ref='counter' :startAmount='0' :endAmount='200000' :duration='3' prefix='+' suffix=' holders' separator=',' decimalSeparator='.' :decimals='0' :autoinit='false' style="font: 25px 'Rubik' ; font-weight: bold; color:#ffffff"  @finished='alert(`Counting finished!`)' /> -->
           <p style="margin-top: 40px; font-weight: bold; font-size: 15px">Total ICO Launch invested</p>
            <b style="margin-top: 10px; font-weight: bold; font-size: 20px; ">100.350$</b>   
           <p style="margin-top: 40px; font-weight: bold;">Phase 10 - Diamond</p>                                      
@@ -153,7 +153,7 @@ scroll = false
 export default ({
   name: 'Home',
   mounted(){
-    this.$refs.counter.start();
+    //this.$refs.counter.start();
   },
   components: {
     'vue3-autocounter': Vue3autocounter

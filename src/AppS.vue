@@ -6,11 +6,10 @@
         <b class="title" >Chain League</b>
       </div>
       <div style="margin-top:20px" v-if="$route.name == 'Home'">       
-        <b class="bar" @click="puser">Whitepaper</b>
+        <b class="bar" >Whitepaper</b>
         <b class="bar" @click="$refs.view.$.ctx[$route.meta.goToRoadmap.methodName]()">Roadmap</b>
         <b class="bar" @click="$refs.view.$.ctx[$route.meta.goToTeam.methodName]()">Team</b> 
-        <button style="margin-left:25px; bottom:15px" @click="signup" v-if="!user">Sign up</button>
-        <button style="margin-left:25px; bottom:15px" @click="signOut" v-else>Sign out</button>
+        <button style="margin-left:25px; bottom:15px" @click="signOut" >Sign out</button>
       </div>
     </div>
   </div>
@@ -26,11 +25,6 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
 export default {
-  mounted(){
-    firebase.auth().onAuthStateChanged(() =>{
-      this.stateChanged()
-    })
-   },
    methods: {
     signup() {
       this.$router.push({ name: 'Signup' })
@@ -39,26 +33,10 @@ export default {
       this.$router.push({ name: 'Home' })
     },
     signOut() {
-      firebase.auth().signOut().then(
-        () => {console.log("out!!")
-          this.$router.push({ name: 'Home' })
-        }
-      )
-      
-    },
-    stateChanged(){     
-      if(firebase.auth().currentUser)
-        this.user = true;
-      else
-        this.user = false
-      console.log(this.user)
+      firebase.auth().signOut()
+      this.$router.push({ name: 'Home' })
     }
   },
-  data(){
-    return {
-      user: false
-    }
-  }
 }
 </script>
 

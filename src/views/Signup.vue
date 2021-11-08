@@ -55,6 +55,9 @@
 import RiotVerification from '../views/RiotVerification.vue'
 import Wallet from '../views/Wallet.vue'
 import End from '../views/End.vue'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 export default {
   data() {
@@ -88,8 +91,15 @@ export default {
         console.log(this.wallet)
         console.log(this.end)
         if(!this.passwordError && this.sign){
-          this.sign = false
-          this.riot = true
+          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((data) => {
+            console.log('Successfully registered!');
+            this.$router.push({ name: 'Home'}) 
+          }).catch(error => {
+            console.log(error.code)
+            alert(error.message);
+          });
+          //this.sign = false
+          //this.riot = true
         }
         else if(this.riot){
           this.riot = false
@@ -98,6 +108,9 @@ export default {
         else if(this.wallet){
           this.wallet = false
           this.end = true
+        }
+        else if(this.end){
+           
         }
 
     },

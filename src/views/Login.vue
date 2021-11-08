@@ -9,6 +9,7 @@
           <label>Password</label>
           <input type="password" v-model="password" required>
           <div v-if="passwordError" class="error">{{ passwordError }}</div>
+          <div v-if="loginError" class="error">{{ loginError }}</div>
 
             <div @click="forgot">
                 <p style="font: 20px 'Rubik'; color: #2588B2; text-align: center; cursor:pointer">I forgot my password</p> 
@@ -23,11 +24,16 @@
 </template>
 
 <script>
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+
 export default {
     data() {
     return {
       email: '',
       password: '',
+      passwordError: '',
+      loginError: ''
     }
   },
     methods: {
@@ -36,7 +42,26 @@ export default {
         this.passwordError = this.password.length > 5 ?
         '' : 'Passwords must match and be at least 6 characters long'
       if (!this.passwordError) {
-        
+          firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((data) => {
+          console.log('Successfully logged in!');
+          this.$router.push({ name: 'Home'}) 
+        })
+        .catch(error => {
+          switch (error.code) {
+          case 'auth/invalid-email':
+              this.loginError = 'Invalid email'
+              break
+          case 'auth/user-not-found':
+              this.loginError = 'No account with that email was found'
+              break
+          case 'auth/wrong-password':
+              this.loginError = 'Incorrect password'
+              break
+          default:
+              this.loginError = 'Email or password was incorrect'
+              break
+        }
+        });
       }  
     },
     forgot(){

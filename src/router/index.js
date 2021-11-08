@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Forgot from '../views/Forgot.vue'
 import NotFound from '../views/NotFound.vue'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 const routes = [
   {
@@ -19,12 +21,18 @@ const routes = [
   {
     path: '/signup',
     name: 'Signup',
-    component: Signup
+    component: Signup,
+    meta:{
+      requires: true
+    }
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta:{
+      requires: true
+    }
   },
   {
     path: '/forgot',
@@ -43,6 +51,13 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser
+  const requires = to.matched.some(record => record.meta.requires)
+  
+  if(requires && currentUser) next('/')
+  else next()
+})
 
 
 export default router
