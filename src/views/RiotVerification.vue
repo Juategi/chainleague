@@ -4,7 +4,7 @@
       <b >Enter this validation code in the League of Legends client</b>
       <p>We need to validate that you are the owner of the account to avoid possible fraud.</p>
       <div class="rectangle">
-          <b>AF12GBT4</b>
+          <b>{{ verification }}</b>
       </div>
       <div style="margin-top:40px">
           <b >How to do it?</b>
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  
+  props: ['verification'],
 }
 </script>
 

@@ -39,14 +39,14 @@
     </form>
     </div> 
   <div v-else-if="riot">
-    <RiotVerification />
+    <RiotVerification :verification="this.verification"/>
   </div>
 
   <div v-else-if="wallet">
-    <Wallet v-bind:walletId="this.walletId"/> 
+    <Wallet :walletId="this.walletId"/> 
   </div>
   <div v-else-if="end">
-    <End v-bind:myReferal="this.myReferal"/>
+    <End :myReferal="this.myReferal"/>
   </div>
   <div class="submit" v-if="!sign">
       <button @click="handleSubmit">Continue</button>
@@ -75,6 +75,7 @@ export default {
       myReferal:'',
       summonerError: '',
       emailError: '',
+      verification: '',
       sign: true,
       riot: false,
       wallet: false,
@@ -111,11 +112,14 @@ export default {
              this.emailError = ""
           }
           if(query1.empty && query2.empty){
+            this.verification = Math.random().toString(36).slice(4).toUpperCase();
             this.sign = false
             this.riot = true
           }
         }
         else if(this.riot){
+          const key = 'RGAPI-43fb775e-043e-446f-985c-da8b9c211ad7'
+          const api = 'https://' + this.server.toLowerCase() +'1.api.pvp.net/api/lol/euw/v4/third-party-code/by-summoner/'+this.summoners
           this.riot = false
           this.wallet = true
         }
