@@ -6,10 +6,11 @@
        <img src="../assets/bsc.svg" class="bsc">  
       <div style="text-align: left;">
           <p>The address will be used to participate in the draw for 100.000 Chain League Tokens (CLG) divided into 10 prizes of 10.000.
-        The more referrals you have, the more chances of winning a prize you will have.</p>
+        The more referrals you have, the more chances of winning a prize you will have. (Optional)</p>
       </div>
-
-      <input type="text" v-model="walletId">
+    
+      <input type="text" v-model="walletId" >
+      <div v-if="walletError" class="error">{{ walletError }}</div>
 
       
   </div>
@@ -18,7 +19,11 @@
 
 <script>
 export default {
-  props: ['walletId'],
+  props: ['walletId', 'walletError'],
+  watch: {
+    walletError: function (newVal, oldVal) { },
+    walletId: function (newVal, oldVal) { this.$emit('walletIdChange', this.walletId) },
+    },
 }
 
 </script>
@@ -66,5 +71,11 @@ export default {
         height:30px; 
         max-width:30px; 
     }
+    .error {
+    color: #ff0062;
+    margin-top: 10px;
+    font-size: 1em;
+    font-weight: bold;
+  }
     
 </style>

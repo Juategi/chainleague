@@ -27,10 +27,15 @@
           <label>Server</label>
           <select v-model="server" required>
           <option value="EUW">EUW</option>
-          <option value="EUNE">EUNE</option>
+          <option value="EUN">EUNE</option>
           <option value="NA">NA</option>
           <option value="KR">KR</option>
-          <option value="OCE">OCE</option>
+          <option value="OC">OCE</option>
+          <option value="BR">EUW</option>
+          <option value="JP">EUNE</option>
+          <option value="RU">NA</option>
+          <option value="TR">KR</option>
+          <option value="LA">OCE</option>
           </select>
             <div class="submit">
               <button>Continue</button>
@@ -39,11 +44,11 @@
     </form>
     </div> 
   <div v-else-if="riot">
-    <RiotVerification :verification="this.verification"/>
+    <RiotVerification :verification="this.verification" :verificationError="this.verificationError"/>
   </div>
 
   <div v-else-if="wallet">
-    <Wallet :walletId="this.walletId"/> 
+    <Wallet :walletId="this.walletId" :walletError="this.walletError" @walletIdChange="updateWallet"/> 
   </div>
   <div v-else-if="end">
     <End :myReferal="this.myReferal"/>
@@ -76,9 +81,11 @@ export default {
       summonerError: '',
       emailError: '',
       verification: '',
-      sign: true,
+      verificationError: '',
+      walletError: '',
+      sign: false,
       riot: false,
-      wallet: false,
+      wallet: true,
       end: false
     }
   },
@@ -88,13 +95,12 @@ export default {
     End
   },
   methods: {
+    updateWallet(id){
+      this.walletId = id
+    },
     async handleSubmit() {
         this.passwordError = this.password.length > 5 || this.password != this.cpassword ?
         '' : 'Passwords must match and be at least 6 characters long'
-        console.log(this.sign)
-        console.log(this.riot)
-        console.log(this.wallet)
-        console.log(this.end)
         var usersRef = firebase.firestore().collection("/users");
         if(!this.passwordError && this.sign){      
           const query1 = await usersRef.where('summoners', '==', this.summoners).where('server', '==', this.server).get();
@@ -116,42 +122,67 @@ export default {
             this.sign = false
             this.riot = true
           }
-        }
-        else if(this.riot){ 'https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/b%27Ridyckz%27?api_key=RGAPI-43fb775e-043e-446f-985c-da8b9c211ad7'
+        }                   
+        else if(this.riot){ 
           const key = '?api_key=RGAPI-43fb775e-043e-446f-985c-da8b9c211ad7'
-          const summoner = 'https://euw1.api.riotgames.com/lol/summoners/v4/summoners/by-name/' + this.summoners + key
-          const code = 'https://' + this.server.toLowerCase() +'1.api.pvp.net/api/lol/platform/v4/third-party-code/by-summoner/' + key
-          this.riot = false
-          this.wallet = true
+          const serverUrl =  this.server.toLowerCase() == 'RU' ||  this.server.toLowerCase() == 'KR' ?  this.server.toLowerCase() :  this.server.toLowerCase() +'1'
+          const summonerQuery = 'https://' + serverUrl + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + this.summoners + key
+          var result = await fetch(summonerQuery, {headers: { }}).catch((err) => {this.verificationError = "Summoner not found, try again"; return})
+          const summoner = await result.json()
+          const summonerId = summoner['id']
+          const codeQuery = "https://" + serverUrl + ".api.riotgames.com/lol/platform/v4/third-party-code/by-summoner/" + summonerId + key
+          result = await fetch(codeQuery, {headers: { }}).catch((err) => {this.verificationError = "Code not found, try again"; return})
+          const code = await result.json()     
+          if(code == this.verification){
+            this.riot = false
+            this.wallet = true
+          }   
+          else{
+            this.verificationError = "Code don't match, try again";
+          }
         }
         else if(this.wallet){
-          this.wallet = false
-          this.end = true
+          console.log(this.walletId)
+          var accept = false
+          if(this.walletId){
+            if(this.walletId.length != 42 || this.walletId.substr(0,2) != '0x'){
+              this.walletError = "Address format incorrect";
+            }
+            else{
+              accept = true
+            }
+          }
+          else{
+            accept = true
+          }
+          if(accept){
+            firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((data) => {
+              console.log('Successfully registered!');
+              usersRef.doc(data.user.uid).set({
+                email: this.email,
+                referal: this.referal,          
+                summoners: this.summoners,
+                server: this.server,
+                wallet: this.walletId,
+                myReferal: this.myReferal,
+            })
+            .then(function(docRef) {
+                console.log("User created with ID: ", docRef);
+            })
+            .catch(function(error) {
+                console.error("Error adding User: ", error);
+            });           
+            }).catch(error => {
+              console.log(error.code)
+              alert(error.message);
+            }); 
+            this.wallet = false
+            this.end = true
+          }
+          
         }
         else if(this.end){   
-          /*
-           firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((data) => {
-            console.log('Successfully registered!');
-            usersRef.doc("aaa").set({
-            email: this.email,
-            referal: this.referal,          
-            summoners: this.summoners,
-            server: this.server,
-            wallet: this.walletId,
-            myReferal: this.myReferal,
-          })
-          .then(function(docRef) {
-              console.log("User created with ID: ", docRef);
-          })
-          .catch(function(error) {
-              console.error("Error adding User: ", error);
-          });
-            this.$router.push({ name: 'Home'}) 
-          }).catch(error => {
-            console.log(error.code)
-            alert(error.message);
-          });          
-          */
+          this.$router.push({ name: 'Home'}) 
         }
 
     },
@@ -208,7 +239,7 @@ label {
 .submit {
     text-align: center;
     margin-top: 100px;
-    margin-right: 100px;
+    margin-right: 150px;
 }
 
 form {

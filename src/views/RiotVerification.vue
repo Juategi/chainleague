@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div style="height: 1000px">
       <div style="height: 50px"></div>
       <b >Enter this validation code in the League of Legends client</b>
       <p>We need to validate that you are the owner of the account to avoid possible fraud.</p>
@@ -14,6 +14,8 @@
       <p>Then look for the VERIFICATION part scrolling down the menu, enter the code and press SAVE.</p>
       <img src="../assets/riot2.png" class="riot2" >
       <p>After performing these steps press Continue.</p>
+
+      <div v-if="verificationError" class="error">{{ verificationError }}</div>
       
   </div>
   
@@ -21,7 +23,10 @@
 
 <script>
 export default {
-  props: ['verification'],
+  props: ['verification', 'verificationError'],
+  watch: {
+    verificationError: function (newVal, oldVal) {   },
+  },
 }
 </script>
 
@@ -81,5 +86,12 @@ export default {
         margin-top: 30px;
         margin-right: 130px;
     }
+
+    .error {
+    color: #ff0062;
+    margin-top: 10px;
+    font-size: 1em;
+    font-weight: bold;
+  }
     
 </style>
