@@ -83,9 +83,9 @@ export default {
       verification: '',
       verificationError: '',
       walletError: '',
-      sign: false,
+      sign: true,
       riot: false,
-      wallet: true,
+      wallet: false,
       end: false
     }
   },
@@ -124,10 +124,15 @@ export default {
           }
         }                   
         else if(this.riot){ 
-          const key = '?api_key=RGAPI-43fb775e-043e-446f-985c-da8b9c211ad7'
+          const key = '?api_key=RGAPI-c5088f49-8b08-4288-9aaf-0f340eff4fd7'
           const serverUrl =  this.server.toLowerCase() == 'RU' ||  this.server.toLowerCase() == 'KR' ?  this.server.toLowerCase() :  this.server.toLowerCase() +'1'
           const summonerQuery = 'https://' + serverUrl + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + this.summoners + key
-          var result = await fetch(summonerQuery, {headers: { }}).catch((err) => {this.verificationError = "Summoner not found, try again"; return})
+          var result = await fetch(summonerQuery, {headers: { }}).catch((err) => {
+            console.log(err)
+            this.verificationError = "Summoner not found or probably the server is too busy, try later"
+
+            return
+            })
           const summoner = await result.json()
           const summonerId = summoner['id']
           const codeQuery = "https://" + serverUrl + ".api.riotgames.com/lol/platform/v4/third-party-code/by-summoner/" + summonerId + key
@@ -158,6 +163,7 @@ export default {
           if(accept){
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((data) => {
               console.log('Successfully registered!');
+              this.myReferal = "clg_" + data.user.uid
               usersRef.doc(data.user.uid).set({
                 email: this.email,
                 referal: this.referal,          
@@ -168,6 +174,8 @@ export default {
             })
             .then(function(docRef) {
                 console.log("User created with ID: ", docRef);
+                this.wallet = false
+                this.end = true
             })
             .catch(function(error) {
                 console.error("Error adding User: ", error);
@@ -176,10 +184,9 @@ export default {
               console.log(error.code)
               alert(error.message);
             }); 
-            this.wallet = false
-            this.end = true
           }
-          
+          this.wallet = false
+          this.end = true
         }
         else if(this.end){   
           this.$router.push({ name: 'Home'}) 

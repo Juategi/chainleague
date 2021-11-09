@@ -12,11 +12,10 @@
 <script>
 export default {
   props: ['myReferal'],
-  data(){
-      return {
-         myReferal: this.myReferal
-      }
-  }
+  watch: {
+    myReferal: function (newVal, oldVal) {   },
+  },
+  
 }
 
 </script>
