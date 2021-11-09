@@ -5,9 +5,9 @@
         <div style="display: inline-block; width: 100%">
           <label>Email</label>
           <input type="email" v-model="email" required>
-
+          <div v-if="error" class="error">{{ error }}</div>
             <div class="submit">
-              <button>Continue</button>
+              <button>Send</button>
             </div>      
         </div>
     </form>
@@ -15,8 +15,22 @@
 </template>
 
 <script>
-export default {
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
+export default {
+  methods: {
+    async handleSubmit(){
+      firebase.auth().sendPasswordResetEmail(this.email).catch((err) => this.error = "Email not found");   
+      this.error = "Email sent! Check your inbox!" 
+    }
+  },
+   data() {
+    return {
+      email: '',   
+      error: ''  
+    }
+  },
 }
 </script>
 

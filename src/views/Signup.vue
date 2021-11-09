@@ -124,7 +124,7 @@ export default {
           }
         }                   
         else if(this.riot){ 
-          const key = '?api_key=RGAPI-c5088f49-8b08-4288-9aaf-0f340eff4fd7'
+          const key = '?api_key=' + process.env.VUE_APP_RIOT_API_KEY
           const serverUrl =  this.server.toLowerCase() == 'RU' ||  this.server.toLowerCase() == 'KR' ?  this.server.toLowerCase() :  this.server.toLowerCase() +'1'
           const summonerQuery = 'https://' + serverUrl + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + this.summoners + key
           var result = await fetch(summonerQuery, {headers: { }}).catch((err) => {
