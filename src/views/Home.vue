@@ -2,7 +2,7 @@
   <div style="height:370px; width: 1200px;">
     <div style="margin-left: 20px; width: 40%; float: left; overflow: hidden; margin-top:50px">
           <p >The first play-to-earn cryptocurrency based on League of Legends.</p>
-          <p >Win tokens just by winning normal and ranked games in League of Legends.</p>
+          <p >Win tokens just by playing normal and ranked games in League of Legends.</p>
           <p style="font-weight: bold; ">Enter the Rift, enter the Blockchain.</p>  
           <div style="margin-top: 18px; ">
              <p >Powered by</p>
@@ -23,7 +23,7 @@
           <p style="font-weight: bold; font-size: 25px;">We are now on pre-sale!</p>
           <p >Be one of  the first to join the project.</p>
           <div style="text-align: center; margin-right:180px">
-             <button class="white" style="margin-top:10px; ">Buy tokens</button>
+             <button class="white" style="margin-top:10px; " onclick=" window.open('https://pancakeswap.finance/swap','_blank')">Buy tokens</button>
           </div>
           <div style="padding-top: 120px;">
             <img src="../assets/uni.png" class="uni" >
@@ -32,12 +32,13 @@
     </div>  
   </div>
 
-  <div style=" height:370px; overflow: hidden; margin-top:50px">
+  <div style=" height:400px; overflow: hidden; margin-top:50px">
     <p style="font-weight: bold; font-size: 30px;">Sign up to win our give away!</p>
     <p >Participate in our give away, the more referals you get, the more chances of winning</p>
+    <p >You will also need to have at least 100 CLG in your wallet</p>
     <img src="../assets/ga.png" class="ga" >
     <div style="margin-right: 130px; padding-top:20px; padding-bottom:20px" >
-      <button  @click="signup">Sign up</button>
+      <button  @click="signup" v-if="!user">Sign up</button>
     </div>
     <p style="margin-top: 40px;">We will distribute the prize among 10 winners, they will receive their CLG in their wallets on March 2022</p>      
   </div>  
@@ -54,7 +55,7 @@
           <p style="margin-top: 40px; font-weight: bold;">Phase 10 - Diamond</p>                                      
           <p style="margin-top: 40px; font-weight: bold; font-size: 20px">Actual price: 0.14$</p>  
           <div style="margin-right: 180px; margin-top: 40px; ">
-            <button class="white">Buy tokens</button>
+            <button class="white" onclick=" window.open('https://pancakeswap.finance/swap','_blank')" >Buy tokens</button>
           </div>
     
     </div> 
@@ -71,7 +72,7 @@
           <p style="font-weight: bold; font-size: 40px">How will it work?</p>    
           <div class="how"></div>
           <div style="margin-right: 220px; margin-top: 40px; ">
-            <button class="big">Whitepaper</button>
+            <button class="big" @click="whitepaper">Whitepaper</button>
           </div>
     </div>  
   </div>
@@ -88,26 +89,28 @@
   
   <div class="bot">
       <p style="padding-top: 200px; font-weight: bold; font-size: 35px">What is League of Legends?</p>
-      <p style="font-size: 25px; cursor: pointer; color: #ffffff" href="https://www.leagueoflegends.com/">Check the website</p>     
+      <a style="font-size: 25px; cursor: pointer; color: #ffffff" href="https://www.leagueoflegends.com/" target="_blank">Check the website</a>     
       <p style="margin-top: 140px; font-weight: bold; font-size: 35px">+180 million players around the world</p>  
       <p style="margin-top: 140px; font-weight: bold; font-size: 20px">Disclaimer:</p>  
       <p style="font-size: 20px">We are not owned or associated with Riot Games or any of its brands  </p>        
   </div>
 
-  <div style="height:600px; width: 1200px;" ref="team">
+  <div style="height:620px; width: 1200px;" ref="team">
     <div style="width: 100%; float: center; overflow: hidden; ">     
         <p style="padding-top: 10px; font-weight: bold; font-size: 35px">Team</p>   
     </div>  
     <div style="margin-top: 50px; width: 100%; float: left; overflow: hidden;">
       <div style="margin-left: 100px; width: 40%; float: left; overflow: hidden;">
-        <img src="../assets/p1.png" style="width:60%; height:auto; max-width:500px; " >
+        <img src="../assets/p2.jpg" style="width:60%; height:auto; max-width:500px; " >
         <p style="font-weight: bold; font-size: 20px">Juan Tena Gimeno</p>  
         <p style="font-size: 20px">Full-Stack Developer</p>   
+        <img src="../assets/ld.png" class="mediaS" onclick=" window.open('https://www.linkedin.com/in/juan-tena-gimeno-2411191aa/','_blank')">
       </div>
       <div style="margin-left: 100px; width: 40%; float: right; overflow: hidden;">
-        <img src="../assets/p2.png" style="width:60%; height:auto; max-width:500px;" >
+        <img src="../assets/p2.jpg" style="width:60%; height:auto; max-width:500px;" >
         <p style="font-weight: bold; font-size: 20px">Enrique Martinez Durá</p>  
         <p style="font-size: 20px">Marketing Manager & Community Manager</p> 
+        <img src="../assets/ld.png" class="mediaS" onclick=" window.open('https://www.linkedin.com/in/enrique-mart%C3%ADnez-dur%C3%A1-308146154/','_blank')">
       </div>
     </div>
   </div>
@@ -152,6 +155,7 @@ scroll = false
 
 export default ({
   name: 'Home',
+  props: ['user'],
   mounted(){
     //this.$refs.counter.start();
   },
@@ -189,7 +193,10 @@ export default ({
     },
     signup() {
       this.$router.push({ name: 'Signup' })
-    }
+    },
+    whitepaper() {
+      this.$router.push({ name: 'Whitepaper' })
+    },
   }
 
 })

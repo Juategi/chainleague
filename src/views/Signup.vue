@@ -1,5 +1,6 @@
 <template>
-   <div v-if="sign">
+<div>
+  <div v-if="sign">
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">Already have an account? <span style="font-weight: bold; cursor: pointer;" @click="login">Log in</span></p> 
      </div>
@@ -37,12 +38,14 @@
           <option value="TR">KR</option>
           <option value="LA">OCE</option>
           </select>
-            <div class="submit">
+            <div class="submit" v-if="!loading">
               <button>Continue</button>
-            </div>      
+            </div>   
+            <div class="loading" v-if="loading && sign"></div>    
         </div>
     </form>
     </div> 
+    
   <div v-else-if="riot">
     <RiotVerification :verification="this.verification" :verificationError="this.verificationError"/>
   </div>
@@ -53,9 +56,12 @@
   <div v-else-if="end">
     <End :myReferal="this.myReferal"/>
   </div>
-  <div class="submit" v-if="!sign">
+  <div class="submit" v-if="!sign && !loading">
       <button @click="handleSubmit">Continue</button>
-  </div>
+  </div> 
+  <div class="loading" v-if="loading && !sign"></div>  
+</div>
+    
 </template>
 
 <script>
@@ -86,7 +92,8 @@ export default {
       sign: true,
       riot: false,
       wallet: false,
-      end: false
+      end: false,
+      loading: false
     }
   },
   components: {
@@ -99,7 +106,8 @@ export default {
       this.walletId = id
     },
     async handleSubmit() {
-        this.passwordError = this.password.length > 5 || this.password != this.cpassword ?
+        this.loading = true
+        this.passwordError = this.password.length > 5 && this.password == this.cpassword ?
         '' : 'Passwords must match and be at least 6 characters long'
         var usersRef = firebase.firestore().collection("/users");
         if(!this.passwordError && this.sign){      
@@ -130,13 +138,13 @@ export default {
           var result = await fetch(summonerQuery, {headers: { }}).catch((err) => {
             console.log(err)
             this.verificationError = "Summoner not found or probably the server is too busy, try later"
-
+            this.loading = false;
             return
             })
           const summoner = await result.json()
           const summonerId = summoner['id']
           const codeQuery = "https://" + serverUrl + ".api.riotgames.com/lol/platform/v4/third-party-code/by-summoner/" + summonerId + key
-          result = await fetch(codeQuery, {headers: { }}).catch((err) => {this.verificationError = "Code not found, try again"; return})
+          result = await fetch(codeQuery, {headers: { }}).catch((err) => {this.verificationError = "Code not found, try again"; this.loading = false; return})
           const code = await result.json()     
           if(code == this.verification){
             this.riot = false
@@ -179,10 +187,12 @@ export default {
             })
             .catch(function(error) {
                 console.error("Error adding User: ", error);
+                this.loading = false;
             });           
             }).catch(error => {
               console.log(error.code)
               alert(error.message);
+              this.loading = false;
             }); 
           }
           this.wallet = false
@@ -191,7 +201,7 @@ export default {
         else if(this.end){   
           this.$router.push({ name: 'Home'}) 
         }
-
+        this.loading = false
     },
     login(){
       this.$router.push({ name: 'Login'}) 
@@ -201,14 +211,30 @@ export default {
 </script>
 
 <style scoped>
+  .loading {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #2588B2; 
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin-top: 100px;
+    background-color: #ffffff;  
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); } 
+  }
+
   #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    background: #fff;  
+    background: #ffffff;  
   }
 div{
-  background: #fff;    
+  background-color: #ffffff;    
 }
 
 body{
@@ -257,12 +283,13 @@ form {
     padding: 20px;
   }
   
-  
   .error {
     color: #ff0062;
     margin-top: 10px;
     font-size: 0.8em;
     font-weight: bold;
   }
+
+
 
 </style>

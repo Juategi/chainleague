@@ -26,6 +26,11 @@ p{
   color: #ffffff;
 }
 
+a{
+  font: 20px 'Rubik' ;
+  color: #ffffff;
+}
+
 b.bar{
   cursor: pointer; 
   padding-right: 80px;
@@ -290,6 +295,7 @@ img.mediaS:hover{
   border-bottom-left-radius: 80px;
   border-bottom-right-radius: 80px;
 }
+
 
 
 
