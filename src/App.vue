@@ -1,4 +1,7 @@
 <template>
+  <title>
+    Chain League
+  </title>
   <div v-bind:class="{ top: $route.name == 'Home' || $route.name == 'Whitepaper'}"  ref="top">
     <div style="margin-top: 10px; height: 70px; width: 100%; float: left; overflow:hidden; position:relative">  
       <div @click="home" v-if="$route.name != 'NotFound'">
@@ -13,7 +16,7 @@
         <button style="margin-left:25px; bottom:15px" @click="signOut" v-else>Sign out</button>
       </div>
     </div>
-    <div class="rectangleInfo" v-if="userData">
+    <div class="rectangleInfo" v-if="userData && ($route.name == 'Home' || $route.name == 'Whitepaper')">
       <p style="color: #050617;  ">{{ userData['summoners'] }} <span style="font-weight: bold;"> {{ userData['server'] }} </span> </p>
       <p style="color: #050617;  font: 17px 'Rubik' ;">Referal: </p>
       <p style="color: #050617;  font: 15px 'Rubik' ;">{{ userData['myreferal'] }} </p>
