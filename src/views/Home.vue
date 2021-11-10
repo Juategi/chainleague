@@ -101,13 +101,13 @@
     </div>  
     <div style="margin-top: 50px; width: 100%; float: left; overflow: hidden;">
       <div style="margin-left: 100px; width: 40%; float: left; overflow: hidden;">
-        <img src="../assets/p2.jpg" style="width:60%; height:auto; max-width:500px; " >
+        <img src="../assets/p1.png" style="width:60%; height:280px; max-width:500px; " >
         <p style="font-weight: bold; font-size: 20px">Juan Tena Gimeno</p>  
         <p style="font-size: 20px">Full-Stack Developer</p>   
         <img src="../assets/ld.png" class="mediaS" onclick=" window.open('https://www.linkedin.com/in/juan-tena-gimeno-2411191aa/','_blank')">
       </div>
       <div style="margin-left: 100px; width: 40%; float: right; overflow: hidden;">
-        <img src="../assets/p2.jpg" style="width:60%; height:auto; max-width:500px;" >
+        <img src="../assets/p2.jpg" style="width:60%; height:280px; max-width:500px;" >
         <p style="font-weight: bold; font-size: 20px">Enrique Martinez Durá</p>  
         <p style="font-size: 20px">Marketing Manager & Community Manager</p> 
         <img src="../assets/ld.png" class="mediaS" onclick=" window.open('https://www.linkedin.com/in/enrique-mart%C3%ADnez-dur%C3%A1-308146154/','_blank')">
