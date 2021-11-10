@@ -1,21 +1,21 @@
 <template>
-  <div style="height:1500px; width: 100%;">
+  <div style="height:1300px; width: 100%;">
     <div style="overflow: hidden; margin-top:50px">
           <p style="font-weight: bold; ">Whitepaper</p>  
     </div>   
     
-     <div>
+     <div style="width:1000; height:1000">
       <object
-        data='https://pdfjs-express.s3-us-west-2.amazonaws.com/docs/choosing-a-pdf-viewer.pdf'
+        :data='url'
         type="application/pdf"
         width="1000"
-        height="1300"
+        height="1000"
       >
 
         <iframe
-          src='https://pdfjs-express.s3-us-west-2.amazonaws.com/docs/choosing-a-pdf-viewer.pdf'
+          :src='url'
           width="1000"
-          height="1300"
+          height="1000"
         >
         <p>This browser does not support PDF!</p>
         </iframe>
@@ -23,12 +23,35 @@
       </object>
     </div>
     
+    <div style="overflow: hidden; margin-top:80px; margin-right:250px">
+        <button class="big" @click="download">Download</button>
+    </div>
   </div>   
 
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+  data(){
+    return {
+      url: 'https://pdfjs-express.s3-us-west-2.amazonaws.com/docs/choosing-a-pdf-viewer.pdf',
+    }
+  },
+  methods:{
+    download(){
+      axios.get(this.url, { responseType: 'blob' })
+      .then(response => {
+        const blob = new Blob([response.data], { type: 'application/pdf' })
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob)
+        link.download = "whitepaper.pdf"
+        link.click()
+        URL.revokeObjectURL(link.href)
+      }).catch(console.error)
+    }
+  }
 }
 </script>
  

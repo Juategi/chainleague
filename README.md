@@ -20,4 +20,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 
-## Modo movil
+## Modo movil, roadmap, precio dinamico

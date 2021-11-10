@@ -1,7 +1,7 @@
 <template>
-  <div v-bind:class="{ top: $route.name == 'Home' || $route.name == 'Whitepaper'}">
+  <div v-bind:class="{ top: $route.name == 'Home' || $route.name == 'Whitepaper'}"  ref="top">
     <div style="margin-top: 10px; height: 70px; width: 100%; float: left; overflow:hidden; position:relative">  
-      <div @click="home" v-if="$route.name != 'NotFound'" ref="top">
+      <div @click="home" v-if="$route.name != 'NotFound'">
         <img src="./assets/icon.svg" class="logo">
         <b class="title" >Chain League</b>
       </div>
@@ -58,8 +58,11 @@ export default {
     home() {
       this.$router.push({ name: 'Home' })
     },
-    whitepaper() {
-      this.$router.push({ name: 'Whitepaper' })
+    async whitepaper() {
+      await this.$router.push({ name: 'Whitepaper' })
+        var element = this.$refs['top'];
+        var top = element.offsetTop;
+        window.scrollTo(0, top);
     },
     roadmap() {
       this.$router.push({ name: 'Home' }).then(()=> this.$refs.view.$.ctx[this.$route.meta.goToRoadmap.methodName]())
