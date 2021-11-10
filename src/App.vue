@@ -83,8 +83,9 @@ export default {
     },
     saveWallet(){
       var usersRef = firebase.firestore().collection("/users");
-      if(this.wallet.length != 42 || this.wallet.substr(0,2) != '0x')
+      if((this.wallet.length != 42 && this.wallet.length != 0) || (this.wallet.substr(0,2) != '0x' && this.wallet.length != 0)){
           alert("Address format incorrect")
+      }
       else{
         usersRef.doc(firebase.auth().currentUser.uid).set({      
           wallet: this.wallet,
