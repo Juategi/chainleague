@@ -178,7 +178,7 @@ export default {
                 summoners: this.summoners,
                 server: this.server,
                 wallet: this.walletId,
-                myReferal: this.myReferal,
+                myreferal: this.myReferal,
             })
             .then(function(docRef) {
                 console.log("User created with ID: ", docRef);

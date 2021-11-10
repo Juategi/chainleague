@@ -9,12 +9,26 @@
         <b class="bar" @click="whitepaper">Whitepaper</b>
         <b class="bar" @click="roadmap">Roadmap</b>
         <b class="bar" @click="team">Team</b> 
-        <button style="margin-left:25px; bottom:15px" @click="signup" v-if="!user">Sign up</button>
+        <button style="margin-left:25px; bottom:15px" @click="signup" v-if="!userData">Sign up</button>
         <button style="margin-left:25px; bottom:15px" @click="signOut" v-else>Sign out</button>
       </div>
     </div>
+    <div class="rectangleInfo" v-if="userData">
+      <p style="color: #050617;  ">{{ userData['summoners'] }} <span style="font-weight: bold;"> {{ userData['server'] }} </span> </p>
+      <p style="color: #050617;  font: 15px 'Rubik' ;">Referal: {{ userData['myreferal'] }} </p>
+      <div style="width: 100%;">
+        <div style="width: 60%; float: left; overflow:hidden; position:relative">
+          <p style="color: #050617; font-weight: bold;">Wallet </p>
+        </div>
+        <div style="width: 40%; float: right; overflow:hidden; position:relative; margin-top: 20px; ">
+           <img src="./assets/edit.png" class="edit" @click="editWallet" v-if="walletDisabled">
+           <img src="./assets/save.png" class="edit" @click="saveWallet" v-else>
+        </div>
+      </div>
+      <input type="text" v-model="wallet" :disabled="walletDisabled" style="width=300px">
+    </div>
   </div>
-  <router-view v-slot="{ Component }" :user="user">
+  <router-view v-slot="{ Component }" :userData="userData">
     <component ref="view" :is="Component" />
   </router-view>
 
@@ -55,17 +69,41 @@ export default {
       )
       
     },
-    stateChanged(){     
-      if(firebase.auth().currentUser)
-        this.user = true;
-      else
-        this.user = false
-      console.log(this.user)
+    editWallet(){
+      this.walletDisabled = false
+    },
+    saveWallet(){
+      var usersRef = firebase.firestore().collection("/users");
+      if(this.wallet.length != 42 || this.wallet.substr(0,2) != '0x')
+          alert("Address format incorrect")
+      else{
+        usersRef.doc(firebase.auth().currentUser.uid).set({      
+          wallet: this.wallet,
+          email: this.userData['email'],
+          referal: this.userData['referal'],          
+          summoners: this.userData['summoners'],
+          server: this.userData['server'],
+          myreferal: this.userData['myreferal'],
+        })
+        this.walletDisabled = true
+      }  
+    },
+    async stateChanged(){     
+      if(firebase.auth().currentUser){
+        const userId = firebase.auth().currentUser.uid
+        var usersRef = firebase.firestore().collection("/users");
+        usersRef.doc(userId).get().then((snapshot) => { this.userData = snapshot.data(); this.wallet = this.userData['wallet']})
+      }
+      else{
+        this.userData = null
+      }
     }
   },
   data(){
     return {
-      user: false
+      userData: null,
+      wallet: null,
+      walletDisabled: true
     }
   }
 }

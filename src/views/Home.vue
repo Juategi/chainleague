@@ -38,7 +38,7 @@
     <p >You will also need to have at least 100 CLG in your wallet</p>
     <img src="../assets/ga.png" class="ga" >
     <div style="margin-right: 130px; padding-top:20px; padding-bottom:20px" >
-      <button  @click="signup" v-if="!user">Sign up</button>
+      <button  @click="signup" v-if="!userData">Sign up</button>
     </div>
     <p style="margin-top: 40px;">We will distribute the prize among 10 winners, they will receive their CLG in their wallets on March 2022</p>      
   </div>  
@@ -155,7 +155,7 @@ scroll = false
 
 export default ({
   name: 'Home',
-  props: ['user'],
+  props: ['userData'],
   mounted(){
     //this.$refs.counter.start();
   },
