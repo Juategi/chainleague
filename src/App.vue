@@ -15,11 +15,17 @@
     </div>
     <div class="rectangleInfo" v-if="userData">
       <p style="color: #050617;  ">{{ userData['summoners'] }} <span style="font-weight: bold;"> {{ userData['server'] }} </span> </p>
-      <p style="color: #050617;  font: 15px 'Rubik' ;">Referal: {{ userData['myreferal'] }} </p>
+      <p style="color: #050617;  font: 17px 'Rubik' ;">Referal: </p>
+      <p style="color: #050617;  font: 15px 'Rubik' ;">{{ userData['myreferal'] }} </p>
       <div style="width: 100%;">
-        <div style="width: 60%; float: left; overflow:hidden; position:relative">
-          <p style="color: #050617; font-weight: bold;">Wallet </p>
-        </div>
+        <div >
+            <div style="float: left; overflow:hidden; margin-left: 115px;">
+              <p style="color:#F3BA2F; font: 18px 'Rubik; font-weight: bold; '">BSC <span style="font-weight: normal; ">Wallet</span> </p> 
+            </div>
+            <div style="float: left; margin-top: 18px; margin-left: 8px">
+              <img src="./assets/bsc.svg" class="bscS"> 
+            </div>
+          </div>
         <div style="width: 40%; float: right; overflow:hidden; position:relative; margin-top: 20px; ">
            <img src="./assets/edit.png" class="edit" @click="editWallet" v-if="walletDisabled">
            <img src="./assets/save.png" class="edit" @click="saveWallet" v-else>

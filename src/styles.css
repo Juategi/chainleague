@@ -142,6 +142,12 @@ button.big:hover {
   max-width:30px; 
 }
 
+.bscS{
+  width:22px; 
+  height:22px; 
+  max-width:22px; 
+}
+
 .uni{
   width:200px; 
   height:40px; 
@@ -309,7 +315,7 @@ img.mediaS:hover{
 
 .rectangleInfo {
   margin:auto;
-  height: 230px;
+  height: 250px;
   width: 400px;
   background-color: #f1f0f0;
   border-top-left-radius: 20px;
@@ -317,7 +323,7 @@ img.mediaS:hover{
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   border: 2px solid #2588B2;
-  margin-top: 170px; 
+  margin-top: 150px; 
   margin-right: 50px; 
   float: right; 
   overflow:hidden; 
