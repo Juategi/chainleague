@@ -8,18 +8,18 @@
              <p >Powered by</p>
           </div>
           <div style="padding-top: 0px;">
-            <img src="../assets/bsct.png"  >
+            <img src="../assets/bsct.png" class="bsct" >
           </div>          
     </div>   
 
 
     <div style="margin-right: 20px; width: 40%; float: right; overflow: hidden; margin-top:35px">
-          <p style="font-weight: bold; font-size: 25px;">We are now on pre-sale!</p>
+          <p style="font-weight: bold; font-size: 20px;">We are now on pre-sale!</p>
           <p >Be one of  the first to join the project.</p>
-          <div style="text-align: center; margin-right:180px">
+          <div style="text-align: center; margin-right:120px">
              <button class="white" style="margin-top:10px; " onclick=" window.open('https://pancakeswap.finance/swap','_blank')">Buy tokens</button>
           </div>
-          <div style="padding-top: 100px;">
+          <div >
             <img src="../assets/uni.png" class="uni" >
           </div>
           
@@ -59,9 +59,9 @@
   </div>
 
     <div class="x900">          
-          <p style="font-weight: bold; font-size: 30px">How will it work?</p>    
+          <p style="font-weight: bold; font-size: 26px">How will it work?</p>    
           <div class="how"></div>
-          <div style="margin-right: 220px; margin-top: 40px; ">
+          <div style="margin-right: 20%; margin-top: 40px; ">
             <button class="big" @click="whitepaper">Whitepaper</button>
           </div>
     </div>  
@@ -77,14 +77,14 @@
   </div>
   
   <div class="bot">
-      <p style="padding-top: 10%; font-weight: bold; font-size: 30px">What is League of Legends?</p>
-      <a style="font-size: 20px; cursor: pointer; color: #ffffff" href="https://www.leagueoflegends.com/" target="_blank">Check the website</a>     
-      <p style="margin-top: 10%; font-weight: bold; font-size: 30px">+180 million players around the world</p>  
-      <p style="margin-top: 10%; font-weight: bold; font-size: 18px">Disclaimer:</p>  
-      <p style="font-size: 18px">We are not owned or associated with Riot Games or any of its brands  </p>        
+      <p style="padding-top: 10%; font-weight: bold; font-size: 26px">What is League of Legends?</p>
+      <a style="font-size: 18px; cursor: pointer; color: #ffffff" href="https://www.leagueoflegends.com/" target="_blank">Check the website</a>     
+      <p style="margin-top: 8%; font-weight: bold; font-size: 26px">+180 million players around the world</p>  
+      <p style="margin-top: 8%; font-weight: bold; font-size: 17px">Disclaimer:</p>  
+      <p style="font-size: 17px">We are not owned or associated with Riot Games or any of its brands  </p>        
   </div>
 
-  <div style="height:620px; width: 100%; min-width:600px" ref="team">
+  <div class="x600" ref="team">
     <div style="width: 100%; float: center; overflow: hidden; ">     
         <p style="padding-top: 10px; font-weight: bold; font-size: 35px">Team</p>   
     </div>  
@@ -107,7 +107,7 @@
 
 
   <div class="mid2">
-        <p style="font-weight: bold; font-size: 20px; ">Join our community</p>  
+        <p style="font-weight: bold; font-size: 18px; ">Join our community</p>  
         <img src="../assets/dc.png" class="media" >
         <img src="../assets/ig.png" class="media" >
         <img src="../assets/tg.png" class="media" >

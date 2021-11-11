@@ -8,7 +8,7 @@
         <img src="./assets/icon.svg" class="logo">
         <b class="title" >Chain League</b>
       </div>
-      <div style="margin-top:20px" v-if="$route.name == 'Home' || $route.name == 'Whitepaper'">       
+      <div style="margin-top:2%" v-if="$route.name == 'Home' || $route.name == 'Whitepaper'">       
         <b class="bar" @click="whitepaper">Whitepaper</b>
         <b class="bar" @click="roadmap">Roadmap</b>
         <b class="bar" @click="team">Team</b> 
