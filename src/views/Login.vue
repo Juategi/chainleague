@@ -117,7 +117,7 @@ label {
 .submit {
     text-align: center;
     margin-top: 100px;
-    margin-right: 140px;
+    margin-right: 15%;
 }
 
 form {

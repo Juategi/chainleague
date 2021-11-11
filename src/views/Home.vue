@@ -9,7 +9,10 @@
           </div>
           <div style="padding-top: 0px;">
             <img src="../assets/bsct.png" class="bsct" >
-          </div>          
+          </div>   
+          <div >
+            <img src="../assets/uni.png" class="uni" >
+          </div>       
     </div>   
 
 
@@ -18,20 +21,16 @@
           <p >Be one of  the first to join the project.</p>
           <div style="text-align: center; margin-right:120px">
              <button class="white" style="margin-top:10px; " onclick=" window.open('https://pancakeswap.finance/swap','_blank')">Buy tokens</button>
-          </div>
-          <div >
-            <img src="../assets/uni.png" class="uni" >
-          </div>
-          
+          </div>                 
     </div>  
   </div>
 
-  <div style=" height:400px; overflow: hidden; margin-top:50px">
+  <div style=" height:400px; overflow: hidden;">
     <p style="font-weight: bold; font-size: 30px;">Sign up to win our give away!</p>
     <p >Participate in our give away, the more referals you get, the more chances of winning</p>
     <p >You will also need to have at least 100 CLG in your wallet</p>
     <img src="../assets/ga.png" class="ga" >
-    <div style="margin-right: 130px; padding-top:20px; padding-bottom:20px" >
+    <div style="margin-right: 10%; padding-top:20px; padding-bottom:20px" >
       <button  @click="signup" v-if="!userData">Sign up</button>
     </div>
     <p style="margin-top: 40px;">We will distribute the prize among 10 winners, they will receive their CLG in their wallets on March 2022</p>      

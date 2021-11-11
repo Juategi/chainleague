@@ -159,7 +159,7 @@ button.big:hover {
   width:200px; 
   height:40px; 
   max-width:200px; 
-  margin-top: 100px;
+  margin-top: 10px;
 }
 
 .bsct{
@@ -456,7 +456,7 @@ input{
     height:30px; 
     max-width:160px; 
     padding-right: 10px;
-    margin-top: 80px;
+    margin-top: 10px;
   }
 
 
@@ -697,11 +697,11 @@ input{
   }
 
   .uni{
-    width:150px; 
-    height:30px; 
-    max-width:160px; 
-    padding-right: 50px;
-    margin-top: 50px;
+    width:100px; 
+    height:20px; 
+    max-width:110px; 
+    padding-right: 10px;
+    margin-top: 5px;
   }
 
   .bsct{

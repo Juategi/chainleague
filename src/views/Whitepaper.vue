@@ -1,21 +1,21 @@
 <template>
-  <div style="height:1300px; width: 100%;">
-    <div style="overflow: hidden; margin-top:50px">
+  <div style="height:1300px; width: 100%; ">
+    <div style="overflow: hidden; margin-top:5% margin: auto;" >
           <p style="font-weight: bold; ">Whitepaper</p>  
     </div>   
     
-     <div style="width:1000; height:1000">
+     <div style="width:80%; height:80%">
       <object
         :data='url'
         type="application/pdf"
-        width="1000"
-        height="1000"
+        width="80%"
+        height="80%"
       >
 
         <iframe
           :src='url'
-          width="1000"
-          height="1000"
+          width="80%"
+          height="80%"
         >
         <p>This browser does not support PDF!</p>
         </iframe>
@@ -23,7 +23,8 @@
       </object>
     </div>
     
-    <div style="overflow: hidden; margin-top:80px; margin-right:250px">
+    <div style="overflow: hidden; margin-left: auto;
+  margin-right: auto;">
         <button class="big" @click="download">Download</button>
     </div>
   </div>   
