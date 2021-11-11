@@ -12,17 +12,17 @@
         <b class="bar" @click="whitepaper">Whitepaper</b>
         <b class="bar" @click="roadmap">Roadmap</b>
         <b class="bar" @click="team">Team</b> 
-        <button style="margin-left:25px; bottom:15px" @click="signup" v-if="!userData">Sign up</button>
-        <button style="margin-left:25px; bottom:15px" @click="signOut" v-else>Sign out</button>
+        <button class="btop" @click="signup" v-if="!userData">Sign up</button>
+        <button class="btop" @click="signOut" v-else>Sign out</button>
       </div>
     </div>
     <div class="rectangleInfo" v-if="userData && ($route.name == 'Home' || $route.name == 'Whitepaper')">
       <p style="color: #050617;  ">{{ userData['summoners'] }} <span style="font-weight: bold;"> {{ userData['server'] }} </span> </p>
-      <p style="color: #050617;  font: 17px 'Rubik' ;">Referal: </p>
-      <p style="color: #050617;  font: 15px 'Rubik' ;">{{ userData['myreferal'] }} </p>
+      <p style="color: #050617;  ;">Referal: </p>
+      <p style="color: #050617; font: 13px 'Rubik;;">{{ userData['myreferal'] }} </p>
       <div style="width: 100%;">
         <div >
-            <div style="float: left; overflow:hidden; margin-left: 115px;">
+            <div style="float: left; overflow:hidden; margin-left: 10%;">
               <p style="color:#F3BA2F; font: 18px 'Rubik; font-weight: bold; '">BSC <span style="font-weight: normal; ">Wallet</span> </p> 
             </div>
             <div style="float: left; margin-top: 18px; margin-left: 8px">
@@ -34,7 +34,7 @@
            <img src="./assets/save.png" class="edit" @click="saveWallet" v-else>
         </div>
       </div>
-      <input type="text" v-model="wallet" :disabled="walletDisabled" style="width=300px">
+      <input type="text" v-model="wallet" :disabled="walletDisabled" style="width:80%">
     </div>
   </div>
   <router-view v-slot="{ Component }" :userData="userData">
