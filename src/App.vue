@@ -16,7 +16,7 @@
         <button class="btop" @click="signOut" v-else>Sign out</button>
       </div>
     </div>
-    <div class="rectangleInfo" v-if="userData && ($route.name == 'Home' || $route.name == 'Whitepaper')">
+    <div class="rectangleInfo" v-if="userData && ($route.name == 'Home' )">
       <p style="color: #050617;  ">{{ userData['summoners'] }} <span style="font-weight: bold;"> {{ userData['server'] }} </span> </p>
       <p style="color: #050617;  ;">Referal: </p>
       <p style="color: #050617; font: 13px 'Rubik;;">{{ userData['myreferal'] }} </p>

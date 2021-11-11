@@ -1,5 +1,5 @@
 <template>
-  <div style="height:370px; width: 100%;">
+  <div style="height:400px; width: 100%;">
     <div style="margin-left: 20px; width: 40%; float: left; overflow: hidden; margin-top:50px">
           <p >The first play-to-earn cryptocurrency based on League of Legends.</p>
           <p >Win tokens just by playing normal and ranked games in League of Legends.</p>
