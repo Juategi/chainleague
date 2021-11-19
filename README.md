@@ -20,4 +20,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 
-## Modo movil, roadmap, precio dinamico, minimo 30 cuenta comprobar
+## roadmap, precio dinamico

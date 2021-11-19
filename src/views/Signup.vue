@@ -143,6 +143,12 @@ export default {
             })
           const summoner = await result.json()
           const summonerId = summoner['id']
+          const level = summoner['summonerLevel']
+          if(level < 30){
+            this.verificationError = "Level 30 required"
+            this.loading = false;
+            return
+          }
           const codeQuery = "https://" + serverUrl + ".api.riotgames.com/lol/platform/v4/third-party-code/by-summoner/" + summonerId + key
           result = await fetch(codeQuery, {headers: { }}).catch((err) => {this.verificationError = "Code not found, try again"; this.loading = false; return})
           const code = await result.json()     
@@ -272,7 +278,7 @@ label {
 .submit {
     text-align: center;
     margin-top: 100px;
-    margin-right: 40%;
+    margin-right: 10%;
 }
 
 form {
@@ -290,6 +296,13 @@ form {
     font-weight: bold;
   }
 
+  @media screen and (max-width: 660px){
+    .submit {
+      text-align: center;
+      margin-top: 100px;
+      margin-right: 30%;
+  }
+}
 
 
 </style>

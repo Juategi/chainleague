@@ -30,7 +30,7 @@ p{
 
 p.midf{
   font: 20px 'Rubik' ;
-  margin-top: 10%; 
+  margin-top: 4%; 
   font-weight: bold;
 }
 
@@ -336,7 +336,8 @@ img.mediaS:hover{
 .x600{
   height:620px;
   width: 100%; 
-  min-width:600px
+  min-width:600px;
+  max-width: 2000px;
 }
 
 .rectangleWhite {
