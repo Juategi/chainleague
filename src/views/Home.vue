@@ -19,31 +19,30 @@
     <div style="margin-right: 20px; width: 40%; float: right; overflow: hidden; margin-top:35px">
           <p style="font-weight: bold; font-size: 20px;">We are now on pre-sale!</p>
           <p >Be one of  the first to join the project.</p>
-          <div style="text-align: center; margin-right:120px">
+          <div style="text-align: center; margin-right: 25%">
              <button class="white" style="margin-top:10px; " onclick=" window.open('https://pancakeswap.finance/swap','_blank')">Buy tokens</button>
           </div>                 
     </div>  
   </div>
 
-  <div style=" height:400px; overflow: hidden;">
-    <p style="font-weight: bold; font-size: 30px;">Sign up to win our give away!</p>
-    <p >Participate in our give away, the more referals you get, the more chances of winning</p>
-    <p >You will also need to have at least 100 CLG in your wallet</p>
-    <img src="../assets/ga.png" class="ga" >
+  <div style=" height:250px; overflow: hidden;">
+    <p style="font-weight: bold; font-size: 25px;">Sign up to win more CLG!</p>
+    <p >Use your referral code to get more players to sign up.</p>
+    <p >You will earn 10% of all the tokens they have purchased.</p>
+    <!-- <img src="../assets/ga.png" class="ga" > -->
     <div style="margin-right: 10%; padding-top:20px; padding-bottom:20px" >
       <button  @click="signup" v-if="!userData">Sign up</button>
     </div>
-    <p style="margin-top: 40px;">We will distribute the prize among 10 winners, they will receive their CLG in their wallets on March 2022</p>      
   </div>  
 
   <div class="mid">
     <div style="height:80%; width: 100%">      
     <div style="margin-left: 35%; width: 20%; float: left; overflow: hidden; margin-top:5%">
       <!--<vue3-autocounter ref='counter' :startAmount='0' :endAmount='200000' :duration='3' prefix='+' suffix=' holders' separator=',' decimalSeparator='.' :decimals='0' :autoinit='false' style="font: 25px 'Rubik' ; font-weight: bold; color:#ffffff"  @finished='alert(`Counting finished!`)' /> -->
-          <p style="margin-top: 5%; font-weight: bold; ">Total ICO Launch invested</p>
+          <p class="midf">Pre-release invested</p>
            <b style="margin-top: 5%; font-weight: bold; ">0$</b>   
-          <p style="margin-top: 15%; font-weight: bold;">Phase 0 - Iron</p>                                      
-          <p style="margin-top: 15%; font-weight: bold; ">Actual price: 0.00$</p>  
+          <p class="midf">Phase 0 - Iron</p>                                      
+          <p class="midf">Price: 0.00$</p>  
           <div style="margin-right:70%; margin-top:15%; ">
             <button class="white" onclick=" window.open('https://pancakeswap.finance/swap','_blank')" >Buy tokens</button>
           </div>
@@ -71,16 +70,16 @@
       
   </div>
 
-  <div style=" height: 50px ">
-        <p style="font-size: 20px; cursor: pointer;">Check the detailed Roadmap >></p>   
-  </div>
+  <!-- <div style=" height: 50px ">
+      <p style="font-size: 20px; cursor: pointer;">Check the detailed Roadmap >></p>   
+  </div> -->
   
   <div class="bot">
-      <p style="padding-top: 10%; font-weight: bold; font-size: 26px">What is League of Legends?</p>
+      <p class="botf">What is League of Legends?</p>
       <a style="font-size: 18px; cursor: pointer; color: #ffffff" href="https://www.leagueoflegends.com/" target="_blank">Check the website</a>     
-      <p style="margin-top: 8%; font-weight: bold; font-size: 26px">+180 million players around the world</p>  
-      <p style="margin-top: 8%; font-weight: bold; font-size: 17px">Disclaimer:</p>  
-      <p style="font-size: 17px">We are not owned or associated with Riot Games or any of its brands  </p>        
+      <p class="botf">+180 million players around the world</p>  
+      <p style="margin-top: 8%; font-weight: bold; font-size: 15px">Disclaimer:</p>  
+      <p class="midf">We are not owned or associated with Riot Games or any of its brands  </p>        
   </div>
 
   <div class="x600" ref="team">
@@ -106,29 +105,30 @@
 
 
   <div class="mid2">
-        <p style="font-weight: bold; font-size: 18px; ">Join our community</p>  
-        <img src="../assets/dc.png" class="media" >
-        <img src="../assets/ig.png" class="media" >
-        <img src="../assets/tg.png" class="media" >
-        <img src="../assets/fb.png" class="media" >
-        <img src="../assets/tw.png" class="media" >
-        
+        <div style="margin-bottom: 15px; ">
+          <p style="font-weight: bold; font-size: 18px; ">Join our community</p>  
+          <img src="../assets/dc.png" class="media" >
+          <img src="../assets/ig.png" class="media" >
+          <img src="../assets/tg.png" class="media" >
+          <img src="../assets/fb.png" class="media" >
+          <img src="../assets/tw.png" class="media" >
+        </div>
   </div>
 
 
   <div class="fodder">
     <div >
-      <div style="width: 10%;  float:left; overflow: hidden;">          
+      <div class="foddericon">          
         <img src="../assets/iconw.svg" class="logoB">
       </div>  
       <div style="width: 20%; float: left; overflow: hidden; ">          
-        <p style="font-weight: bold; font-size: 20px">Contact</p> 
-         <p style="font-size: 20px; margin-top:40px;">support@chainleague.com</p>    
-          <p style="font-size: 15px; margin-top:60px; ">© 2022 ChainLeague All Rights Reserved.</p>  
+        <p style="font-weight: bold; ">Contact</p> 
+         <p style=" margin-top:10%;">support@chainleague.com</p>    
+          <p style=" margin-top:10%; ">© 2022 ChainLeague All Rights Reserved.</p>  
       </div>    
       <div style="width: 10%; float:left; overflow: hidden; ">          
-        <p style="font-weight: bold; font-size: 20px">Legal</p>  
-         <p style="font-size: 20px; margin-top:40px; cursor: pointer; ">Terms of Use</p>   
+        <p style="font-weight: bold; ">Legal</p>  
+         <p style=" margin-top:20%; cursor: pointer; ">Terms of Use</p>   
       </div>     
     </div>
 

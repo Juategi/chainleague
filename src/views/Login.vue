@@ -16,7 +16,7 @@
             </div>
 
             <div class="submit">
-              <button>Continue</button>
+              <button class="formbutton">Continue</button>
             </div>      
         </div>
     </form>
@@ -117,7 +117,7 @@ label {
 .submit {
     text-align: center;
     margin-top: 100px;
-    margin-right: 15%;
+    margin-right: 40%;
 }
 
 form {

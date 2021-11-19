@@ -39,7 +39,7 @@
           <option value="LA">OCE</option>
           </select>
             <div class="submit" v-if="!loading">
-              <button>Continue</button>
+              <button class="formbutton" >Continue</button>
             </div>   
             <div class="loading" v-if="loading && sign"></div>    
         </div>
@@ -57,7 +57,7 @@
     <End :myReferal="this.myReferal"/>
   </div>
   <div class="submit" v-if="!sign && !loading">
-      <button @click="handleSubmit">Continue</button>
+      <button class="formbutton" @click="handleSubmit">Continue</button>
   </div> 
   <div class="loading" v-if="loading && !sign"></div>  
 </div>
@@ -272,7 +272,7 @@ label {
 .submit {
     text-align: center;
     margin-top: 100px;
-    margin-right: 15%;
+    margin-right: 40%;
 }
 
 form {

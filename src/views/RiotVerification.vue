@@ -2,7 +2,8 @@
   <div style="height: 1000px">
       <div style="height: 50px"></div>
       <b >Enter this validation code in the League of Legends client</b>
-      <p>We need to validate that you are the owner of the account to avoid possible fraud.</p>
+      <p>We need to validate that you are the owner of the account to avoid possible fraud. 
+        You will need to have an account with level 30 or more</p>
       <div class="rectangle">
           <b>{{ verification }}</b>
       </div>

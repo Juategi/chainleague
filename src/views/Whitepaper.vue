@@ -24,7 +24,7 @@
     </div>
     
     <div style="overflow: hidden; margin-left: auto;
-  margin-right: auto;">
+  margin-right: 20%;">
         <button class="big" @click="download">Download</button>
     </div>
   </div>   

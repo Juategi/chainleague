@@ -5,8 +5,8 @@
       <p style="font-weight: bold; color:#F3BA2F; ">BINANCE <span style="font-weight: normal; ">SMART CHAIN</span> </p> 
        <img src="../assets/bsc.svg" class="bsc">  
       <div style="text-align: left;">
-          <p>The address will be used to participate in the draw for 100.000 Chain League Tokens (CLG) divided into 10 prizes of 10.000.
-        The more referrals you have, the more chances of winning a prize you will have. (Optional)</p>
+          <p>The address will be used to send you Chain League (CLG) tokens according to 10% of the tokens your referrals have purchased. 
+            And to check the amount that you have bought at the time of distributing them.</p>
       </div>
     
       <input type="text" v-model="walletId" >

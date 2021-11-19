@@ -28,6 +28,18 @@ p{
   color: #ffffff;
 }
 
+p.midf{
+  font: 20px 'Rubik' ;
+  margin-top: 10%; 
+  font-weight: bold;
+}
+
+p.botf{
+  padding-top: 10%; 
+  font-weight: bold; 
+  font-size: 26px
+}
+
 a{
   font: 20px 'Rubik' ;
   color: #ffffff;
@@ -224,6 +236,15 @@ img.mediaS:hover{
   margin:0 auto;
 }
 
+.topinf{
+  margin-top: 10px;
+   height: 70px; 
+   width: 100%; 
+   float: left; 
+   overflow:hidden; 
+   position:relative
+}
+
 .mid{
   background: url("./assets/B2.png");
   background-size: 100%;
@@ -290,6 +311,12 @@ img.mediaS:hover{
   max-width: 2000px;
   margin:0 auto;
   background-repeat: no-repeat;
+}
+
+.foddericon{
+  width: 10%;  
+  float:left; 
+  overflow: hidden;
 }
 
 .line{
@@ -380,6 +407,13 @@ input{
     font: 15px 'Rubik' ;
     color: #ffffff;
   }
+
+  p.midf{
+    font: 11px 'Rubik' ;
+    margin-top: 7%; 
+    font-weight: bold;
+  }
+
   .top{ 
     height: 300px;
     min-height: 300px;
@@ -525,6 +559,12 @@ input{
     height: 50px;
   }
 
+  .formbutton{
+    font: 15px 'Rubik' ;
+    width: 140px;
+    height: 40px;
+  }
+
   .x900{
     width: 100%; 
     overflow: hidden; 
@@ -626,11 +666,33 @@ input{
     color: #ffffff;
   }
 
+  p.midf{
+    font: 8px 'Rubik' ;
+    margin-top: 4%; 
+    font-weight: bold;
+  }
+
+  p.botf{
+    padding-top: 5%; 
+    font-weight: bold; 
+    font-size: 16px
+  }
+
   .top{ 
     height: 250px;
     min-height: 250px;
     min-width: 400px;
     max-width: 800px;
+    width: 100%;
+  }
+
+  .topinf{
+    margin-top: 10px;
+     height: 70px; 
+     width: 90%; 
+     float: left; 
+     overflow:hidden; 
+     position:relative
   }
 
   b.bar{
@@ -676,7 +738,10 @@ input{
   }
 
   button.btop{
-    bottom: 40px;
+    font: 6px 'Rubik' ;
+    width: 42px;
+    height: 12px;
+    bottom: 45px;
   }
 
   .rectangleInfo {
@@ -719,22 +784,22 @@ input{
   .mid{
     background: url("./assets/B2.png");
     background-size: 100%;
-    height: 200px;
-    min-height: 300px;
-    min-width: 550px;
-    max-width: 900px;
+    height: 130px;
+    min-height: 200px;
+    min-width: 370px;
+    max-width: 600px;
     background-repeat: no-repeat;
     margin:0 auto;
   }
 
   .rank{
-    width:70px; 
-    height:70px; 
-    max-width:70px; 
+    width:50px; 
+    height:50px; 
+    max-width:50px; 
   }
 
   button.white{
-    font: 10px 'Rubik' ;
+    font: 6px 'Rubik' ;
     font-weight: bold;
     color: #2588B2;
     background: #ffffff;
@@ -744,17 +809,17 @@ input{
     border-bottom-right-radius: 80px;
     overflow: hidden;
     border: 1px solid #2588B2;
-    width: 80px;
-    height: 27px;
+    width: 45px;
+    height: 15px;
   }
 
   .how{
     background: url("./assets/B7.png");
     background-size: 100%;
-    height: 300px;
-    min-height: 300px;
-    min-width: 450px;
-    max-width: 450px;
+    height: 250px;
+    min-height: 250px;
+    min-width: 370px;
+    max-width: 370px;
     margin:0 auto;
     margin-top: 20px; 
     background-repeat: no-repeat;
@@ -773,6 +838,13 @@ input{
     border: 2px solid #ffffff;
     width: 140px;
     height: 40px;
+    margin-right: 20px;
+  }
+
+  .formbutton{
+    font: 15px 'Rubik' ;
+    width: 140px;
+    height: 40px;
   }
 
   .x900{
@@ -784,10 +856,10 @@ input{
   .mid3{
     background: url("./assets/B5.png");
     background-size: 100%;
-    height: 200px;
-    width: 420px;
-    min-height: 200px;
-    min-width: 420px;
+    height: 150px;
+    width: 320px;
+    min-height: 150px;
+    min-width: 320px;
     margin:0 auto;
     background-repeat: no-repeat;
   }
@@ -795,10 +867,10 @@ input{
   .bot{
     background: url("./assets/Bg.gif");
     background-size: 100%;
-    height: 350px;
-    min-height: 350px;
-    min-width: 600px;
-    max-width: 800px;
+    height: 250px;
+    min-height: 250px;
+    min-width: 400px;
+    max-width: 550px;
     margin:0 auto;
     background-repeat: no-repeat;
   }
@@ -822,28 +894,28 @@ input{
  .mid2{
     background: url("./assets/B3.png");
     background-size: 100%;
-    height: 90px;
-    min-height: 90px;
-    min-width: 500px;
-    max-width: 900px;
+    height: 80px;
+    min-height: 80px;
+    min-width: 400px;
+    max-width: 700px;
     margin:0 auto;
     background-repeat: no-repeat;
   }
 
   img.media{
-    width:30px; 
+    width:20px; 
     height:auto; 
-    max-width:30px; 
+    max-width:20px; 
     margin-right: 10px; 
-    margin-top: 5px; 
+    margin-top: 1px; 
     position:relative; 
     cursor: pointer; 
  }
 
  .logoB{
-  width:60px; 
-  height:60px; 
-  max-width:60px; 
+  width:40px; 
+  height:40px; 
+  max-width:40px; 
   padding-left: 20px;
   padding-top: 60px;
   float: left;
@@ -852,12 +924,18 @@ input{
 .fodder{
   background: url("./assets/B6.png");
   background-size: 100%;
-  height: 200px;
-  min-height: 200px;
-  min-width: 1700px;
-  max-width: 2000px;
+  height: 150px;
+  min-height: 150px;
+  min-width: 1000px;
+  max-width: 1200px;
   margin:0 auto;
   background-repeat: no-repeat;
+}
+
+.foddericon{
+  width: 8%;  
+  float:left; 
+  overflow: hidden;
 }
 
 }

@@ -7,7 +7,7 @@
           <input type="email" v-model="email" required>
           <div v-if="error" class="error">{{ error }}</div>
             <div class="submit">
-              <button>Send</button>
+              <button class="formbutton">Send</button>
             </div>      
         </div>
     </form>
