@@ -120,9 +120,9 @@
   <div class="mid2">
         <div style="margin-bottom: 15px; ">
           <p style="font-weight: bold; font-size: 18px; ">Join our community</p>  
-          <img src="../assets/dc.png" class="media" >
-          <img src="../assets/tg.png" class="media" >
-          <img src="../assets/tw.png" class="media" >
+          <img src="../assets/dc.png" class="media" onclick=" window.open('https://discord.gg/DSb5kwG6wS','_blank')">
+          <img src="../assets/tg.png" class="media" onclick=" window.open('https://t.me/chainleague','_blank')">
+          <img src="../assets/tw.png" class="media" onclick=" window.open('https://twitter.com/ChainLeague','_blank')">
         </div>
   </div>
 
