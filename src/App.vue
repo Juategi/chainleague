@@ -2,6 +2,7 @@
   <title>
     Chain League
   </title>
+  
   <div v-bind:class="{ top: $route.name == 'Home' || $route.name == 'Whitepaper'}"  ref="top">
     <div class="topinf">  
       <div @click="home" v-if="$route.name != 'NotFound'">
@@ -37,6 +38,7 @@
       <input type="text" v-model="wallet" :disabled="walletDisabled" style="width:80%">
     </div>
   </div>
+  
   <router-view v-slot="{ Component }" :userData="userData">
     <component ref="view" :is="Component" />
   </router-view>
@@ -118,7 +120,8 @@ export default {
       wallet: null,
       walletDisabled: true
     }
-  }
+  },
+  
 }
 </script>
 

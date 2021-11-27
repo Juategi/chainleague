@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Forgot from '../views/Forgot.vue'
 import NotFound from '../views/NotFound.vue'
 import Whitepaper from '../views/Whitepaper.vue'
+import Terms from '../views/Terms.vue'
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 
@@ -44,6 +45,11 @@ const routes = [
     path: '/whitepaper',
     name: 'Whitepaper',
     component: Whitepaper
+  },
+  {
+    path: '/terms',
+    name: 'Terms',
+    component: Terms
   },
   {
     path:'/:catchAll(.*)',

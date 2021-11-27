@@ -1,4 +1,5 @@
 <template>
+
   <div style="height:400px; width: 100%; max-width: 2000px;">
     <div style="margin-left: 20px; width: 40%; float: left; overflow: hidden; margin-top:50px">
           <p >The first play-to-earn cryptocurrency based on League of Legends.</p>
@@ -139,7 +140,7 @@
       </div>    
       <div style="width: 10%; float:left; overflow: hidden; ">          
         <p style="font-weight: bold; ">Legal</p>  
-         <p style=" margin-top:20%; cursor: pointer; ">Terms of Use</p>   
+         <p style=" margin-top:20%; cursor: pointer;" @click="terms">Terms of Use</p>   
       </div>     
     </div>
 
@@ -149,7 +150,7 @@
 <script>
 import Vue3autocounter from 'vue3-autocounter';
 import { useRouter } from 'vue-router'
-
+import CookieLaw from 'vue-cookie-law'
 scroll = false
 
 export default ({
@@ -159,7 +160,8 @@ export default ({
     //this.$refs.counter.start();
   },
   components: {
-    'vue3-autocounter': Vue3autocounter
+    'vue3-autocounter': Vue3autocounter,
+    'cookie-law' : CookieLaw
   },
   
   setup(){
@@ -195,6 +197,9 @@ export default ({
     },
     whitepaper() {
       this.$router.push({ name: 'Whitepaper' })
+    },
+    terms() {
+      this.$router.push({ name: 'Terms' })
     },
   }
 

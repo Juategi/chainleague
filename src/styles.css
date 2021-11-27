@@ -23,6 +23,11 @@ b{
   padding-right: 20px;
 }
 
+li{
+  font: 14px 'Rubik' ;
+  color: #ffffff;
+}
+
 p{
   font: 20px 'Rubik' ;
   color: #ffffff;
