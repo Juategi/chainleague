@@ -19,9 +19,12 @@
     <div style="margin-right: 20px; width: 40%; float: right; overflow: hidden; margin-top:35px">
           <p style="font-weight: bold; font-size: 20px;">We are now on pre-sale!</p>
           <p >Be one of  the first to join the project.</p>
+          <p> Smart contract address:</p>   
+          <p class="addressfont">0xdF7BBD62c8f6d2A1FE5F2252bC7Df37CC0994eEd</p>   
           <div style="text-align: center; margin-right: 25%">
              <button class="white" style="margin-top:10px; " onclick=" window.open('https://pancakeswap.finance/swap','_blank')">Buy tokens</button>
-          </div>                 
+          </div>   
+                    
     </div>  
   </div>
 
@@ -31,14 +34,14 @@
     <p >You will earn 10% of all the tokens they have purchased.</p>
     <!-- <img src="../assets/ga.png" class="ga" > -->
     <div style="margin-right: 10%; padding-top:20px; padding-bottom:20px" >
-      <button  @click="signup" v-if="!userData">Sign up</button>
+      <button   @click="signup" v-if="!userData">Sign up</button>
     </div>
   </div>  
 
-  <div class="mid">
+  <!--<div class="mid">
     <div style="height:80%; width: 100%">      
     <div style="margin-left: 35%; width: 20%; float: left; overflow: hidden; margin-top:5%">
-      <!--<vue3-autocounter ref='counter' :startAmount='0' :endAmount='200000' :duration='3' prefix='+' suffix=' holders' separator=',' decimalSeparator='.' :decimals='0' :autoinit='false' style="font: 25px 'Rubik' ; font-weight: bold; color:#ffffff"  @finished='alert(`Counting finished!`)' /> -->
+      <vue3-autocounter ref='counter' :startAmount='0' :endAmount='200000' :duration='3' prefix='+' suffix=' holders' separator=',' decimalSeparator='.' :decimals='0' :autoinit='false' style="font: 25px 'Rubik' ; font-weight: bold; color:#ffffff"  @finished='alert(`Counting finished!`)' />
           <p class="midf">Pre-release invested</p>
            <b style="margin-top: 5%; font-weight: bold; ">0$</b>   
           <p class="midf">Phase 0 - Iron</p>                                      
@@ -54,14 +57,24 @@
     <div style="width: 20%; float: left; overflow: hidden;">
     </div>  
   </div>
+  </div> -->
+
+  <div class="mid">
+    <div style="width: 100%; float: left; overflow: hidden; margin: auto;  margin-top:5%;">
+          <p class="midf">Pre-release invested</p>
+          <b style="margin-top: 5%; font: 25px 'Rubik'; font-weight: bold; ">23.040$</b>   
+          <p style="margin-top: 9%; font-weight: bold; ">Price: 0.05$</p>  
+          
+    
+    </div> 
   </div>
 
     <div class="x900">          
-          <p style="font-weight: bold; font-size: 26px">How will it work?</p>    
+          <p style="font-weight: bold; font-size: 23px; margin-top: 5%">How will it work?</p>    
           <div class="how"></div>
-          <div style="margin-right: 20%; margin-top: 40px; ">
+          <!--<div style="margin-right: 20%; margin-top: 40px; ">
             <button class="big" @click="whitepaper">Whitepaper</button>
-          </div>
+          </div>-->
     </div>  
 
   <div class="line">  </div>
@@ -76,7 +89,7 @@
   
   <div class="bot">
       <p class="botf">What is League of Legends?</p>
-      <a style="font-size: 18px; cursor: pointer; color: #ffffff" href="https://www.leagueoflegends.com/" target="_blank">Check the website</a>     
+      <a style="font-size: 18px; cursor: pointer; color: #d39521; padding-top:100px" href="https://www.leagueoflegends.com/" target="_blank">Check the website</a>     
       <p class="botf">+180 million players around the world</p>  
       <p style="margin-top: 8%; font-weight: bold; font-size: 15px">Disclaimer:</p>  
       <p class="midf">We are not owned or associated with Riot Games or any of its brands  </p>        
@@ -108,9 +121,7 @@
         <div style="margin-bottom: 15px; ">
           <p style="font-weight: bold; font-size: 18px; ">Join our community</p>  
           <img src="../assets/dc.png" class="media" >
-          <img src="../assets/ig.png" class="media" >
           <img src="../assets/tg.png" class="media" >
-          <img src="../assets/fb.png" class="media" >
           <img src="../assets/tw.png" class="media" >
         </div>
   </div>
@@ -123,7 +134,7 @@
       </div>  
       <div style="width: 20%; float: left; overflow: hidden; ">          
         <p style="font-weight: bold; ">Contact</p> 
-         <p style=" margin-top:10%;">support@chainleague.com</p>    
+         <p style=" margin-top:10%;">support@chain-league.com</p>    
           <p style=" margin-top:10%; ">© 2022 ChainLeague All Rights Reserved.</p>  
       </div>    
       <div style="width: 10%; float:left; overflow: hidden; ">          

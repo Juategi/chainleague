@@ -30,14 +30,19 @@ p{
 
 p.midf{
   font: 20px 'Rubik' ;
-  margin-top: 4%; 
+  margin-top: 2%; 
   font-weight: bold;
 }
 
 p.botf{
-  padding-top: 10%; 
+  padding-top: 8%; 
   font-weight: bold; 
   font-size: 26px
+}
+
+p.addressfont{
+  font: 13px 'Rubik' ;
+  color: #d39521;
 }
 
 a{
@@ -330,7 +335,7 @@ img.mediaS:hover{
 .x900{
   width: 100%; 
   overflow: hidden; 
-  height:900px; 
+  height:800px; 
 }
 
 .x600{
@@ -411,8 +416,13 @@ input{
 
   p.midf{
     font: 11px 'Rubik' ;
-    margin-top: 7%; 
+    margin-top: 4%; 
     font-weight: bold;
+  }
+
+  p.addressfont{
+    font: 10px 'Rubik' ;
+    color: #d39521;
   }
 
   .top{ 
@@ -569,7 +579,7 @@ input{
   .x900{
     width: 100%; 
     overflow: hidden; 
-    height:700px; 
+    height:600px; 
   }
 
   .mid3{
@@ -671,6 +681,11 @@ input{
     font: 8px 'Rubik' ;
     margin-top: 4%; 
     font-weight: bold;
+  }
+
+  p.addressfont{
+    font: 7px 'Rubik' ;
+    color: #d39521;
   }
 
   p.botf{
@@ -851,7 +866,7 @@ input{
   .x900{
     width: 100%; 
     overflow: hidden; 
-    height:500px; 
+    height:400px; 
   }
 
   .mid3{

@@ -1,9 +1,11 @@
 <template>
   <div style="height:1300px; width: 100%; ">
-    <div style="overflow: hidden; margin-top:5% margin: auto;" >
+    <div style="overflow: hidden; margin-top:5%; margin: auto;" >
           <p style="font-weight: bold; ">Whitepaper</p>  
     </div>   
-    
+    <div style="overflow: hidden; margin-top:5%; margin: auto;" >
+          <p style="font-weight: bold; cursor:pointer; color: #d39521" @click="download">Download</p>  
+    </div> 
      <div style="width:80%; height:80%">
       <object
         :data='url'
@@ -22,11 +24,7 @@
 
       </object>
     </div>
-    
-    <div style="overflow: hidden; margin-left: auto;
-  margin-right: 20%;">
-        <button class="big" @click="download">Download</button>
-    </div>
+      
   </div>   
 
 </template>
