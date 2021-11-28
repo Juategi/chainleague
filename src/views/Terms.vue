@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="top">
       <b>Website Terms of Use</b>
 
 <p>Version 1.0</p>
@@ -10,7 +10,7 @@
 
 <p>These Terms of Use described the legally binding terms and conditions that oversee your use of the Site. BY LOGGING INTO THE SITE, YOU ARE BEING COMPLIANT THAT THESE TERMS and you represent that you have the authority and capacity to enter into these Terms. YOU SHOULD BE AT LEAST 18 YEARS OF AGE TO ACCESS THE SITE. IF YOU DISAGREE WITH ALL OF THE PROVISION OF THESE TERMS, DO NOT LOG INTO AND/OR USE THE SITE.</p>
 
-<p>These terms require the use of arbitration Section 10.2 on an individual basis to resolve disputes and also limit the remedies available to you in the event of a dispute. These Terms of Use were created with the help of the <a href="https://www.termsofusegenerator.net">Terms Of Use Generator</a>.</p>
+<p>These terms require the use of arbitration Section 10.2 on an individual basis to resolve disputes and also limit the remedies available to you in the event of a dispute.</p>
 
 
 <b>Access to the Site</b>
@@ -123,12 +123,19 @@ Dispute Resolution. Please read this Arbitration Agreement carefully. It is part
 
 <p>Address: Valencia, Spain</p>
 <p>Email: support@chain-league.com</p>
+<b style="cursor: pointer; color: #d39521;" @click="goToTop">Go to top</b>
   </div>
 </template>
 
 <script>
 export default {
-
+  methods: {
+    goToTop() {
+      var element = this.$refs['top'];
+      var top = element.offsetTop;
+      window.scrollTo(0, top);
+    },
+  }
 }
 </script>
 

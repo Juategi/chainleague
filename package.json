@@ -11,7 +11,9 @@
     "core-js": "^3.6.5",
     "firebase": "^9.3.0",
     "vue": "^3.0.0",
+    "vue-cookie-accept-decline": "^5.4.0",
     "vue-cookie-law": "^1.13.3",
+    "vue-cookieconsent-component": "^1.2.0",
     "vue-pdf": "^4.3.0",
     "vue-router": "^4.0.0-0",
     "vue3-autocounter": "^1.0.6"

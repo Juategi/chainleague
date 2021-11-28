@@ -5,6 +5,7 @@
   
   <div v-bind:class="{ top: $route.name == 'Home' || $route.name == 'Whitepaper'}"  ref="top">
     <div class="topinf">  
+      
       <div @click="home" v-if="$route.name != 'NotFound'">
         <img src="./assets/icon.svg" class="logo">
         <b class="title" >Chain League</b>
@@ -49,6 +50,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import CookieLaw from 'vue-cookie-law'
 
 export default {
   mounted(){
@@ -121,7 +123,7 @@ export default {
       walletDisabled: true
     }
   },
-  
+  components: { CookieLaw },
 }
 </script>
 

@@ -21,10 +21,12 @@
           <p style="font-weight: bold; font-size: 20px;">We are now on pre-sale!</p>
           <p >Be one of  the first to join the project.</p>
           <p> Smart contract address:</p>   
-          <p class="addressfont">0xdF7BBD62c8f6d2A1FE5F2252bC7Df37CC0994eEd</p>   
+          <p class="addressfont">0xdF7BBD62c8f6d2A1FE5F2252bC7Df37CC0994eEd</p>  
+           <p style="cursor: pointer; color: #2588B2" onclick=" window.open('https://www.youtube.com/watch?v=KpF41eS3YZQ','_blank')">How to buy on Pancakeswap?</p>   
           <div style="text-align: center; margin-right: 25%">
              <button class="white" style="margin-top:10px; " onclick=" window.open('https://pancakeswap.finance/swap','_blank')">Buy tokens</button>
-          </div>   
+          </div> 
+         
                     
     </div>  
   </div>
@@ -143,14 +145,15 @@
          <p style=" margin-top:20%; cursor: pointer;" @click="terms">Terms of Use</p>   
       </div>     
     </div>
-
+  
+    
+  
   </div>
 </template>
 
 <script>
 import Vue3autocounter from 'vue3-autocounter';
 import { useRouter } from 'vue-router'
-import CookieLaw from 'vue-cookie-law'
 scroll = false
 
 export default ({
@@ -159,10 +162,7 @@ export default ({
   mounted(){
     //this.$refs.counter.start();
   },
-  components: {
-    'vue3-autocounter': Vue3autocounter,
-    'cookie-law' : CookieLaw
-  },
+  components: {},
   
   setup(){
     const router = useRouter()
