@@ -22,7 +22,9 @@
           <p >Be one of  the first to join the project.</p>
           <p> Smart contract address:</p>   
           <p class="addressfont">0xdF7BBD62c8f6d2A1FE5F2252bC7Df37CC0994eEd</p>  
-           <p style="cursor: pointer; color: #2588B2" onclick=" window.open('https://www.youtube.com/watch?v=KpF41eS3YZQ','_blank')">How to buy on Pancakeswap?</p>   
+          <a href="https://www.youtube.com/watch?v=KpF41eS3YZQ" target="_blank" style="text-decoration:none">
+              <p style="cursor: pointer; color: #2588B2">How to buy on Pancakeswap?</p>   
+          </a>
           <div style="text-align: center; margin-right: 25%">
              <button class="white" style="margin-top:10px; " onclick=" window.open('https://pancakeswap.finance/swap','_blank')">Buy tokens</button>
           </div> 
@@ -92,7 +94,7 @@
   
   <div class="bot">
       <p class="botf">What is League of Legends?</p>
-      <a style="font-size: 18px; cursor: pointer; color: #d39521; padding-top:100px" href="https://www.leagueoflegends.com/" target="_blank">Check the website</a>     
+      <a style="font-size: 20px; font-weight: bold; cursor: pointer; color: #d39521; padding-top:100px;text-decoration:none"  href="https://www.leagueoflegends.com/" target="_blank">Check the website</a>     
       <p class="botf">+180 million players around the world</p>  
       <p style="margin-top: 8%; font-weight: bold; font-size: 15px">Disclaimer:</p>  
       <p class="midf">We are not owned or associated with Riot Games or any of its brands  </p>        
@@ -107,13 +109,19 @@
         <img src="../assets/p1.png" style="width:50%; height:50%; max-width:250px; " >
         <p style="font-weight: bold; ">Juan Tena Gimeno</p>  
         <p >Full-Stack Developer</p>   
-        <img src="../assets/ld.png" class="mediaS" onclick=" window.open('https://www.linkedin.com/in/juan-tena-gimeno-2411191aa/','_blank')">
+        <a href="https://www.linkedin.com/in/juan-tena-gimeno-2411191aa/" target="_blank">
+          <img src="../assets/ld.png" class="mediaS" >
+        </a>
+        
       </div>
       <div style="width: 40%; float: right; overflow: hidden;">
         <img src="../assets/p2.jpg" style="width:50%; height:50%; max-width:250px;" >
         <p style="font-weight: bold;">Enrique Martinez Durá</p>  
         <p >Marketing Manager & Community Manager</p> 
-        <img src="../assets/ld.png" class="mediaS" onclick=" window.open('https://www.linkedin.com/in/enrique-mart%C3%ADnez-dur%C3%A1-308146154/','_blank')">
+        <a href="https://www.linkedin.com/in/enrique-mart%C3%ADnez-dur%C3%A1-308146154/" target="_blank">
+          <img src="../assets/ld.png" class="mediaS" >
+        </a>
+      
       </div>
     </div>
   </div>
@@ -123,9 +131,19 @@
   <div class="mid2">
         <div style="margin-bottom: 15px; ">
           <p style="font-weight: bold; font-size: 18px; ">Join our community</p>  
-          <img src="../assets/dc.png" class="media" onclick=" window.open('https://discord.gg/DSb5kwG6wS','_blank')">
-          <img src="../assets/tg.png" class="media" onclick=" window.open('https://t.me/chainleague','_blank')">
-          <img src="../assets/tw.png" class="media" onclick=" window.open('https://twitter.com/ChainLeague','_blank')">
+
+          <a href="https://discord.gg/DSb5kwG6wS"  target="_blank">
+            <img src="../assets/dc.png" class="media">
+          </a>
+          
+          <a href="https://t.me/chainleague" target="_blank">
+            <img src="../assets/tg.png" class="media" >
+          </a>
+          
+          
+          <a href="https://twitter.com/ChainLeague" target="_blank">
+              <img src="../assets/tw.png" class="media" >
+          </a>
         </div>
   </div>
 
