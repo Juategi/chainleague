@@ -16,6 +16,15 @@ div{
   margin:0 auto;
 }
 
+div.cookies{
+  position:fixed; 
+  height:100px; 
+  width: 100%; 
+  max-width: 2000px; 
+  margin-top: 475px; 
+  background: #2588B2;
+}
+
 b{
   font: 20px 'Rubik' ;
   font-weight: bold;
@@ -419,6 +428,15 @@ input{
     color: #ffffff;
   }
 
+  div.cookies{
+    position:fixed; 
+    height:100px; 
+    width: 100%; 
+    max-width: 2000px; 
+    margin-top: 675px; 
+    background: #2588B2;
+  }
+
   p.midf{
     font: 11px 'Rubik' ;
     margin-top: 4%; 
@@ -680,6 +698,15 @@ input{
   p{
     font: 12px 'Rubik' ;
     color: #ffffff;
+  }
+
+  div.cookies{
+    position:fixed; 
+    height:100px; 
+    width: 100%; 
+    max-width: 2000px; 
+    margin-top: 725px; 
+    background: #2588B2;
   }
 
   p.midf{

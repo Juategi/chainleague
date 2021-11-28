@@ -1,5 +1,5 @@
 <template>
-
+  
   <div style="height:400px; width: 100%; max-width: 2000px;">
     <div style="margin-left: 20px; width: 40%; float: left; overflow: hidden; margin-top:50px">
           <p >The first play-to-earn cryptocurrency based on League of Legends.</p>
@@ -154,6 +154,8 @@
 <script>
 import Vue3autocounter from 'vue3-autocounter';
 import { useRouter } from 'vue-router'
+import VueCookieAcceptDecline from 'vue-cookie-accept-decline'
+
 scroll = false
 
 export default ({
@@ -162,7 +164,7 @@ export default ({
   mounted(){
     //this.$refs.counter.start();
   },
-  components: {},
+  components: {'vue-cookie-accept-decline': VueCookieAcceptDecline},
   
   setup(){
     const router = useRouter()
