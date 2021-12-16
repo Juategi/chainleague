@@ -4,8 +4,9 @@
       <b >Congratulations your account has been created!</b>
       <b> Here is your referal code. </b>
       <div style="text-align: center;">
-        <p>{{myReferal}}</p>
+        <p>{{myReferal}}</p>      
       </div>
+       <b style="padding-top: 50px">Now you can verify your email to be able to buy tokens</b>
   </div>
 </template>
 

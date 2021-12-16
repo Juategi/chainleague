@@ -20,8 +20,9 @@
     </div>
     <div class="rectangleInfo" v-if="userData && ($route.name == 'Home' )">
       <p style="color: #050617;  ">{{ userData['summoners'] }} <span style="font-weight: bold;"> {{ userData['server'] }} </span> </p>
-      <p style="color: #050617;  ;">Referal: </p>
-      <p style="color: #050617; font: 13px 'Rubik;;">{{ userData['myreferal'] }} </p>
+      <p style="color: #050617; font: 15px 'Rubik;">Tokens: {{userData['tokens']}}</p>
+      <p style="color: #050617; ">Referal: </p>
+      <p style="color: #050617; font: 13px 'Rubik;">{{ userData['myreferal'] }} </p>
       <div style="width: 100%;">
         <div >
             <div style="float: left; overflow:hidden; margin-left: 10%;">
@@ -101,6 +102,7 @@ export default {
           summoners: this.userData['summoners'],
           server: this.userData['server'],
           myreferal: this.userData['myreferal'],
+          tokens: this.userData['tokens'],
         })
         this.walletDisabled = true
       }  

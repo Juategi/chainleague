@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import Vue3Autocounter from 'vue3-autocounter';
+import Notifications from 'notiwind'
 //import firebase from "firebase";
 import firebase from 'firebase/compat/app';
 import './styles.css';
@@ -33,5 +34,5 @@ let init = false;
         Vue.prototype.$user =  firebase.auth().currentUser
     } 
 })*/
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(Notifications).mount('#app')
 //createApp(App).use(router).component('vue3-autocounter', Vue3Autocounter).mount('#app')

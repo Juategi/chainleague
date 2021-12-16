@@ -10,6 +10,7 @@
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "firebase": "^9.3.0",
+    "notiwind": "^1.2.4",
     "vue": "^3.0.0",
     "vue-cookie-accept-decline": "^5.4.0",
     "vue-cookie-law": "^1.13.3",

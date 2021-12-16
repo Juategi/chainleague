@@ -4,9 +4,8 @@
       <b >Enter your Binance Smart Chain address</b>
       <p style="font-weight: bold; color:#F3BA2F; ">BINANCE <span style="font-weight: normal; ">SMART CHAIN</span> </p> 
        <img src="../assets/bsc.svg" class="bsc">  
-      <div style="text-align: left;">
-          <p>The address will be used to send you Chain League (CLG) tokens according to 10% of the tokens your referrals have purchased. 
-            And to check the amount that you have bought at the time of distributing them.</p>
+      <div style="text-align: center;">
+          <p>Enter the address that you will use to buy the tokens, so we will know that is you.</p>
       </div>
     
       <input type="text" v-model="walletId" >

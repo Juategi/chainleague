@@ -11,22 +11,54 @@
           <div style="padding-top: 0px;">
             <img src="../assets/bsct.png" class="bsct" >
           </div>   
-          <div >
-            <img src="../assets/uni.png" class="uni" >
-          </div>       
+               
     </div>   
 
 
     <div style="margin-right: 20px; width: 40%; float: right; overflow: hidden; margin-top:35px">
           <p style="font-weight: bold; font-size: 20px;">We are now on pre-sale!</p>
           <p >Be one of  the first to join the project.</p>
-          <p> Smart contract address:</p>   
+          <!-- <p> Smart contract address:</p>   
           <p class="addressfont">0xdF7BBD62c8f6d2A1FE5F2252bC7Df37CC0994eEd</p>  
           <a href="https://www.youtube.com/watch?v=KpF41eS3YZQ" target="_blank" style="text-decoration:none">
               <p style="cursor: pointer; color: #2588B2">How to buy on Pancakeswap?</p>   
           </a>
+          -->
+          <NotificationGroup group="foo" >
+          <div
+            class="fixed inset-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none"
+          >
+            <div class="w-full max-w-sm">
+              <Notification
+                v-slot="{ notifications }"
+                enter="transform ease-out duration-1300 transition"
+                enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
+                enter-to="translate-y-0 opacity-100 sm:translate-x-0"
+                leave="transition ease-in duration-1500"
+                leave-from="opacity-100"
+                leave-to="opacity-0"
+                move="transition duration-900"
+                move-delay="delay-1300"
+              >
+                <div
+                  class="flex w-full max-w-sm mx-auto mt-4 overflow-hidden bg-white rounded-lg shadow-md"
+                  v-for="notification in notifications"
+                  :key="notification.id"
+                >
+                  
+                  <div class="px-4 py-2 -mx-3">
+                    <div class="mx-3">
+                      <p class="text-sm text-red-600" style="color: red">{{ notification.text }}</p>
+                      <p class="text-sm text-red-600" style="color: red">{{ notification.text2 }}</p>
+                    </div>
+                  </div>
+                </div>
+              </Notification>
+            </div>
+          </div>
+        </NotificationGroup>
           <div style="text-align: center; margin-right: 25%">
-             <button class="white" style="margin-top:10px; " onclick=" window.open('https://pancakeswap.finance/swap','_blank')">Buy tokens</button>
+             <button class="white" style="margin-top:10px; "  @click="buy"  >Buy tokens</button>
           </div> 
          
                     
@@ -39,7 +71,7 @@
     <p >You will earn 10% of all the tokens they have purchased.</p>
     <!-- <img src="../assets/ga.png" class="ga" > -->
     <div style="margin-right: 10%; padding-top:20px; padding-bottom:20px" >
-      <button   @click="signup" v-if="!userData">Sign up</button>
+      <button @click="signup" v-if="!userData">Sign up</button>
     </div>
   </div>  
 
@@ -172,6 +204,8 @@
 <script>
 import Vue3autocounter from 'vue3-autocounter';
 import { useRouter } from 'vue-router'
+import firebase from 'firebase/compat/app';
+import Notifications from 'notiwind'
 import VueCookieAcceptDecline from 'vue-cookie-accept-decline'
 
 scroll = false
@@ -184,23 +218,6 @@ export default ({
   },
   components: {'vue-cookie-accept-decline': VueCookieAcceptDecline},
   
-  setup(){
-    const router = useRouter()
-
-    const goto = (refName) => {
-      var element = this.$refs[refName];
-      var top = element.offsetTop;
-      window.scrollTo(0, top);
-    }
-    
-    const signup = ()  => {
-      console.log(router)
-      router.push({ name: 'Signup' })
-    }
-
-    //return{goto, signup}
-  },
-
   methods: {
     goToTeam() {
       var element = this.$refs['team'];
@@ -214,6 +231,22 @@ export default ({
     },
     signup() {
       this.$router.push({ name: 'Signup' })
+    },
+    buy() {
+      if(!this.userData)
+        this.$router.push({ name: 'Signup' })
+      else{
+        if(firebase.auth().currentUser.emailVerified)
+          this.$router.push({ name: 'Whitepaper' })
+        else{
+          this.$notify({
+            group: "foo",
+            title: "Warning",
+            text: "Please verify your email to buy tokens! ",
+            text2: "If you already did, please refresh the page"
+          }, 2000) 
+        }
+      }
     },
     whitepaper() {
       this.$router.push({ name: 'Whitepaper' })

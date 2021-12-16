@@ -20,13 +20,15 @@
           <label>Confirm password</label>
           <input type="password" v-model="cpassword" required>
           <div v-if="passwordError" class="error">{{ passwordError }}</div>
+          <!--
+          <label>If you enter a Summoner's name and a Server you will need to verificate your account</label>
 
-          <label>Summoner's name</label>
-          <input type="text" v-model="summoners" required>
+          <label>Summoner's name (optional)</label>
+          <input type="text" v-model="summoners">
           <div v-if="summonerError" class="error">{{summonerError }}</div>
 
-          <label>Server</label>
-          <select v-model="server" required>
+          <label>Server (optional)</label>
+          <select v-model="server" >
           <option value="EUW">EUW</option>
           <option value="EUN">EUNE</option>
           <option value="NA">NA</option>
@@ -37,7 +39,8 @@
           <option value="RU">NA</option>
           <option value="TR">KR</option>
           <option value="LA">OCE</option>
-          </select>
+          </select> 
+          -->
             <div class="submit" v-if="!loading">
               <button class="formbutton" >Continue</button>
             </div>   
@@ -110,10 +113,13 @@ export default {
         this.passwordError = this.password.length > 5 && this.password == this.cpassword ?
         '' : 'Passwords must match and be at least 6 characters long'
         var usersRef = firebase.firestore().collection("/users");
-        if(!this.passwordError && this.sign){      
-          const query1 = await usersRef.where('summoners', '==', this.summoners).where('server', '==', this.server).get();
+        if(!this.passwordError && this.sign){  
+          var query1
+          if(this.summoners != '' && this.server != ''){
+            query1 = await usersRef.where('summoners', '==', this.summoners).where('server', '==', this.server).get();
+          }
           const query2 = await usersRef.where('email', '==', this.email).get();
-          if(!query1.empty){
+          if(query1 != null && !query1.empty){
             this.summonerError = "Already exists an account with that Summoner's name in the same server"
           }
           else{
@@ -125,13 +131,20 @@ export default {
           else{
              this.emailError = ""
           }
-          if(query1.empty && query2.empty){
+          if((query1 == null || query1.empty ) && query2.empty){
             this.verification = Math.random().toString(36).slice(4).toUpperCase();
+            if(this.summoners == '' || this.server == ''){
+                this.summoners = ''
+                this.server = ''
+                this.wallet = true
+            }
+            else{
+              this.riot = true
+            }
             this.sign = false
-            this.riot = true
           }
         }                   
-        else if(this.riot){ 
+        else if(this.riot && this.summoners != '' && this.server != ''){ 
           const key = '?api_key=' + process.env.VUE_APP_RIOT_API_KEY
           const serverUrl =  this.server.toLowerCase() == 'RU' ||  this.server.toLowerCase() == 'KR' ?  this.server.toLowerCase() :  this.server.toLowerCase() +'1'
           const summonerQuery = 'https://' + serverUrl + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + this.summoners + key
@@ -164,7 +177,7 @@ export default {
           console.log(this.walletId)
           var accept = false
           if(this.walletId){
-            if(this.walletId.length != 42 || this.walletId.substr(0,2) != '0x'){
+            if(this.walletId.length != 42 || this.walletId.substr(0,2) != '0x'){            
               this.walletError = "Address format incorrect";
             }
             else{
@@ -174,10 +187,12 @@ export default {
           else{
             accept = true
           }
+          console.log(accept)
           if(accept){
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((data) => {
               console.log('Successfully registered!');
               this.myReferal = "clg_" + data.user.uid
+              data.user.sendEmailVerification()
               usersRef.doc(data.user.uid).set({
                 email: this.email,
                 referal: this.referal,          
@@ -185,6 +200,7 @@ export default {
                 server: this.server,
                 wallet: this.walletId,
                 myreferal: this.myReferal,
+                tokens: 0
             })
             .then(function(docRef) {
                 console.log("User created with ID: ", docRef);
@@ -199,10 +215,10 @@ export default {
               console.log(error.code)
               alert(error.message);
               this.loading = false;
-            }); 
+            });
+            this.wallet = false
+            this.end = true
           }
-          this.wallet = false
-          this.end = true
         }
         else if(this.end){   
           this.$router.push({ name: 'Home'}) 
