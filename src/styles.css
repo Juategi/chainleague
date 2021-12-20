@@ -809,6 +809,23 @@ input{
     position:relative
   }
 
+  .rectangleBuy {
+    margin:auto;
+    height: 1000px;
+    width: 1000px;
+    background-color: #f1f0f0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: 2px solid #2588B2;
+    margin-top: 0px; 
+    margin-right: 50px; 
+    float: right; 
+    overflow:hidden; 
+    position:relative
+  }
+
   .uni{
     width:100px; 
     height:20px; 

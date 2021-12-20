@@ -104,6 +104,7 @@ export default {
           myreferal: this.userData['myreferal'],
           tokens: this.userData['tokens'],
         })
+        this.userData['wallet'] = this.wallet
         this.walletDisabled = true
       }  
     },
