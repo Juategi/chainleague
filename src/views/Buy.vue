@@ -102,6 +102,18 @@ export default {
     },
     async buy() {
       var ready = true
+      var ordersRef = firebase.firestore().collection("/orders"); 
+      var orders = 0
+      await ordersRef
+      .where("user", "==", firebase.auth().currentUser.uid)
+      .where("state", "==", "processing")
+      .get().then((snapshot) => {
+        snapshot.forEach(doc => orders++)
+        if(orders >= 5){
+          alert("You have 5 orders processing already! Wait until they are processed")
+          ready = false
+        }
+      }) 
       if(this.clg_price == null)
         ready = false     
       this.meta.limit(1).get().then((snapshot) => {
