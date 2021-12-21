@@ -7,6 +7,7 @@ import NotFound from '../views/NotFound.vue'
 import Whitepaper from '../views/Whitepaper.vue'
 import Terms from '../views/Terms.vue'
 import Buy from '../views/Buy.vue'
+import Orders from '../views/Orders.vue'
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 
@@ -58,11 +59,17 @@ const routes = [
     component: Buy
   },
   {
+    path: '/orders',
+    name: 'Orders',
+    component: Orders
+  },
+  {
     path:'/:catchAll(.*)',
     name: 'NotFound',
     component: NotFound
   }
 ]
+
 
 const router = createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
