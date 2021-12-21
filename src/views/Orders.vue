@@ -3,13 +3,16 @@
     <div >
        <p style="font: 25px 'Rubik'; font-weight: bold; color: #2588B2; ">Orders History</p> 
      </div>
+
+     <div v-for="(order,i) in this.orders" :key="i"  >
+         <p style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order}}</p> 
+     </div>  
+
      <div>
        <p style="font: 22px 'Rubik'; font-weight: bold; color: #d39521; cursor:pointer; padding-top:70px" @click="goback">Go back</p> 
       </div> 
 
-      <div v-for="(order,i) in this.orders" :key="i"  >
-         <p style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order}}</p> 
-     </div>  
+      
     </div>
     
 </template>
@@ -32,7 +35,7 @@ export default {
       })
     },
     goback(){
-        console.log(this.orders)
+      this.$router.push({ name: 'Home' })
     }
   },
   created(){

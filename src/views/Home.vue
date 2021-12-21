@@ -225,8 +225,38 @@ export default ({
         this.clg_price = data['clg_price']
         this.invested = data['invested']
         this.phase = data['phase'],
-        this.phase_name = data['phase_name'],
         this.phase_date = data['phase_date']
+        switch(this.phase){
+          case 1:
+            this.phase_name = "Iron"
+            break;
+          case 2:
+            this.phase_name = "Bronze"
+            break;
+          case 3:
+            this.phase_name = "Silver"
+            break;
+          case 4:
+            this.phase_name = "Gold"
+            break;
+          case 5:
+            this.phase_name = "Platinum"
+            break;
+          case 6:
+            this.phase_name = "Diamond"
+            break;
+          case 7:
+            this.phase_name = "Master"
+            break;
+          case 8:
+            this.phase_name = "Grandmaster"
+            break;
+          case 9:
+            this.phase_name = "Challenger"
+            break;
+          default:
+            this.phase_name = "Iron"    
+        }
       })
   },
   components: {
