@@ -21,6 +21,7 @@
     <div class="rectangleInfo" v-if="userData && ($route.name == 'Home' )">
       <p style="color: #050617;  ">{{ userData['summoners'] }} <span style="font-weight: bold;"> {{ userData['server'] }} </span> </p>
       <p style="color: #050617; font: 15px 'Rubik;">Tokens: {{userData['tokens']}}</p>
+      <p style="color: #050617; font: 15px 'Rubik; font-weight: bold; color: #2588B2; cursor:pointer;">Order history</p>
       <p style="color: #050617; ">Referal: </p>
       <p style="color: #050617; font: 13px 'Rubik;">{{ userData['myreferal'] }} </p>
       <div style="width: 100%;">

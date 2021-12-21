@@ -37,7 +37,7 @@
        <p style="font: 16px 'Rubik'; font-weight: bold; color: #2588B2; ">0x71C7656EC7ab88b098defB751B7401B5f6d8976F</p> 
      </div>
      <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">When the payment is sent press Done. If we don't recieve the payment after a while, the order will be cancelled.</p> 
+       <p style="font: 20px 'Rubik'; color: #2588B2; ">When the payment is sent press 'Done'. If we don't recieve the payment after a while, the order will be cancelled.</p> 
      </div>
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">If the payment is done successfully, you will see the tokens in your account.</p> 
@@ -65,7 +65,7 @@ import firebase from 'firebase/compat/app';
 export default {
  data(){
     return {
-      clg: 200,
+      clg: null,
       clg_price: null,
       bnb_price: 400,
       countDown: 20,
@@ -104,6 +104,10 @@ export default {
       var ready = true
       var ordersRef = firebase.firestore().collection("/orders"); 
       var orders = 0
+      if(!firebase.auth().currentUser.emailVerified){
+        alert("Please verify your email first")
+        ready = false
+      }
       await ordersRef
       .where("user", "==", firebase.auth().currentUser.uid)
       .where("state", "==", "processing")
@@ -125,7 +129,7 @@ export default {
         this.clg_price = data['clg_price']
       })
       if(this.clg < 200){
-        alert("Minumum of 200 CLG")
+        alert("Minimum of 200 CLG")
         ready = false
       }
       if(this.wallet === ''){

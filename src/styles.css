@@ -388,7 +388,7 @@ img.mediaS:hover{
 
 .rectangleInfo {
   margin:auto;
-  height: 250px;
+  height: 270px;
   width: 400px;
   background-color: #f1f0f0;
   border-top-left-radius: 20px;
@@ -396,7 +396,7 @@ img.mediaS:hover{
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   border: 2px solid #2588B2;
-  margin-top: 150px; 
+  margin-top: 130px; 
   margin-right: 50px; 
   float: right; 
   overflow:hidden; 
@@ -504,7 +504,7 @@ input{
 
   .rectangleInfo {
     margin:auto;
-    height: 213px;
+    height: 250px;
     width: 290px;
     background-color: #f1f0f0;
     border-top-left-radius: 20px;
@@ -794,7 +794,7 @@ input{
 
   .rectangleInfo {
     margin:auto;
-    height: 213px;
+    height: 240px;
     width: 290px;
     background-color: #f1f0f0;
     border-top-left-radius: 20px;

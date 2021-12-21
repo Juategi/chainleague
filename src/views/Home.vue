@@ -96,13 +96,16 @@
   </div>
   </div> -->
 
-  <div class="mid">
-    <div style="width: 100%; float: left; overflow: hidden; margin: auto;  margin-top:5%;">
-          <p class="midf">Pre-release invested</p>
-          <b style="margin-top: 5%; font: 25px 'Rubik'; font-weight: bold; ">23.040$</b>   
-          <p style="margin-top: 9%; font-weight: bold; ">Price: 0.05$</p>  
-          
-    
+  <div class="mid">  
+    <div style="width: 100%; float: left; overflow: hidden; margin: auto;  margin-top:0%;">
+          <p class="midf">Total ICO Launch invested</p>
+          <b style="margin-top: 2%;  font-weight: bold;  ">{{invested.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</b>   
+          <p style="margin-top: 2%; font-weight: bold;">Phase {{phase}} - {{phase_name}}</p>   
+          <div style="margin-top:2%">
+            <img :src="getImgUrl()" v-bind:alt="pic" class="rank">
+          </div>                                    
+          <p style="margin-top: 2%; font-weight: bold;">Actual price: <span style="font-weight: bold; color: #2588B2;">{{clg_price}}$</span> </p>      
+          <p style="margin-top: 2%; font-weight: bold;">Next phase: {{phase_date}}</p>    
     </div> 
   </div>
 
@@ -216,9 +219,35 @@ export default ({
   mounted(){
     //this.$refs.counter.start();
   },
-  components: {'vue-cookie-accept-decline': VueCookieAcceptDecline},
-  
+  created(){
+    firebase.firestore().collection("/meta").limit(1).get().then((snapshot) => {
+        let data = snapshot.docs[0].data();
+        this.clg_price = data['clg_price']
+        this.invested = data['invested']
+        this.phase = data['phase'],
+        this.phase_name = data['phase_name'],
+        this.phase_date = data['phase_date']
+      })
+  },
+  components: {
+    'vue-cookie-accept-decline': VueCookieAcceptDecline,
+    'vue3-autocounter': Vue3autocounter
+
+    },
+  data(){
+    return {
+      clg_price: null,
+      invested: 0,
+      phase: 0,
+      phase_name: "",
+      phase_date: "",
+    }
+  },
   methods: {
+    getImgUrl() {
+      var images = require.context('../assets/ranks/', false, /\.png$/)
+      return images('./' + this.phase_name + ".png")
+    },
     goToTeam() {
       var element = this.$refs['team'];
       var top = element.offsetTop;
