@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 3% 20%;">
+  <div style="padding: 3% 20%;" v-if="!end">
      <div >
        <p style="font: 25px 'Rubik'; font-weight: bold; color: #2588B2; ">Buy tokens</p> 
      </div>
@@ -10,10 +10,10 @@
        <p style="font: 18px 'Rubik'; font-weight: bold; color: #2588B2; ">Your wallet:</p> 
      </div>
       <div >
-       <p style="font: 15px 'Rubik'; font-weight: bold; color: #2588B2; ">{{$route.params['wallet'] }}</p> 
+       <p style="font: 15px 'Rubik'; font-weight: bold; color: #2588B2; ">{{ wallet }}</p> 
      </div>
      <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">Please select the amount of CLG tokens you want to buy, it must be at least 200.</p> 
+       <p style="font: 20px 'Rubik'; color: #2588B2; ">Select the amount of CLG tokens you want to buy, it must be at least 200.</p> 
      </div>
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">CLG price: <span style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{clg_price}} $</span></p> 
@@ -22,16 +22,16 @@
       <input v-model="clg" @keypress="isNumber($event)">
     </div>
     <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">{{(clg * clg_price).toFixed(2)}} $</p> 
+       <p style="font: 23px 'Rubik'; font-weight: bold; color: #2588B2; ">{{(clg * clg_price).toFixed(2)}} $</p> 
      </div>
-    <div >
+    <!-- <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">Binance Coin (BNB) price: <span style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{bnb_price}} $</span></p> 
      </div>
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">Amount of BNB to deposit: {{(clg * clg_price/bnb_price).toFixed(5)}}</p> 
-     </div>
+     </div> -->
      <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">Please send that amount of BNB to the following address. If you send a different number, we will adjust the amount of CLG you will receive.</p> 
+       <p style="font: 20px 'Rubik'; color: #2588B2; ">Please send that amount of Binance USD (BUSD) to the following address through the Binance Smart Chain (BEP20). If you send a different number, we will adjust the amount of CLG you will receive.</p> 
      </div>
      <div >
        <p style="font: 16px 'Rubik'; font-weight: bold; color: #2588B2; ">0x71C7656EC7ab88b098defB751B7401B5f6d8976F</p> 
@@ -39,21 +39,39 @@
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">When the payment is sent press Done. If we don't recieve the payment after a while, the order will be cancelled.</p> 
      </div>
-     <div class="submit" >
-      <button class="formbutton" @click="handleSubmit">Done</button>
-  </div> 
+     <div >
+       <p style="font: 20px 'Rubik'; color: #2588B2; ">If the payment is done successfully, you will see the tokens in your account.</p> 
+     </div>
+       <p style="font: 22px 'Rubik'; font-weight: bold; color: #d39521; cursor:pointer; padding-top:70px" @click="buy">Done</p> 
     </div>   
+
+    <div style="padding: 7% 20%;" v-if="end">
+      <div >
+       <p style="font: 25px 'Rubik'; font-weight: bold; color: #2588B2; ">Order in process!</p> 
+     </div>
+      <div >
+       <p style="font: 20px 'Rubik'; color: #2588B2; ">The order is now in process, it may take up to 72 hours to be confirmed, once it is done you will be able to see your tokens on the main page.</p> 
+     </div>
+      <div>
+       <p style="font: 22px 'Rubik'; font-weight: bold; color: #d39521; cursor:pointer; padding-top:70px" @click="goback">Go back</p> 
+      </div>   
+    </div>
     
 </template>
 
 <script>
+import firebase from 'firebase/compat/app';
+
 export default {
  data(){
     return {
-      clg: 0,
-      clg_price: 0.05,
+      clg: 200,
+      clg_price: null,
       bnb_price: 400,
-      countDown: 20
+      countDown: 20,
+      meta: firebase.firestore().collection("/meta"),
+      wallet: null,
+      end: false,
     }
   },
   methods: {
@@ -74,16 +92,71 @@ export default {
           }, 1000)
       }
       else{
-        //Updatear precios
-
+        this.meta.limit(1).get().then((snapshot) => {let data = snapshot.docs[0].data(); this.clg_price = data['clg_price']})
         this.countDown = 20
         this.countDownTimer()
       }
-  }
+    },
+    goback() {
+      this.$router.push({ name: 'Home' })
+    },
+    async buy() {
+      var ready = true
+      if(this.clg_price == null)
+        ready = false     
+      this.meta.limit(1).get().then((snapshot) => {
+        let data = snapshot.docs[0].data(); 
+        if(data['clg_price'] != this.clg_price){
+          alert("CLG price has changed!")
+          ready = false
+        }
+        this.clg_price = data['clg_price']
+      })
+      if(this.clg < 200){
+        alert("Minumum of 200 CLG")
+        ready = false
+      }
+      if(this.wallet === ''){
+        alert("Wallet is empty!")
+        ready = false
+      }
+      if(ready)  {
+        var ordersRef = firebase.firestore().collection("/orders");     
+        await ordersRef.add({
+          user: firebase.auth().currentUser.uid,
+          clg: this.clg,          
+          clg_price: this.clg_price,
+          state: "processing",
+          time: (new Date()).toUTCString(),
+          wallet: this.wallet,
+        })
+        .catch(function(error) {
+          alert("An error ocurred, try again please")
+        });  
+        console.log("Order in process");
+        this.end = true
+      }
+    },
+    async stateChanged(){     
+      if(firebase.auth().currentUser){
+        const userId = firebase.auth().currentUser.uid
+        var usersRef = firebase.firestore().collection("/users");
+        usersRef.doc(userId).get().then((snapshot) => { var userData = snapshot.data(); this.wallet = userData['wallet']})
+      }
+      else{
+        this.userData = null
+      }
+    }
   },
-  created(){
-    this.countDownTimer()
-  }
+  async created(){
+    this.meta.limit(1).get().then((snapshot) => {let data = snapshot.docs[0].data(); this.clg_price = data['clg_price']})
+    //this.countDownTimer()
+  },
+  mounted(){
+    firebase.auth().onAuthStateChanged(() =>{
+      this.stateChanged()
+    })
+   },
 }
 </script>
 
@@ -151,7 +224,7 @@ label {
 .submit {
     text-align: center;
     margin-top: 100px;
-    margin-right: 10%;
+    margin-right: 20%;
 }
 
 form {

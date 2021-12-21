@@ -236,8 +236,9 @@ export default ({
       if(!this.userData)
         this.$router.push({ name: 'Signup' })
       else{
-        if(firebase.auth().currentUser.emailVerified)
+        if(firebase.auth().currentUser.emailVerified){
           this.$router.push({ name: 'Buy', params: this.userData })
+        }
         else{
           this.$notify({
             group: "foo",
