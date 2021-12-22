@@ -3,16 +3,20 @@
     <div >
        <p style="font: 25px 'Rubik'; font-weight: bold; color: #2588B2; ">Orders History</p> 
      </div>
-
-     <div v-for="(order,i) in this.orders" :key="i"  >
-         <p style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order}}</p> 
-     </div>  
-
-     <div>
+    <div>
        <p style="font: 22px 'Rubik'; font-weight: bold; color: #d39521; cursor:pointer; padding-top:70px" @click="goback">Go back</p> 
       </div> 
 
       
+     <div v-for="(order,i) in this.orders" :key="i" class="rectangleOrder">
+        <p style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order['time']}}</p>  
+        <p style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order['wallet']}}</p> 
+        <p style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order['clg']}} CLG</p> 
+        <p style="font: 20px 'Rubik'; color: #2588B2; ">CLG price: <span style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order['clg_price']}}$</span></p> 
+        <p style="font: 20px 'Rubik';  color: #2588B2; ">Status: <span style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order['state']}}</span></p> 
+     </div>  
+
+     
     </div>
     
 </template>
@@ -32,6 +36,12 @@ export default {
       ordersRef.where("user", "==", firebase.auth().currentUser.uid).limit(20).get()
       .then((snapshot) => {
         snapshot.forEach(doc => this.orders.push(doc.data()))
+        this.orders.sort((order1, order2) => {
+            if(new Date(order1['time']).getTime() < new Date(order2['time']).getTime())
+                return -1
+            else
+                return 1
+        });
       })
     },
     goback(){
@@ -50,6 +60,20 @@ export default {
 </script>
 
 <style scoped>
+.rectangleOrder {
+    margin:auto;
+    height: 13%;
+    width: 75%;
+    background-color: #f1f0f0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: 2px solid #2588B2;
+    margin-top: 30px; 
+    overflow:hidden; 
+    position:relative
+  }
   .loading {
     border: 8px solid #f3f3f3;
     border-top: 8px solid #2588B2; 

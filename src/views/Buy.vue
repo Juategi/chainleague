@@ -34,7 +34,7 @@
        <p style="font: 20px 'Rubik'; color: #2588B2; ">Please send that amount of Binance USD (BUSD) to the following address through the Binance Smart Chain (BEP20). If you send a different number, we will adjust the amount of CLG you will receive.</p> 
      </div>
      <div >
-       <p style="font: 16px 'Rubik'; font-weight: bold; color: #2588B2; ">0x71C7656EC7ab88b098defB751B7401B5f6d8976F</p> 
+       <p style="font: 16px 'Rubik'; font-weight: bold; color: #2588B2; ">0xEaDA375B9F1B4A39624396cfe3833184b3F817a8</p> 
      </div>
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">When the payment is sent press 'Done'. If we don't recieve the payment after a while, the order will be cancelled.</p> 

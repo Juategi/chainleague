@@ -65,6 +65,8 @@ export default {
       this.$router.push({ name: 'Signup' })
     },
     home() {
+      //window.location.replace("http://localhost:8080/#/")
+      //this.$router.go(-1)
       this.$router.push({ name: 'Home' })
     },
     async whitepaper() {
@@ -106,7 +108,6 @@ export default {
           summoners: this.userData['summoners'],
           server: this.userData['server'],
           myreferal: this.userData['myreferal'],
-          tokens: this.userData['tokens'],
         })
         this.userData['wallet'] = this.wallet
         this.walletDisabled = true
@@ -116,7 +117,15 @@ export default {
       if(firebase.auth().currentUser){
         const userId = firebase.auth().currentUser.uid
         var usersRef = firebase.firestore().collection("/users");
-        usersRef.doc(userId).get().then((snapshot) => { this.userData = snapshot.data(); this.wallet = this.userData['wallet']})
+        await usersRef.doc(userId).get().then((snapshot) => { this.userData = snapshot.data(); this.wallet = this.userData['wallet']})
+        
+        var ordersRef = firebase.firestore().collection("/orders")
+        this.userData['tokens'] = 0
+        ordersRef.where("user", "==", firebase.auth().currentUser.uid)
+        .where("state", "==", "done").get()
+        .then((snapshot) => {
+          snapshot.forEach(doc => this.userData['tokens'] += doc.data()['clg'])
+        })
       }
       else{
         this.userData = null
