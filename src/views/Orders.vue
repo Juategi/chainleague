@@ -38,9 +38,9 @@ export default {
         snapshot.forEach(doc => this.orders.push(doc.data()))
         this.orders.sort((order1, order2) => {
             if(new Date(order1['time']).getTime() < new Date(order2['time']).getTime())
-                return -1
-            else
                 return 1
+            else
+                return -1
         });
       })
     },
