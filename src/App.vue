@@ -10,13 +10,15 @@
         <img src="./assets/icon.svg" class="logo">
         <b class="title" >Chain League</b>
       </div>
-      <div style="margin-top:2%" v-if="$route.name == 'Home' || $route.name == 'Whitepaper'">       
-        <b class="bar" @click="whitepaper">Whitepaper</b>
-        <b class="bar" @click="roadmap">Roadmap</b>
+      
+      <div style="margin-top:2%" v-if="$route.name == 'Home'">       
+         <b class="bar" @click="whitepaper">Whitepaper</b>      
+         <b class="bar" @click="roadmap">Roadmap</b>
         <b class="bar" @click="team">Team</b> 
         <button class="btop" @click="signup" v-if="!userData">Sign up</button>
         <button class="btop" @click="signOut" v-else>Sign out</button>
       </div>
+      
     </div>
     <div class="rectangleInfo" v-if="userData && ($route.name == 'Home' )">
       <p style="color: #050617;  ">{{ userData['summoners'] }} <span style="font-weight: bold;"> {{ userData['server'] }} </span> </p>
@@ -76,10 +78,22 @@ export default {
         window.scrollTo(0, top);
     },
     roadmap() {
-      this.$router.push({ name: 'Home' }).then(()=> this.$refs.view.$.ctx[this.$route.meta.goToRoadmap.methodName]())
+      //this.$router.push({ name: 'Home' }).then(()=> this.$refs.view.$.ctx[this.$route.meta.goToRoadmap.methodName]())
+      if(window.innerWidth >= 1100)
+        window.scrollTo(0, 2400)
+      else if(window.innerWidth < 1100 && window.innerWidth >= 660)
+        window.scrollTo(0, 1900)
+      else if(window.innerWidth < 660)
+        window.scrollTo(0, 1500)
     },
     team() {
-      this.$router.push({ name: 'Home' }).then(()=> this.$refs.view.$.ctx[this.$route.meta.goToTeam.methodName]())
+      //this.$router.push({ name: 'Home' }).then(()=> this.$refs.view.$.ctx[this.$route.meta.goToTeam.methodName]())
+      if(window.innerWidth >= 1100)
+        window.scrollTo(0, 3800)
+      else if(window.innerWidth < 1100 && window.innerWidth >= 660)
+        window.scrollTo(0, 2600)
+      else if(window.innerWidth < 660)
+        window.scrollTo(0, 2000)
     },
     orders() {
       this.$router.push({ name: 'Orders' })

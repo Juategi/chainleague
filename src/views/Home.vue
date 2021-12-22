@@ -258,6 +258,7 @@ export default ({
             this.phase_name = "Iron"    
         }
       })
+      
   },
   components: {
     'vue-cookie-accept-decline': VueCookieAcceptDecline,
