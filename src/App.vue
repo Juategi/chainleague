@@ -141,7 +141,7 @@ export default {
         ordersRef.where("user", "==", firebase.auth().currentUser.uid)
         .where("state", "==", "done").get()
         .then((snapshot) => {
-          snapshot.forEach(doc => this.userData['tokens'] += doc.data()['clg'])
+          snapshot.forEach(doc => this.userData['tokens'] += parseInt(doc.data()['clg']))
         })
       }
       else{
