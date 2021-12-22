@@ -94,24 +94,27 @@ export default {
     },
     editWallet(){
       this.walletDisabled = false
+      this.oldWallet = this.wallet
     },
     saveWallet(){
-      var usersRef = firebase.firestore().collection("/users");
-      if((this.wallet.length != 42 && this.wallet.length != 0) || (this.wallet.substr(0,2) != '0x' && this.wallet.length != 0)){
-          alert("Address format incorrect")
-      }
-      else{
-        usersRef.doc(firebase.auth().currentUser.uid).set({      
-          wallet: this.wallet,
-          email: this.userData['email'],
-          referal: this.userData['referal'],          
-          summoners: this.userData['summoners'],
-          server: this.userData['server'],
-          myreferal: this.userData['myreferal'],
-        })
-        this.userData['wallet'] = this.wallet
-        this.walletDisabled = true
-      }  
+      if(this.wallet !== this.oldWallet){
+        var usersRef = firebase.firestore().collection("/users");
+        if((this.wallet.length != 42 && this.wallet.length != 0) || (this.wallet.substr(0,2) != '0x' && this.wallet.length != 0)){
+            alert("Address format incorrect")
+        }
+        else{
+          usersRef.doc(firebase.auth().currentUser.uid).set({      
+            wallet: this.wallet,
+            email: this.userData['email'],
+            referal: this.userData['referal'],          
+            summoners: this.userData['summoners'],
+            server: this.userData['server'],
+            myreferal: this.userData['myreferal'],
+          })
+          this.userData['wallet'] = this.wallet
+          this.walletDisabled = true
+        } 
+      }    
     },
     async stateChanged(){     
       if(firebase.auth().currentUser){
@@ -136,6 +139,7 @@ export default {
     return {
       userData: null,
       wallet: null,
+      oldWallet: null,
       walletDisabled: true
     }
   },
