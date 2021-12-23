@@ -117,13 +117,8 @@ export default {
             alert("Address format incorrect")
         }
         else{
-          usersRef.doc(firebase.auth().currentUser.uid).set({      
-            wallet: this.wallet,
-            email: this.userData['email'],
-            referal: this.userData['referal'],          
-            summoners: this.userData['summoners'],
-            server: this.userData['server'],
-            myreferal: this.userData['myreferal'],
+          usersRef.doc(firebase.auth().currentUser.uid).update({      
+            wallet: this.wallet,          
           })
           this.userData['wallet'] = this.wallet
           this.walletDisabled = true
