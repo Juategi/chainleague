@@ -152,6 +152,7 @@ export default {
         });  
         console.log("Order in process");
         this.end = true
+        
       }
     },
     async stateChanged(){     
