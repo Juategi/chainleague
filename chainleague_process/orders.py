@@ -14,6 +14,8 @@ api = '5M6QCQH76TADFIMM39BKR79YZHT6XXG42D'
 wallet = '0xEaDA375B9F1B4A39624396cfe3833184b3F817a8'
 busd = '0xe9e7cea3dedca5984780bafc599bd69add087d56'
 testtoken = '0xf5E6BCf2606f2b610f629b58E1A5Ce4f4Db253DE'
+bigtest = '0x84b9b910527ad5c03a9ca831909e21e236ea7b06'
+bigtestad = '0xc24c8c4124749dae0d603337a98efadf96d200eb'
 contract = testtoken
 offset = '10000'
 sort = 'asc'
@@ -32,7 +34,6 @@ async def main():
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     r = requests.get(endpoint, headers=headers)
     transactions = r.json()['result']
-    
     if(str(len(transactions)) == offset):
         timeTrans = int(transactions[int(offset)-1]['timeStamp'])
         if (abs(timeTrans-int(time.time())) > 100):
