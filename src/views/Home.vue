@@ -100,7 +100,7 @@
     <div style="width: 100%; float: left; overflow: hidden; margin: auto;  margin-top:0%;">
           <p class="midf">Total ICO Launch invested</p>
           <b style="margin-top: 2%;  font-weight: bold;  ">{{invested.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</b>   
-          <p style="margin-top: 2%; font-weight: bold;">Phase {{phase}} - {{phase_name}}</p>   
+          <p style="margin-top: 2%; font-weight: bold;">Phase - {{phase_name}} {{subphase}}</p>   
           <div style="margin-top:2%">
             <img :src="getImgUrl()" v-bind:alt="pic" class="rank">
           </div>                                    
@@ -226,36 +226,52 @@ export default ({
         this.invested = data['invested']
         this.phase = data['phase'],
         this.phase_date = data['phase_date']
-        switch(this.phase){
-          case 1:
+        switch(this.phase.toString().substring(0,1)){
+          case "1":
             this.phase_name = "Iron"
             break;
-          case 2:
+          case "2":
             this.phase_name = "Bronze"
             break;
-          case 3:
+          case "3":
             this.phase_name = "Silver"
             break;
-          case 4:
+          case "4":
             this.phase_name = "Gold"
             break;
-          case 5:
+          case "5":
             this.phase_name = "Platinum"
             break;
-          case 6:
+          case "6":
             this.phase_name = "Diamond"
             break;
-          case 7:
+          case "7":
             this.phase_name = "Master"
             break;
-          case 8:
+          case "8":
             this.phase_name = "Grandmaster"
             break;
-          case 9:
+          case "9":
             this.phase_name = "Challenger"
             break;
           default:
             this.phase_name = "Iron"    
+        }
+        switch(this.phase.toString().substring(1)){
+          case "1":
+            this.subphase = "I"
+            break;
+          case "2":
+            this.subphase = "II"
+            break;
+          case "3":
+            this.subphase = "III"
+            break;
+          case "4":
+            this.subphase = "IV"
+            break;
+          default:
+            this.subphase = "I"    
         }
       })
       
@@ -272,6 +288,7 @@ export default ({
       phase: 0,
       phase_name: "",
       phase_date: "",
+      subphase: ""
     }
   },
   methods: {
