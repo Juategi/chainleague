@@ -137,13 +137,14 @@ export default {
         ready = false
       }
       if(ready)  {
-        var ordersRef = firebase.firestore().collection("/orders");     
+        var ordersRef = firebase.firestore().collection("/orders");    
+        var date = (new Date()).toISOString().replace("T", " ")
         await ordersRef.add({
           user: firebase.auth().currentUser.uid,
           clg: this.clg,          
           clg_price: this.clg_price,
           state: "processing",
-          time: (new Date()).toUTCString(),
+          time: date.substring(0, date.length - 5),
           wallet: this.wallet,
         })
         .catch(function(error) {
