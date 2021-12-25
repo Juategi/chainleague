@@ -10,7 +10,7 @@
       
      <div v-for="(order,i) in this.orders" :key="i" class="rectangleOrder">
         <p style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order['time']}}</p>  
-        <p style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order['wallet']}}</p> 
+        <p class="wallet">{{order['wallet']}}</p> 
         <p style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order['clg']}} CLG</p> 
         <p style="font: 20px 'Rubik'; color: #2588B2; ">CLG price: <span style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order['clg_price']}}$</span></p> 
         <p style="font: 20px 'Rubik';  color: #2588B2; ">Status: <span style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{order['state']}}</span></p> 
@@ -113,6 +113,12 @@ input{
     margin-bottom: 15px;
 }
 
+.wallet{
+    font: 12px 'Rubik'; 
+    font-weight: bold;
+    color: #2588B2; 
+  }
+
 
 
 select {
@@ -160,6 +166,12 @@ form {
       text-align: center;
       margin-top: 100px;
       margin-right: 30%;
+  }
+
+  .wallet{
+    font: 7px 'Rubik'; 
+    font-weight: bold;
+    color: #2588B2; 
   }
 }
 

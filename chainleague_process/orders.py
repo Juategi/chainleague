@@ -20,60 +20,65 @@ contract = testtoken
 offset = '10000'
 sort = 'asc'
 day = 86400/2
+delay = 7200
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+
 async def main():
     cred = credentials.Certificate('./chain-league-8694bded13b2.json')
     firebase_admin.initialize_app(cred)
-    hashList = json.load(open("./hashlist.json", encoding='utf-8'))['list']
     db = firestore.client()
-    docs = db.collection(u'orders').where(u'state', u'==', u'processing').stream()
-    
-    meta = db.collection(u'meta').get()[0]
-    page = meta.to_dict()['page']
-    endpoint = testnet + 'api?module=account&action=tokentx&contractaddress='+ contract + '&address=' + wallet +'&page='+ page + '&offset=' + offset + '&sort=' + sort + '&apikey=' + api
+    while(True):
+        print("Next iteration: " + str(datetime.utcnow()))
+        hashList = json.load(open("./hashlist.json", encoding='utf-8'))['list']
+        docs = db.collection(u'orders').where(u'state', u'==', u'processing').stream()
+        
+        meta = db.collection(u'meta').get()[0]
+        page = meta.to_dict()['page']
+        endpoint = testnet + 'api?module=account&action=tokentx&contractaddress='+ contract + '&address=' + wallet +'&page='+ page + '&offset=' + offset + '&sort=' + sort + '&apikey=' + api
 
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
-    r = requests.get(endpoint, headers=headers)
-    transactions = r.json()['result']
-    if(str(len(transactions)) == offset):
-        timeTrans = int(transactions[int(offset)-1]['timeStamp'])
-        if (abs(timeTrans-int(time.time())) > 100):
-            page = str(int(page)+1)
-            doc_ref = db.collection(u'meta').document(meta.id)
-            doc_ref.update({
-                'page': page, 
-            })
+        r = requests.get(endpoint, headers=headers)
+        transactions = r.json()['result']
+        if(str(len(transactions)) == offset):
+            timeTrans = int(transactions[int(offset)-1]['timeStamp'])
+            if (abs(timeTrans-int(time.time())) > 100):
+                page = str(int(page)+1)
+                doc_ref = db.collection(u'meta').document(meta.id)
+                doc_ref.update({
+                    'page': page, 
+                })
 
-    for doc in docs:
-        docd = doc.to_dict()
-        timeDoc = int(datetime.timestamp(datetime.strptime(docd['time'][2:], '%y-%m-%d %H:%M:%S')))
-        found = False
-        for transaction in transactions:
-            sender = transaction['from'].lower()  
-            hashid = transaction['hash']    
-            value = int(transaction['value'][0:-18] )   
-            timeTrans = int(transaction['timeStamp'])
-            if(sender == docd['wallet'].lower() 
-            and value == int(docd['clg'])
-            and hashid not in hashList
-            and abs(timeDoc-timeTrans) <= day
-            and transaction['contractAddress'] == contract.lower()):              
-                hashList.append(hashid)
-                with open( "hashlist.json" , "w" ) as write:
-                    json.dump( {"list" : hashList} , write )
+        for doc in docs:
+            docd = doc.to_dict()
+            timeDoc = int(datetime.timestamp(datetime.strptime(docd['time'][2:], '%y-%m-%d %H:%M:%S')))
+            found = False
+            for transaction in transactions:
+                sender = transaction['from'].lower()  
+                hashid = transaction['hash']    
+                value = int(transaction['value'][0:-18] )   
+                timeTrans = int(transaction['timeStamp'])
+                if(sender == docd['wallet'].lower() 
+                and value == int(docd['clg'])
+                and hashid not in hashList
+                and abs(timeDoc-timeTrans) <= day
+                and transaction['contractAddress'] == contract.lower()):              
+                    hashList.append(hashid)
+                    with open( "hashlist.json" , "w" ) as write:
+                        json.dump( {"list" : hashList} , write )
+                    doc_ref = db.collection(u'orders').document(doc.id)
+                    doc_ref.update({
+                        'state': "done",
+                        'hashid': hashid
+                    })
+                    print("Found")
+                    found = True
+                    break
+            if (not found and abs(timeDoc-int(time.time())) > (day*2)):
                 doc_ref = db.collection(u'orders').document(doc.id)
                 doc_ref.update({
-                    'state': "done",
-                    'hashid': hashid
+                    'state': "failed",
                 })
-                print("Found")
-                found = True
-                break
-        if (not found and abs(timeDoc-int(time.time())) > (day*2)):
-            doc_ref = db.collection(u'orders').document(doc.id)
-            doc_ref.update({
-                'state': "failed",
-            })
-            print("Failed")
+                print("Failed")
+        time.sleep(delay) 
 
 
                 

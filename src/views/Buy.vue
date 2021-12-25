@@ -10,7 +10,7 @@
        <p style="font: 18px 'Rubik'; font-weight: bold; color: #2588B2; ">Your wallet:</p> 
      </div>
       <div >
-       <p style="font: 15px 'Rubik'; font-weight: bold; color: #2588B2; ">{{ wallet }}</p> 
+       <p class="wallet" >{{ wallet }}</p> 
      </div>
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">Select the amount of CLG tokens you want to buy, it must be at least 200.</p> 
@@ -34,7 +34,7 @@
        <p style="font: 20px 'Rubik'; color: #2588B2; ">Please send that amount of Binance USD (BUSD) to the following address through the Binance Smart Chain (BEP20). If you send a different number, we will adjust the amount of CLG you will receive.</p> 
      </div>
      <div >
-       <p style="font: 16px 'Rubik'; font-weight: bold; color: #2588B2; ">0xEaDA375B9F1B4A39624396cfe3833184b3F817a8</p> 
+       <p class="wallet">0xEaDA375B9F1B4A39624396cfe3833184b3F817a8</p> 
      </div>
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">When the payment is sent press 'Done'. If we don't recieve the payment after a while, the order will be cancelled.</p> 
@@ -209,6 +209,8 @@ body{
   margin: 0;
 }
 
+
+
 input{
     padding: 10px 10px;
     width: 100%;
@@ -245,6 +247,12 @@ label {
     margin-right: 20%;
 }
 
+.wallet{
+  font: 15px 'Rubik'; 
+  font-weight: bold;
+   color: #2588B2; 
+}
+
 form {
     max-width: 500px;
     margin: 10px auto;
@@ -265,6 +273,12 @@ form {
       text-align: center;
       margin-top: 100px;
       margin-right: 30%;
+  }
+
+  .wallet{
+    font: 11px 'Rubik'; 
+    font-weight: bold;
+    color: #2588B2; 
   }
 }
 
