@@ -99,7 +99,7 @@
   <div class="mid">  
     <div style="width: 100%; float: left; overflow: hidden; margin: auto;  margin-top:0%;">
           <p class="midf">Total ICO Launch invested</p>
-          <b style="margin-top: 2%;  font-weight: bold;  ">{{invested.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</b>   
+          <b style="margin-top: 2%;  font-weight: bold;  ">{{Math.round(invested).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</b>   
           <p style="margin-top: 2%; font-weight: bold;">Phase - {{phase_name}} {{subphase}}</p>   
           <div style="margin-top:2%">
             <img :src="getImgUrl()" v-bind:alt="pic" class="rank">

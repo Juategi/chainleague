@@ -70,6 +70,11 @@ async def main():
                         'state': "done",
                         'hashid': hashid
                     })
+                    #sumar invested
+                    doc_ref = db.collection(u'meta').document(meta.id)
+                    doc_ref.update({
+                        'invested': float(meta.to_dict()['invested']) + int(docd['clg'])*float(docd['clg_price']), 
+                    })
                     print("Found")
                     found = True
                     break
