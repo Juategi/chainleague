@@ -15,12 +15,12 @@
          <b class="bar" @click="whitepaper">Whitepaper</b>      
          <b class="bar" @click="roadmap">Roadmap</b>
         <b class="bar" @click="team">Team</b> 
-        <button class="btop" @click="signup" v-if="!userData">Sign up</button>
+        <button class="btop" @click="signup" v-if="!userData['on']">Sign up</button>
         <button class="btop" @click="signOut" v-else>Sign out</button>
       </div>
       
     </div>
-    <div class="rectangleInfo" v-if="userData && ($route.name == 'Home' )">
+    <div class="rectangleInfo" v-if="userData['on'] && ($route.name == 'Home' )">
       <p style="color: #050617;  ">{{ userData['summoners'] }} <span style="font-weight: bold;"> {{ userData['server'] }} </span> </p>
       <p style="color: #050617; font: 15px 'Rubik;">Tokens: {{userData['tokens']}}</p>
       <p style="color: #050617; font: 15px 'Rubik; font-weight: bold; color: #2588B2; cursor:pointer;" @click="orders">Orders history</p>
@@ -44,7 +44,7 @@
     </div>
   </div>
   
-  <router-view v-slot="{ Component }" :userData="userData">
+  <router-view v-slot="{ Component }" v-model:userData="userData">
     <component ref="view" :is="Component" />
   </router-view>
 
@@ -101,6 +101,7 @@ export default {
     signOut() {
       firebase.auth().signOut().then(
         () => {console.log("out!!")
+          this.userData = {'on' : false}
           this.$router.push({ name: 'Home' })
         }
       )
@@ -129,24 +130,37 @@ export default {
       if(firebase.auth().currentUser){
         const userId = firebase.auth().currentUser.uid
         var usersRef = firebase.firestore().collection("/users");
-        await usersRef.doc(userId).get().then((snapshot) => { this.userData = snapshot.data(); this.wallet = this.userData['wallet']})
+        await usersRef.doc(userId).get().then((snapshot) => { 
+          this.userData['wallet'] = snapshot.data()['wallet']
+          this.userData['summoners'] = snapshot.data()['summoners']
+          this.userData['myreferal'] = snapshot.data()['myreferal']
+          this.userData['referal'] = snapshot.data()['referal']
+          this.userData['server'] = snapshot.data()['server']
+          this.userData['email'] = snapshot.data()['email']
+          this.wallet = this.userData['wallet']})
         
         var ordersRef = firebase.firestore().collection("/orders")
         this.userData['tokens'] = 0
-        ordersRef.where("user", "==", firebase.auth().currentUser.uid)
+        this.userData['on'] = true
+        await ordersRef.where("user", "==", firebase.auth().currentUser.uid)
         .where("state", "==", "done").get()
         .then((snapshot) => {
           snapshot.forEach(doc => this.userData['tokens'] += parseInt(doc.data()['clg']))
         })
+        this.$router.push({ name: 'Home' })
       }
       else{
-        this.userData = null
+        try{
+          //this.userData = {'on' : false}
+        } catch(e){
+          console.log(e)
+        }
       }
     }
   },
   data(){
     return {
-      userData: null,
+      userData: {'on' : false},
       wallet: null,
       oldWallet: null,
       walletDisabled: true

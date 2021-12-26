@@ -20,4 +20,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 
-reglas seguridad, inversion total, whitepaper, roadmap, crear cripto
+ inversion total, whitepaper, roadmap, crear cripto

@@ -310,7 +310,8 @@ export default ({
       this.$router.push({ name: 'Signup' })
     },
     buy() {
-      if(!this.userData)
+      console.log(this.userData['wallet'])
+      if(!this.userData['on'])
         this.$router.push({ name: 'Signup' })
       else{
         if(firebase.auth().currentUser.emailVerified){

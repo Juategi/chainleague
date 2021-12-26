@@ -149,6 +149,7 @@ export default {
         })
         .catch(function(error) {
           alert("An error ocurred, try again please")
+           console.log(error);
         });  
         console.log("Order in process");
         this.end = true
@@ -162,7 +163,7 @@ export default {
         usersRef.doc(userId).get().then((snapshot) => { var userData = snapshot.data(); this.wallet = userData['wallet']})
       }
       else{
-        this.userData = null
+        this.userData = {'on' : false}
       }
     }
   },
