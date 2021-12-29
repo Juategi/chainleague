@@ -55,10 +55,10 @@ async def main():
             for transaction in transactions:
                 sender = transaction['from'].lower()  
                 hashid = transaction['hash']    
-                value = int(transaction['value'][0:-18] )   #revisar esto, adaptarlo a la cantidad enviada
+                value = int(transaction['value'][0:-18] )   
                 timeTrans = int(transaction['timeStamp'])
                 if(sender == docd['wallet'].lower() 
-                and value == int(docd['clg'])
+                #and value == int(docd['clg']) adaptarlo a la cantidad enviada
                 and hashid not in hashList
                 and abs(timeDoc-timeTrans) <= day
                 and transaction['contractAddress'] == contract.lower()):              
@@ -68,12 +68,13 @@ async def main():
                     doc_ref = db.collection(u'orders').document(doc.id)
                     doc_ref.update({
                         'state': "done",
-                        'hashid': hashid
+                        'hashid': hashid,
+                        'clg' : value
                     })
                     #sumar invested
                     doc_ref = db.collection(u'meta').document(meta.id)
                     doc_ref.update({
-                        'invested': float(meta.to_dict()['invested']) + int(docd['clg'])*float(docd['clg_price']), 
+                        'invested': float(meta.to_dict()['invested']) + value*float(docd['clg_price']), 
                     })
                     print("Found")
                     found = True
