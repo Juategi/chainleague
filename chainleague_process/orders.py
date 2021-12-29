@@ -55,7 +55,7 @@ async def main():
             for transaction in transactions:
                 sender = transaction['from'].lower()  
                 hashid = transaction['hash']    
-                value = int(transaction['value'][0:-18] )   
+                value = int(transaction['value'][0:-18] )   #revisar esto, adaptarlo a la cantidad enviada
                 timeTrans = int(transaction['timeStamp'])
                 if(sender == docd['wallet'].lower() 
                 and value == int(docd['clg'])

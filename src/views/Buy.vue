@@ -37,7 +37,7 @@
        <p class="wallet">0xEaDA375B9F1B4A39624396cfe3833184b3F817a8</p> 
      </div>
      <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">When the payment is sent press 'Done'. If we don't recieve the payment after a while, the order will be cancelled.</p> 
+       <p style="font: 20px 'Rubik'; color: #2588B2; ">When the transaction is done, press 'Done'. If we don't recieve the payment after a while, the order will be cancelled.</p> 
      </div>
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">If the payment is done successfully, you will see the tokens in your account.</p> 
