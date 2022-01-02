@@ -121,7 +121,6 @@ Dispute Resolution. Please read this Arbitration Agreement carefully. It is part
 
 <b>Contact Information</b>
 
-<p>Address: Valencia, Spain</p>
 <p>Email: support@chain-league.com</p>
 <b style="cursor: pointer; color: #d39521;" @click="goToTop">Go to top</b>
   </div>
