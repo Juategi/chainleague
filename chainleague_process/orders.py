@@ -41,7 +41,7 @@ async def main():
         transactions = r.json()['result']
         if(str(len(transactions)) == offset):
             timeTrans = int(transactions[int(offset)-1]['timeStamp'])
-            if (abs(timeTrans-int(time.time())) > 100):
+            if (abs(timeTrans-int(time.time())) > delay):
                 page = str(int(page)+1)
                 doc_ref = db.collection(u'meta').document(meta.id)
                 doc_ref.update({
@@ -69,12 +69,12 @@ async def main():
                     doc_ref.update({
                         'state': "done",
                         'hashid': hashid,
-                        'clg' : value
+                        'clg' : value/float(docd['clg_price'])
                     })
                     #sumar invested
                     doc_ref = db.collection(u'meta').document(meta.id)
                     doc_ref.update({
-                        'invested': float(meta.to_dict()['invested']) + value*float(docd['clg_price']), 
+                        'invested': float(meta.to_dict()['invested']) + value, 
                     })
                     print("Found")
                     found = True
