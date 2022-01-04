@@ -31,6 +31,7 @@ async def main():
     while(True):
         print("Next iteration: " + str(datetime.utcnow()))
         hashList = json.load(open("./hashlist.json", encoding='utf-8'))['list']
+        ordersList = json.load(open("./orders.json", encoding='utf-8'))
         docs = db.collection(u'orders').where(u'state', u'==', u'processing').stream()
         
         meta = db.collection(u'meta').get()[0]
@@ -71,6 +72,17 @@ async def main():
                         'hashid': hashid,
                         'clg' : value/float(docd['clg_price'])
                     })
+                    ordersList[doc.id] = {
+                        'state': "done",
+                        'hashid': hashid,
+                        'clg' : value/float(docd['clg_price']),
+                        'clg_price': docd['clg_price'],
+                        'wallet' : docd['wallet'],
+                        'user': docd['user'],
+                        'time': docd['time']
+                    }
+                    with open( "orders.json" , "w" ) as write:
+                        json.dump( ordersList , write )
                     #sumar invested
                     doc_ref = db.collection(u'meta').document(meta.id)
                     doc_ref.update({

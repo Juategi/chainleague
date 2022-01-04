@@ -14,7 +14,7 @@
       <div style="margin-top:2%" v-if="$route.name == 'Home'">       
          <b class="bar" @click="whitepaper">Whitepaper</b>      
          <b class="bar" @click="roadmap">Roadmap</b>
-        <b class="bar" @click="team">Team</b> 
+        <!--<b class="bar" @click="team">Team</b> -->
         <button class="btop" @click="signup" v-if="!userData['on']">Sign up</button>
         <button class="btop" @click="signOut" v-else>Sign out</button>
       </div>

@@ -134,7 +134,7 @@
       <p style="margin-top: 8%; font-weight: bold; font-size: 15px">Disclaimer:</p>  
       <p class="midf">We are not owned or associated with Riot Games or any of its brands  </p>        
   </div>
-
+  <!--
   <div class="x600" ref="team">
     <div style="width: 100%; float: center; overflow: hidden; ">     
         <p style="padding-top: 10px; font-weight: bold; font-size: 35px">Team</p>   
@@ -159,7 +159,7 @@
       
       </div>
     </div>
-  </div>
+  </div> -->
 
 
 
@@ -171,7 +171,7 @@
             <img src="../assets/dc.png" class="media">
           </a>
           
-          <a href="https://t.me/chainleague" target="_blank">
+          <a href="https://t.me/+uO2m5PrKYJI3MWNk" target="_blank">
             <img src="../assets/tg.png" class="media" >
           </a>
           

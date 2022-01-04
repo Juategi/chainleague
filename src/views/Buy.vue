@@ -104,7 +104,11 @@ export default {
       var ready = true
       var ordersRef = firebase.firestore().collection("/orders"); 
       var orders = 0
-      if(!firebase.auth().currentUser.emailVerified){
+      if((!firebase.auth().currentUser)){
+        alert("Please Sign up")
+        ready = false
+      }
+      else if(!firebase.auth().currentUser.emailVerified){
         alert("Please verify your email first")
         ready = false
       }
