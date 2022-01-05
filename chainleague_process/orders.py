@@ -17,7 +17,7 @@ busd = '0xe9e7cea3dedca5984780bafc599bd69add087d56'
 testtoken = '0xf5E6BCf2606f2b610f629b58E1A5Ce4f4Db253DE'
 bigtest = '0x84b9b910527ad5c03a9ca831909e21e236ea7b06'
 bigtestad = '0xc24c8c4124749dae0d603337a98efadf96d200eb'
-contract = testtoken
+contract = busd
 offset = '10000'
 sort = 'asc'
 day = 86400/2
@@ -36,7 +36,7 @@ async def main():
         
         meta = db.collection(u'meta').get()[0]
         page = meta.to_dict()['page']
-        endpoint = testnet + 'api?module=account&action=tokentx&contractaddress='+ contract + '&address=' + wallet +'&page='+ page + '&offset=' + offset + '&sort=' + sort + '&apikey=' + api
+        endpoint = mainnet + 'api?module=account&action=tokentx&contractaddress='+ contract + '&address=' + wallet +'&page='+ page + '&offset=' + offset + '&sort=' + sort + '&apikey=' + api
 
         r = requests.get(endpoint, headers=headers)
         transactions = r.json()['result']

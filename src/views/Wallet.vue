@@ -6,6 +6,8 @@
        <img src="../assets/bsc.svg" class="bsc">  
       <div style="text-align: center;">
           <p>Enter the address that you will use to buy the tokens, so we will know that is you.</p>
+          <p>Or leave it blank and do it later.</p>
+
       </div>
     
       <input type="text" v-model="walletId" >

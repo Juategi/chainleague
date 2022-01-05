@@ -118,11 +118,24 @@ export default {
             alert("Address format incorrect")
         }
         else{
-          usersRef.doc(firebase.auth().currentUser.uid).update({      
-            wallet: this.wallet,          
-          })
-          this.userData['wallet'] = this.wallet
-          this.walletDisabled = true
+          usersRef.where("wallet", "==", this.wallet).get()
+          .then((snapshot) => {
+              var used = false
+              snapshot.forEach(doc => used = true)
+              if(used){
+                alert("Wallet already used")
+                this.userData['wallet'] = ""
+                this.wallet = ""
+                this.walletDisabled = true
+              }
+              else{
+                 usersRef.doc(firebase.auth().currentUser.uid).update({      
+                  wallet: this.wallet,          
+                })
+                this.userData['wallet'] = this.wallet
+                this.walletDisabled = true
+              }
+            });          
         } 
       }    
     },

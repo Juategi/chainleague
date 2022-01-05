@@ -181,7 +181,19 @@ export default {
               this.walletError = "Address format incorrect";
             }
             else{
-              accept = true
+              var usersRef = firebase.firestore().collection("/users");
+              usersRef.where("wallet", "==", this.walletId).get()
+              .then((snapshot) => {
+                  var used = false
+                  snapshot.forEach(doc => used = true)
+                  if(used){
+                    this.walletError = "Wallet already used";                
+                    accept = false
+                  }
+                  else{
+                    accept = true                   
+                  }
+                }); 
             }
           }
           else{
