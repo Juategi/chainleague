@@ -35,7 +35,7 @@ import axios from "axios";
 export default {
   data(){
     return {
-      url: 'https://firebasestorage.googleapis.com/v0/b/chain-league.appspot.com/o/WhitepaperEnglish.pdf?alt=media&token=6bbb8649-fd54-4043-83c3-515f6f5fd8c5',
+      url: 'https://firebasestorage.googleapis.com/v0/b/chain-league.appspot.com/o/WhitepaperEnglish.pdf?alt=media&token=a39827eb-1e67-4b22-9660-05dfa7fb048a',
     }
   },
   methods:{

@@ -4,13 +4,15 @@
     <div style="margin-left: 20px; width: 40%; float: left; overflow: hidden; margin-top:50px">
           <p >The first play-to-earn cryptocurrency based on League of Legends.</p>
           <p >Win tokens just by playing normal and ranked games in League of Legends.</p>
-          <p style="font-weight: bold; ">Enter the Rift, enter the Blockchain.</p>  
+         <!-- <p style="font-weight: bold; ">Enter the Rift, enter the Blockchain.</p>  -->
           <div style="margin-top: 18px; ">
              <p >Powered by</p>
           </div>
           <div style="padding-top: 0px;">
             <img src="../assets/bsct.png" class="bsct" >
           </div>   
+          <p> Smart contract address:</p>   
+          <p class="addressfont">0x918A0f8B19e9308B4C4aA418ecd6CBb5BE6411db</p>  
                
     </div>   
 
@@ -18,12 +20,9 @@
     <div style="margin-right: 20px; width: 40%; float: right; overflow: hidden; margin-top:35px">
           <p style="font-weight: bold; font-size: 20px;">We are now on pre-sale!</p>
           <p >Be one of  the first to join the project.</p>
-          <!-- <p> Smart contract address:</p>   
-          <p class="addressfont">0xdF7BBD62c8f6d2A1FE5F2252bC7Df37CC0994eEd</p>  
-          <a href="https://www.youtube.com/watch?v=KpF41eS3YZQ" target="_blank" style="text-decoration:none">
-              <p style="cursor: pointer; color: #2588B2">How to buy on Pancakeswap?</p>   
-          </a>
-          -->
+          
+         
+          
           <NotificationGroup group="foo" >
           <div
             class="fixed inset-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none"

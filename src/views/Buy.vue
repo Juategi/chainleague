@@ -31,13 +31,13 @@
        <p style="font: 20px 'Rubik'; color: #2588B2; ">Amount of BNB to deposit: {{(clg * clg_price/bnb_price).toFixed(5)}}</p> 
      </div> -->
      <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">Please send that amount of Binance USD (BUSD) to the following address through the Binance Smart Chain (BEP20). If you send a different number, we will adjust the amount of CLG you will receive.</p> 
+       <p style="font: 20px 'Rubik'; color: #2588B2; ">Please send that amount of Binance USD (BUSD) to the following address through the Binance Smart Chain (BEP20).</p> 
      </div>
      <div >
        <p class="wallet">0xEaDA375B9F1B4A39624396cfe3833184b3F817a8</p> 
      </div>
      <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">When the transaction is done, press 'Done'. If we don't recieve the payment after a while, the order will be cancelled.</p> 
+       <p style="font: 20px 'Rubik'; color: #2588B2; "> If you send a different number, we will adjust the amount of CLG you will receive. When the transaction is done, press 'Done'. If we don't recieve the payment after a while, the order will be cancelled.</p> 
      </div>
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">If the payment is done successfully, you will see the tokens in your account.</p> 
