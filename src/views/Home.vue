@@ -160,22 +160,30 @@
     </div>
   </div> -->
 <div class="x600">
-    <div>
-      <div class="partnericon">
-        <img src="../assets/cmc.png" >
+    <div style="display: flex;flex-wrap: wrap;padding: 0 4px;">
+        <div style="flex: 50%; padding: 0 4px;">
+          <a href="https://coinmarketcap.com" target="_blank">
+            <img src="../assets/cmc.png" class="partnericon" >
+          </a>
+          <a href="https://coinmarketcap.com" target="_blank">
+            <img src="../assets/cg.png"  class="partnericon">
+          </a>
+        </div>  
+       <div style="flex: 50%;padding: 0 4px;">
+          <a href="https://coinmarketcap.com" target="_blank">
+            <img src="../assets/dapp.png"  class="partnericonL">
+          </a>
+        </div> 
+      <div style="flex: 50%;padding: 0 4px;">
+        <a href="https://coinmarketcap.com" target="_blank">
+          <img src="../assets/medium.png"  class="partnericon">
+        </a>
+        <a href="https://coinmarketcap.com" target="_blank">
+          <img src="../assets/hack.png"  class="partnericon">
+        </a>
       </div>
-      <div class="partnericon">
-        <img src="../assets/cg.png">
-      </div>
     </div>
-    <div>
-      <img src="../assets/dapp.png">
-    </div>
-    <div>
-       <img src="../assets/medium.png">
-      <img src="../assets/hack.png">
-    </div>
-   
+    
 </div>
 
 

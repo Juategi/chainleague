@@ -321,6 +321,18 @@ img.mediaS:hover{
   background-repeat: no-repeat;
 }
 
+.partnericon{
+  vertical-align: middle;
+  width: 23%; 
+  padding: 0% 8%;
+}
+
+.partnericonL{
+  vertical-align: middle;
+  width: 14%; 
+  padding: 0% 4%;
+}
+
 .fodder{
   background: url("./assets/B6.png");
   background-size: 100%;
@@ -353,7 +365,7 @@ img.mediaS:hover{
 }
 
 .x600{
-  height:620px;
+  height:630px;
   width: 100%; 
   min-width:600px;
   max-width: 2000px;
@@ -638,7 +650,7 @@ input{
  }
 
  .x600{
-    height:520px;
+    height:370px;
     width: 100%; 
     min-width:600px
   }
@@ -951,7 +963,7 @@ input{
  }
 
  .x600{
-   height:420px;
+   height:210px;
    width: 100%; 
    min-width:300px
  }
@@ -985,6 +997,8 @@ input{
   padding-top: 60px;
   float: left;
 }
+
+
 
 .fodder{
   background: url("./assets/B6.png");
