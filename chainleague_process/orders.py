@@ -73,15 +73,16 @@ async def main():
                     })
                     # referral tokens
                     userRef = db.collection(u'users').document(docd['user']).get().to_dict()
-                    db.collection(u'orders').add({
-                        'state': "done",
-                        'hashid': "referral",
-                        'clg' : (value/float(docd['clg_price']))/10,
-                        'clg_price': docd['clg_price'],
-                        'wallet' : "referral",
-                        'user': userRef['referal'][4:],
-                        'time': docd['time'] 
-                    })
+                    if (userRef['referal'] != ""):
+                        db.collection(u'orders').add({
+                            'state': "done",
+                            'hashid': "referral",
+                            'clg' : (value/float(docd['clg_price']))/10,
+                            'clg_price': docd['clg_price'],
+                            'wallet' : "referral",
+                            'user': userRef['referal'][4:],
+                            'time': docd['time'] 
+                        })
                     ordersList[doc.id] = {
                         'state': "done",
                         'hashid': hashid,
