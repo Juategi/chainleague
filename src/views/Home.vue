@@ -159,7 +159,24 @@
       </div>
     </div>
   </div> -->
-
+<div class="x600">
+    <div>
+      <div class="partnericon">
+        <img src="../assets/cmc.png" >
+      </div>
+      <div class="partnericon">
+        <img src="../assets/cg.png">
+      </div>
+    </div>
+    <div>
+      <img src="../assets/dapp.png">
+    </div>
+    <div>
+       <img src="../assets/medium.png">
+      <img src="../assets/hack.png">
+    </div>
+   
+</div>
 
 
   <div class="mid2">
