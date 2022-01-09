@@ -17,7 +17,7 @@ busd = '0xe9e7cea3dedca5984780bafc599bd69add087d56'
 testtoken = '0xf5E6BCf2606f2b610f629b58E1A5Ce4f4Db253DE'
 bigtest = '0x84b9b910527ad5c03a9ca831909e21e236ea7b06'
 bigtestad = '0xc24c8c4124749dae0d603337a98efadf96d200eb'
-contract = busd
+contract = testtoken
 offset = '10000'
 sort = 'asc'
 day = 86400/2
@@ -33,10 +33,9 @@ async def main():
         hashList = json.load(open("./hashlist.json", encoding='utf-8'))['list']
         ordersList = json.load(open("./orders.json", encoding='utf-8'))
         docs = db.collection(u'orders').where(u'state', u'==', u'processing').stream()
-        
         meta = db.collection(u'meta').get()[0]
         page = meta.to_dict()['page']
-        endpoint = mainnet + 'api?module=account&action=tokentx&contractaddress='+ contract + '&address=' + wallet +'&page='+ page + '&offset=' + offset + '&sort=' + sort + '&apikey=' + api
+        endpoint = testnet + 'api?module=account&action=tokentx&contractaddress='+ contract + '&address=' + wallet +'&page='+ page + '&offset=' + offset + '&sort=' + sort + '&apikey=' + api
 
         r = requests.get(endpoint, headers=headers)
         transactions = r.json()['result']
@@ -71,6 +70,17 @@ async def main():
                         'state': "done",
                         'hashid': hashid,
                         'clg' : value/float(docd['clg_price'])
+                    })
+                    # referral tokens
+                    userRef = db.collection(u'users').document(docd['user']).get().to_dict()
+                    db.collection(u'orders').add({
+                        'state': "done",
+                        'hashid': "referral",
+                        'clg' : (value/float(docd['clg_price']))/10,
+                        'clg_price': docd['clg_price'],
+                        'wallet' : "referral",
+                        'user': userRef['referal'][4:],
+                        'time': docd['time'] 
                     })
                     ordersList[doc.id] = {
                         'state': "done",
