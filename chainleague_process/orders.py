@@ -17,14 +17,15 @@ busd = '0xe9e7cea3dedca5984780bafc599bd69add087d56'
 testtoken = '0xf5E6BCf2606f2b610f629b58E1A5Ce4f4Db253DE'
 bigtest = '0x84b9b910527ad5c03a9ca831909e21e236ea7b06'
 bigtestad = '0xc24c8c4124749dae0d603337a98efadf96d200eb'
-contract = testtoken
 offset = '10000'
 sort = 'asc'
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 day = 86400/2
 delay = 120
-headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
-statusmeta = u'metadev'
-statusorders = u'ordersdev'
+statusmeta = u'meta'
+statusorders = u'orders'
+contract = busd
+net = mainnet
 ico = {
     11: [0.0025, 2000000],
     12: [0.0030, 5000000],
@@ -67,7 +68,7 @@ async def main():
         page = meta.to_dict()['page']
         phase_tokens = meta.to_dict()['phase_tokens']
         phase = meta.to_dict()['phase']
-        endpoint = testnet + 'api?module=account&action=tokentx&contractaddress='+ contract + '&address=' + wallet +'&page='+ page + '&offset=' + offset + '&sort=' + sort + '&apikey=' + api
+        endpoint = net + 'api?module=account&action=tokentx&contractaddress='+ contract + '&address=' + wallet +'&page='+ page + '&offset=' + offset + '&sort=' + sort + '&apikey=' + api
 
         r = requests.get(endpoint, headers=headers)
         transactions = r.json()['result']

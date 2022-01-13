@@ -96,15 +96,15 @@
   </div> -->
 
   <div class="mid">  
-    <div style="width: 100%; float: left; overflow: hidden; margin: auto;  margin-top:0%;">
-          <p class="midf">Total launch invested</p>
-          <b style="margin-top: 2%;  font-weight: bold;  " >{{Math.round(invested).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</b>   
-          <p class="midf">Phase - {{phase_name}} {{subphase}}</p>   
+    <div style="width: 100%; float: left; overflow: hidden; margin: auto;  margin-top:2%;">
+          <!--<p class="midf">Total launch invested</p>
+          <b style="margin-top: 2%;  font-weight: bold;  " >{{Math.round(invested).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</b>   -->
+          <p class="midf">Phase - {{phase_name}} {{subphase}} </p>   
+          <p class="midf"> <span style="color: #2588B2;"  >{{Math.round(getPhaseInvest()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</span>   of   {{Math.round(getTotalInvest()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$ </p>   
           <div style="margin-top:2%">
             <img :src="getImgUrl()" v-bind:alt="pic" class="rank">
           </div>                                    
-          <p class="midf">Actual price: <span style="font-weight: bold; color: #2588B2;">{{clg_price}}$</span> </p>      
-          <p class="midf">Next phase: {{phase_date}}</p>    
+          <p class="midf">Actual price: <span style="font-weight: bold; color: #2588B2;">{{clg_price}}$</span> </p>                   
     </div> 
   </div>
 
@@ -248,7 +248,37 @@ export default ({
         this.clg_price = data['clg_price']
         this.invested = data['invested']
         this.phase = data['phase'],
-        this.phase_date = data['phase_date']
+        this.phase_tokens = data['phase_tokens']
+        var ico = {
+          11: [0.0025, 2000000],
+          12: [0.0030, 5000000],
+          13: [0.0035, 7000000],
+          14: [0.0040, 9000000],
+          21: [0.0045, 10000000],
+          22: [0.0050, 11000000],
+          23: [0.0055, 12000000],
+          24: [0.0060, 13000000],
+          31: [0.0065, 14000000],
+          32: [0.0070, 15000000],
+          33: [0.0075, 16000000],
+          34: [0.0080, 17000000],
+          41: [0.0085, 18000000],
+          42: [0.0090, 19000000],
+          43: [0.0095, 20000000],
+          44: [0.0100, 21000000],
+          51: [0.0105, 22000000],
+          52: [0.0110, 23000000],
+          53: [0.0115, 24000000],
+          54: [0.0120, 25000000],
+          61: [0.0125, 26000000],
+          62: [0.0130, 27000000],
+          63: [0.0135, 28000000],
+          64: [0.0140, 28000000],
+          71: [0.0145, 29000000],
+          72: [0.0150, 29000000],
+          73: [0.0155, 30000000],
+        }
+        this.phase_total = ico[this.phase][1]
         switch(this.phase.toString().substring(0,1)){
           case "1":
             this.phase_name = "Iron"
@@ -310,7 +340,8 @@ export default ({
       invested: 0,
       phase: 0,
       phase_name: "",
-      phase_date: "",
+      phase_tokens: 0,
+      phase_total: 0,
       subphase: ""
     }
   },
@@ -318,6 +349,12 @@ export default ({
     getImgUrl() {
       var images = require.context('../assets/ranks/', false, /\.png$/)
       return images('./' + this.phase_name + ".png")
+    },
+    getPhaseInvest(){
+      return this.phase_tokens*this.clg_price
+    },
+    getTotalInvest(){
+      return this.phase_total*this.clg_price
     },
     goToTeam() {
       var element = this.$refs['team'];

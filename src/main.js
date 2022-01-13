@@ -5,7 +5,10 @@ import Vue3Autocounter from 'vue3-autocounter';
 import Notifications from 'notiwind'
 //import firebase from "firebase";
 import firebase from 'firebase/compat/app';
-import './styles.css';
+/*import './styles.css';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'*/
 
 const firebaseConfig = {
 
