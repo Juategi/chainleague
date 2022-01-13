@@ -722,7 +722,7 @@ input{
   }
 
   p.midf{
-    font: 8px 'Rubik' ;
+    font: 7px 'Rubik' ;
     margin-top: 4%; 
     font-weight: bold;
   }
@@ -870,9 +870,9 @@ input{
   }
 
   .rank{
-    width:50px; 
-    height:50px; 
-    max-width:50px; 
+    width:25px; 
+    height:25px; 
+    max-width:25px; 
   }
 
   button.white{

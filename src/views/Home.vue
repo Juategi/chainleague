@@ -97,14 +97,14 @@
 
   <div class="mid">  
     <div style="width: 100%; float: left; overflow: hidden; margin: auto;  margin-top:0%;">
-          <p class="midf">Total ICO Launch invested</p>
-          <b style="margin-top: 2%;  font-weight: bold;  ">{{Math.round(invested).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</b>   
-          <p style="margin-top: 2%; font-weight: bold;">Phase - {{phase_name}} {{subphase}}</p>   
+          <p class="midf">Total launch invested</p>
+          <b style="margin-top: 2%;  font-weight: bold;  " >{{Math.round(invested).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</b>   
+          <p class="midf">Phase - {{phase_name}} {{subphase}}</p>   
           <div style="margin-top:2%">
             <img :src="getImgUrl()" v-bind:alt="pic" class="rank">
           </div>                                    
-          <p style="margin-top: 2%; font-weight: bold;">Actual price: <span style="font-weight: bold; color: #2588B2;">{{clg_price}}$</span> </p>      
-          <p style="margin-top: 2%; font-weight: bold;">Next phase: {{phase_date}}</p>    
+          <p class="midf">Actual price: <span style="font-weight: bold; color: #2588B2;">{{clg_price}}$</span> </p>      
+          <p class="midf">Next phase: {{phase_date}}</p>    
     </div> 
   </div>
 
@@ -159,18 +159,17 @@
       </div>
     </div>
   </div> -->
-<div class="x600">
+<!-- <div class="x600">
     <div style="display: flex;flex-wrap: wrap;padding: 0 4px;">
-        <div style="flex: 50%; padding: 0 4px;">
+       <div style="flex: 50%; padding: 0 4px;">
           <a href="https://coinmarketcap.com" target="_blank">
             <img src="../assets/cmc.png" class="partnericon" >
           </a>
           <a href="https://coinmarketcap.com" target="_blank">
             <img src="../assets/cg.png"  class="partnericon">
           </a>
-        </div>  
        <div style="flex: 50%;padding: 0 4px;">
-          <a href="https://coinmarketcap.com" target="_blank">
+          <a href="https://www.dapp.com/app/chain-league" target="_blank">
             <img src="../assets/dapp.png"  class="partnericonL">
           </a>
         </div> 
@@ -184,12 +183,12 @@
       </div>
     </div>
     
-</div>
+</div> -->
 
 
   <div class="mid2">
         <div style="margin-bottom: 15px; ">
-          <p style="font-weight: bold; font-size: 18px; ">Join our community</p>  
+          <p style="font-weight: bold; font-size: 16px; ">Join our community</p>  
 
           <a href="https://discord.gg/DSb5kwG6wS"  target="_blank">
             <img src="../assets/dc.png" class="media">

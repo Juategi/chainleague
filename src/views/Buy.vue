@@ -4,7 +4,10 @@
        <p style="font: 25px 'Rubik'; font-weight: bold; color: #2588B2; ">Buy tokens</p> 
      </div>
       <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">This is the wallet you are sending the tokens from, if you want to use another or if it is empty, please go to the main page, once the payment is in process you won't be able to change it.</p> 
+       <p style="font: 20px 'Rubik'; color: #2588B2; ">This is the wallet you are sending the tokens from, if you want to use another or if it is empty, please go to the main page and change it there.</p> 
+     </div>
+     <div >
+       <p style="font: 20px 'Rubik'; color: #2588B2; ">Once the payment is in process you won't be able to change it.</p> 
      </div>
      <div >
        <p style="font: 18px 'Rubik'; font-weight: bold; color: #2588B2; ">Your wallet:</p> 

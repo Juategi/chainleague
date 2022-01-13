@@ -29,7 +29,7 @@
       <div style="width: 100%;">
         <div >
             <div style="float: left; overflow:hidden; margin-left: 10%;">
-              <p style="color:#F3BA2F; font: 18px 'Rubik; font-weight: bold; '">BSC <span style="font-weight: normal; ">Wallet</span> </p> 
+              <p style="color:#F3BA2F; font: 18px 'Rubik; font-weight: bold; '">Your Wallet </p> 
             </div>
             <div style="float: left; margin-top: 18px; margin-left: 8px">
               <img src="./assets/bsc.svg" class="bscS"> 
