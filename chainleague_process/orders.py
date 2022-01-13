@@ -21,7 +21,7 @@ contract = testtoken
 offset = '10000'
 sort = 'asc'
 day = 86400/2
-delay = 7200
+delay = 120
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 statusmeta = u'metadev'
 statusorders = u'ordersdev'
@@ -95,7 +95,8 @@ async def main():
                 and hashid not in hashList
                 and abs(timeDoc-timeTrans) <= day
                 and transaction['contractAddress'] == contract.lower()):   
-                    userTokens = value/float(docd['clg_price']) 
+                    userTokens = value/float(ico[phase][0]) 
+                    finalTokens = 0
                     hashList.append(hashid)
                     with open( "hashlist.json" , "w" ) as write:
                         json.dump( {"list" : hashList} , write )
@@ -107,20 +108,24 @@ async def main():
                         doc_ref.update({
                             'state': "done",
                             'hashid': hashid,
-                            'clg' : abs(ico[phase][1] - phase_tokens)
+                            'clg' :  int(abs(ico[phase][1] - phase_tokens))
                         })
                         ordersList[doc.id] = {
                             'state': "done",
                             'hashid': hashid,
-                            'clg' : abs(ico[phase][1] - phase_tokens),
-                            'clg_price': docd['clg_price'],
+                            'clg' : int(abs(ico[phase][1] - phase_tokens)),
+                            'clg_price': ico[phase][0],
                             'wallet' : docd['wallet'],
                             'user': docd['user'],
                             'time': docd['time']
                         }
-                        phase_tokens = abs(ico[phase][1] - (userTokens + phase_tokens))
+                        finalTokens += int(abs(ico[phase][1] - phase_tokens))
+                        oldValue = abs(ico[phase][1] - phase_tokens) * ico[phase][0]
+                        newValue = value - oldValue                                        
                         i = list(ico).index(phase) + 1
                         phase = list(ico)[i]
+                        phase_tokens = newValue / ico[phase][0]
+                        # phase_tokens = userTokens - abs(ico[phase][1] - phase_tokens) 
                         skips = True                        
                         while(skips):
                             if(phase_tokens >= ico[phase][1]):
@@ -128,7 +133,7 @@ async def main():
                                 newId = db.collection(statusorders).add({
                                     'state': "done",
                                     'hashid': hashid,
-                                    'clg' : ico[phase][1],
+                                    'clg' : int(ico[phase][1]),
                                     'clg_price': ico[phase][0],
                                     'wallet' : docd['wallet'].lower() ,
                                     'user': docd['user'],
@@ -137,21 +142,25 @@ async def main():
                                 ordersList[newId[1].id] = {
                                     'state': "done",
                                     'hashid': hashid,
-                                    'clg' : ico[phase][1],
+                                    'clg' : int(ico[phase][1]),
                                     'clg_price': ico[phase][0],
                                     'wallet' : docd['wallet'].lower() ,
                                     'user': docd['user'],
                                     'time': docd['time'] ,
-                                }                                
-                                phase_tokens = abs(ico[phase][1] - phase_tokens)
+                                }   
+                                finalTokens += int(ico[phase][1])
+                                oldValue = ico[phase][1] * ico[phase][0]
+                                newValue = newValue - oldValue 
+                                #phase_tokens = abs(ico[phase][1] - phase_tokens)
                                 i = list(ico).index(phase) + 1
                                 phase = list(ico)[i]
+                                phase_tokens = newValue / ico[phase][0]
                             else:
                                 #Crear nuevos orders
                                 newId = db.collection(statusorders).add({
                                     'state': "done",
                                     'hashid': hashid,
-                                    'clg' : phase_tokens,
+                                    'clg' : int(phase_tokens),
                                     'clg_price': ico[phase][0],
                                     'wallet' : docd['wallet'].lower() ,
                                     'user': docd['user'],
@@ -160,27 +169,29 @@ async def main():
                                 ordersList[newId[1].id] = {
                                     'state': "done",
                                     'hashid': hashid,
-                                    'clg' : phase_tokens,
+                                    'clg' : int(phase_tokens),
                                     'clg_price': ico[phase][0],
                                     'wallet' : docd['wallet'].lower() ,
                                     'user': docd['user'],
                                     'time': docd['time'] ,
                                 } 
+                                finalTokens += int(phase_tokens)
                                 skips = False   
                     else:
                         phase_tokens = phase_tokens + userTokens
                         #Primer order
                         doc_ref = db.collection(statusorders).document(doc.id)
+                        finalTokens = int(userTokens)
                         doc_ref.update({
                             'state': "done",
                             'hashid': hashid,
-                            'clg' : userTokens
+                            'clg' : int(userTokens)
                         })
                         ordersList[doc.id] = {
                             'state': "done",
                             'hashid': hashid,
-                            'clg' : userTokens,
-                            'clg_price': docd['clg_price'],
+                            'clg' : int(userTokens),
+                            'clg_price': ico[phase][0],
                             'wallet' : docd['wallet'],
                             'user': docd['user'],
                             'time': docd['time']
@@ -191,8 +202,8 @@ async def main():
                         db.collection(statusorders).add({
                             'state': "done",
                             'hashid': "referral",
-                            'clg' : userTokens/10,
-                            'clg_price': docd['clg_price'],
+                            'clg' : int(finalTokens/10),
+                            'clg_price': ico[phase][0],
                             'wallet' : "referral",
                             'user': userRef['referal'][4:],
                             'time': docd['time'] 
@@ -204,7 +215,7 @@ async def main():
                     doc_ref.update({
                         'invested': float(meta.to_dict()['invested']) + value, 
                         'phase' : phase,
-                        'phase_tokens' : phase_tokens,
+                        'phase_tokens' : int(phase_tokens),
                         'clg_price' : ico[phase][0]
                     })
                     print("Found")

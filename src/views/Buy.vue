@@ -105,7 +105,7 @@ export default {
     },
     async buy() {
       var ready = true
-      var ordersRef = firebase.firestore().collection("/orders"); 
+      var ordersRef = firebase.firestore().collection("/ordersdev"); 
       var orders = 0
       if((!firebase.auth().currentUser)){
         alert("Please Sign up")
@@ -144,7 +144,7 @@ export default {
         ready = false
       }
       if(ready)  {
-        var ordersRef = firebase.firestore().collection("/orders");    
+        var ordersRef = firebase.firestore().collection("/ordersdev");    
         var date = (new Date()).toISOString().replace("T", " ")
         await ordersRef.add({
           user: firebase.auth().currentUser.uid,
