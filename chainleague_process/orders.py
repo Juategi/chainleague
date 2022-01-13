@@ -23,6 +23,8 @@ sort = 'asc'
 day = 86400/2
 delay = 7200
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+statusmeta = u'metadev'
+statusorders = u'ordersdev'
 ico = {
     11: [0.0025, 2000000],
     12: [0.0030, 5000000],
@@ -60,8 +62,8 @@ async def main():
         print("Next iteration: " + str(datetime.utcnow()))
         hashList = json.load(open("./hashlist.json", encoding='utf-8'))['list']
         ordersList = json.load(open("./orders.json", encoding='utf-8'))
-        docs = db.collection(u'orders').where(u'state', u'==', u'processing').stream()
-        meta = db.collection(u'meta').get()[0]
+        docs = db.collection(statusorders).where(u'state', u'==', u'processing').stream()
+        meta = db.collection(statusmeta).get()[0]
         page = meta.to_dict()['page']
         phase_tokens = meta.to_dict()['phase_tokens']
         phase = meta.to_dict()['phase']
@@ -73,7 +75,7 @@ async def main():
             timeTrans = int(transactions[int(offset)-1]['timeStamp'])
             if (abs(timeTrans-int(time.time())) > delay):
                 page = str(int(page)+1)
-                doc_ref = db.collection(u'meta').document(meta.id)
+                doc_ref = db.collection(statusmeta).document(meta.id)
                 doc_ref.update({
                     'page': page, 
                 })
@@ -101,7 +103,7 @@ async def main():
                     #Comprobacion fase
                     if(userTokens + phase_tokens >= ico[phase][1]):
                         #Primer order
-                        doc_ref = db.collection(u'orders').document(doc.id)
+                        doc_ref = db.collection(statusorders).document(doc.id)
                         doc_ref.update({
                             'state': "done",
                             'hashid': hashid,
@@ -123,7 +125,7 @@ async def main():
                         while(skips):
                             if(phase_tokens >= ico[phase][1]):
                                 #Crear nuevos orders
-                                newId = db.collection(u'orders').add({
+                                newId = db.collection(statusorders).add({
                                     'state': "done",
                                     'hashid': hashid,
                                     'clg' : ico[phase][1],
@@ -132,7 +134,7 @@ async def main():
                                     'user': docd['user'],
                                     'time': docd['time'] ,
                                 })
-                                ordersList[newId] = {
+                                ordersList[newId[1].id] = {
                                     'state': "done",
                                     'hashid': hashid,
                                     'clg' : ico[phase][1],
@@ -146,7 +148,7 @@ async def main():
                                 phase = list(ico)[i]
                             else:
                                 #Crear nuevos orders
-                                newId = db.collection(u'orders').add({
+                                newId = db.collection(statusorders).add({
                                     'state': "done",
                                     'hashid': hashid,
                                     'clg' : phase_tokens,
@@ -155,7 +157,7 @@ async def main():
                                     'user': docd['user'],
                                     'time': docd['time'] ,
                                 })
-                                ordersList[newId] = {
+                                ordersList[newId[1].id] = {
                                     'state': "done",
                                     'hashid': hashid,
                                     'clg' : phase_tokens,
@@ -168,7 +170,7 @@ async def main():
                     else:
                         phase_tokens = phase_tokens + userTokens
                         #Primer order
-                        doc_ref = db.collection(u'orders').document(doc.id)
+                        doc_ref = db.collection(statusorders).document(doc.id)
                         doc_ref.update({
                             'state': "done",
                             'hashid': hashid,
@@ -186,7 +188,7 @@ async def main():
                     # referral tokens
                     userRef = db.collection(u'users').document(docd['user']).get().to_dict()
                     if (userRef['referal'] != ""):
-                        db.collection(u'orders').add({
+                        db.collection(statusorders).add({
                             'state': "done",
                             'hashid': "referral",
                             'clg' : userTokens/10,
@@ -198,17 +200,18 @@ async def main():
                     with open( "orders.json" , "w" ) as write:
                         json.dump( ordersList , write )
                     #sumar invested y editar phase
-                    doc_ref = db.collection(u'meta').document(meta.id)
+                    doc_ref = db.collection(statusmeta).document(meta.id)
                     doc_ref.update({
                         'invested': float(meta.to_dict()['invested']) + value, 
                         'phase' : phase,
-                        'phase_tokens' : phase_tokens
+                        'phase_tokens' : phase_tokens,
+                        'clg_price' : ico[phase][0]
                     })
                     print("Found")
                     found = True
                     break
             if (not found and abs(timeDoc-int(time.time())) > (day*2)):
-                doc_ref = db.collection(u'orders').document(doc.id)
+                doc_ref = db.collection(statusorders).document(doc.id)
                 doc_ref.update({
                     'state': "failed",
                 })
