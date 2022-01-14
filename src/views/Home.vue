@@ -94,15 +94,17 @@
   </div> -->
 
   <div class="mid">  
-    <div style="width: 100%; float: left; overflow: hidden; margin: auto;  margin-top:2%;">
+    <div style="width: 100%; float: left; overflow: hidden; margin: auto;  margin-top:-1%;">
           <!--<p class="midf">Total launch invested</p>
           <b style="margin-top: 2%;  font-weight: bold;  " >{{Math.round(invested).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</b>   -->
           <p class="midf">Phase - {{phase_name}} {{subphase}} </p>   
-          <p class="midf"> <span style="color: #2588B2;"  >{{Math.round(getPhaseInvest()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</span>  of   {{Math.round(getTotalInvest()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$ </p>   
-          <div style="margin-top:2%">
-            <img :src="getImgUrl()" v-bind:alt="pic" class="rank">
-          </div>                                    
-          <p class="midf">Actual price: <span style="font-weight: bold; color: #2588B2;">{{clg_price}}$</span> </p>                   
+          <div style="margin-top:0%">
+            <img :src="getImgUrl()" v-bind:alt="pic" class="rank">             
+          </div>   
+          <p class="midf" style=""> <span style="color: #2588B2;"  >{{Math.round(getPhaseInvest()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</span>  of   {{Math.round(getTotalInvest()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$ </p>   
+          <progress id="bar" style="width: 20%; " :value="getPhaseInvest()" :max="getTotalInvest()"></progress>                                           
+          <p class="midf">Actual price: <span style="font-weight: bold; color: #2588B2;">{{clg_price}}$</span> </p>     
+                                  
     </div> 
   </div>
 
@@ -226,20 +228,31 @@
 </template>
 
 <script>
-import Vue3autocounter from 'vue3-autocounter';
 import { useRouter } from 'vue-router'
 import firebase from 'firebase/compat/app';
-import Notifications from 'notiwind'
-import VueCookieAcceptDecline from 'vue-cookie-accept-decline'
+import "vue3-circle-progress/dist/circle-progress.css";
+import CircleProgress from "vue3-circle-progress";
 
 scroll = false
 
 export default ({
   name: 'Home',
   props: ['userData'],
-  mounted(){
-    //this.$refs.counter.start();
-  },
+  watch: {
+        windowHeight(newWidth, oldWidth) {
+            this.circular = 100
+        }
+    },
+  components: {CircleProgress},
+  mounted() {
+        this.$nextTick(() => {
+            window.addEventListener('resize', this.onResize);
+        })
+    },
+
+    beforeDestroy() { 
+        window.removeEventListener('resize', this.onResize); 
+    },
   created(){
     firebase.firestore().collection("/meta").limit(1).get().then((snapshot) => {
         let data = snapshot.docs[0].data();
@@ -327,11 +340,6 @@ export default ({
       })
       
   },
-  components: {
-    'vue-cookie-accept-decline': VueCookieAcceptDecline,
-    'vue3-autocounter': Vue3autocounter
-
-    },
   data(){
     return {
       clg_price: null,
@@ -340,10 +348,16 @@ export default ({
       phase_name: "",
       phase_tokens: 0,
       phase_total: 0,
-      subphase: ""
+      subphase: "",
+      circular: 190,
+      windowWidth: window.innerWidth
     }
   },
   methods: {
+    onResize() {
+      this.windowWidth = window.innerWidth
+      this.circular = this.windowWidth/5
+    },
     getImgUrl() {
       var images = require.context('../assets/ranks/', false, /\.png$/)
       return images('./' + this.phase_name + ".png")

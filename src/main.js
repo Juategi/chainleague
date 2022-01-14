@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import Vue3Autocounter from 'vue3-autocounter';
 import Notifications from 'notiwind'
 //import firebase from "firebase";
 import firebase from 'firebase/compat/app';

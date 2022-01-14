@@ -20,5 +20,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 
-fechas febrero, articulos, ico cmc,icolist y otros
+articulos, ico cmc, icolists, 
+comprar views
+arreglar linkedn
 dapp partner
+progress bar
