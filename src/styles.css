@@ -103,9 +103,8 @@ button:hover {
 button.white{
   position: relative;
   margin: 0 auto;
-  left: 33%;
-  -ms-transform: translateX(-40%);
-  transform: translateX(-40%);
+  left: 20%;
+  
 
   font: 20px 'Rubik' ;
   font-weight: bold;
@@ -122,7 +121,7 @@ button.white{
 }
 
 button.white:hover {
-  transform: scale(1.2)
+  transform: scale(1.1)
 }
 
 button.big{
@@ -456,7 +455,7 @@ input{
   }
 
   p.midf{
-    font: 11px 'Rubik' ;
+    font: 12px 'Rubik' ;
     margin-top: 4%; 
     font-weight: bold;
   }
@@ -572,9 +571,7 @@ input{
   button.white{
     position: relative;
     margin: 0 auto;
-    left: 35%;
-    -ms-transform: translateX(-40%);
-    transform: translateX(-40%);
+    left: 15%;
 
     font: 13px 'Rubik' ;
     font-weight: bold;
@@ -734,7 +731,7 @@ input{
   }
 
   p.midf{
-    font: 7px 'Rubik' ;
+    font: 10px 'Rubik' ;
     margin-top: 4%; 
     font-weight: bold;
   }
@@ -882,17 +879,16 @@ input{
   }
 
   .rank{
-    width:25px; 
-    height:25px; 
-    max-width:25px; 
+    width:35px; 
+    height:35px; 
+    max-width:35px; 
   }
 
   button.white{
     position: relative;
     margin: 0 auto;
-    left: 43%;
-    -ms-transform: translateX(-40%);
-    transform: translateX(-40%);
+    left: 15%;
+
 
     font: 10px 'Rubik' ;
     font-weight: bold;

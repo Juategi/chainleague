@@ -22,4 +22,3 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 fechas febrero, articulos, ico cmc,icolist y otros
 dapp partner
-quitar boton signup
