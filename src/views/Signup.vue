@@ -41,9 +41,10 @@
           <option value="LA">OCE</option>
           </select> 
           -->
-            <div class="submit" v-if="!loading">
-              <button class="formbutton" >Continue</button>
-            </div>   
+            
+            <div style="padding-top: 30px;  text-align: center;" v-if="!loading">
+              <p style="font: 20px 'Rubik'; color: #2588B2; font-weight: bold; cursor: pointer;" @click="handleSubmit">Continue</p> 
+            </div>  
             <div class="loading" v-if="loading && sign"></div>    
         </div>
     </form>
@@ -59,9 +60,9 @@
   <div v-else-if="end">
     <End :myReferal="this.myReferal"/>
   </div>
-  <div class="submit" v-if="!sign && !loading">
-      <button class="formbutton" @click="handleSubmit">Continue</button>
-  </div> 
+  <div style="padding-top: 30px;  text-align: center;" v-if="!sign && !loading">
+    <p style="font: 20px 'Rubik'; color: #2588B2; font-weight: bold; cursor: pointer;" @click="handleSubmit">Continue</p> 
+  </div>  
   <div class="loading" v-if="loading && !sign"></div>  
 </div>
     

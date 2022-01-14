@@ -284,7 +284,7 @@ form {
   }
 
   .wallet{
-    font: 11px 'Rubik'; 
+    font: 10px 'Rubik'; 
     font-weight: bold;
     color: #2588B2; 
   }

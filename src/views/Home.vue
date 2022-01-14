@@ -11,8 +11,7 @@
           <div style="padding-top: 0px;">
             <img src="../assets/bsct.png" class="bsct" >
           </div>   
-          <p> Smart contract address:</p>   
-          <p class="addressfont">0x918A0f8B19e9308B4C4aA418ecd6CBb5BE6411db</p>  
+         
                
     </div>   
 
@@ -58,20 +57,19 @@
         </NotificationGroup>
           <div style="text-align: center; margin-right: 25%">
              <button class="white" style="margin-top:10px; "  @click="buy"  >Buy tokens</button>
+             
           </div> 
          
                     
     </div>  
   </div>
 
-  <div style=" height:250px; overflow: hidden;">
+  <div style=" height:255px; overflow: hidden;">
     <p style="font-weight: bold; font-size: 25px;">Sign up to win more CLG!</p>
     <p >Use your referral code to get more players to sign up.</p>
     <p >You will earn 10% of all the tokens they have purchased.</p>
-    <!-- <img src="../assets/ga.png" class="ga" > -->
-    <div style="margin-right: 10%; padding-top:20px; padding-bottom:20px" >
-      <button @click="signup" v-if="!userData">Sign up</button>
-    </div>
+    <p > Smart contract address:</p>   
+    <p class="addressfont">0x918A0f8B19e9308B4C4aA418ecd6CBb5BE6411db</p>  
   </div>  
 
   <!--<div class="mid">
@@ -100,7 +98,7 @@
           <!--<p class="midf">Total launch invested</p>
           <b style="margin-top: 2%;  font-weight: bold;  " >{{Math.round(invested).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</b>   -->
           <p class="midf">Phase - {{phase_name}} {{subphase}} </p>   
-          <p class="midf"> <span style="color: #2588B2;"  >{{Math.round(getPhaseInvest()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</span>   of   {{Math.round(getTotalInvest()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$ </p>   
+          <p class="midf"> <span style="color: #2588B2;"  >{{Math.round(getPhaseInvest()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</span>  of   {{Math.round(getTotalInvest()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$ </p>   
           <div style="margin-top:2%">
             <img :src="getImgUrl()" v-bind:alt="pic" class="rank">
           </div>                                    
@@ -391,7 +389,7 @@ export default ({
       this.$router.push({ name: 'Whitepaper' })
     },
     terms() {
-      this.$router.push({ name: 'Terms' })
+      //this.$router.push({ name: 'Terms' })
     },
   }
 

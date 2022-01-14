@@ -55,7 +55,7 @@ p.botf{
 }
 
 p.addressfont{
-  font: 13px 'Rubik' ;
+  font: 15px 'Rubik' ;
   color: #d39521;
 }
 
@@ -101,6 +101,12 @@ button:hover {
 }
 
 button.white{
+  position: relative;
+  margin: 0 auto;
+  left: 33%;
+  -ms-transform: translateX(-40%);
+  transform: translateX(-40%);
+
   font: 20px 'Rubik' ;
   font-weight: bold;
   color: #2588B2;
@@ -456,7 +462,7 @@ input{
   }
 
   p.addressfont{
-    font: 10px 'Rubik' ;
+    font: 12px 'Rubik' ;
     color: #d39521;
   }
 
@@ -564,6 +570,12 @@ input{
   }
 
   button.white{
+    position: relative;
+    margin: 0 auto;
+    left: 35%;
+    -ms-transform: translateX(-40%);
+    transform: translateX(-40%);
+
     font: 13px 'Rubik' ;
     font-weight: bold;
     color: #2588B2;
@@ -728,7 +740,7 @@ input{
   }
 
   p.addressfont{
-    font: 7px 'Rubik' ;
+    font: 9px 'Rubik' ;
     color: #d39521;
   }
 
@@ -876,7 +888,13 @@ input{
   }
 
   button.white{
-    font: 6px 'Rubik' ;
+    position: relative;
+    margin: 0 auto;
+    left: 43%;
+    -ms-transform: translateX(-40%);
+    transform: translateX(-40%);
+
+    font: 10px 'Rubik' ;
     font-weight: bold;
     color: #2588B2;
     background: #ffffff;
@@ -886,8 +904,8 @@ input{
     border-bottom-right-radius: 80px;
     overflow: hidden;
     border: 1px solid #2588B2;
-    width: 45px;
-    height: 15px;
+    width: 90px;
+    height: 30px;
   }
 
   .how{

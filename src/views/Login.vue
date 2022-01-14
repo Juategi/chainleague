@@ -13,11 +13,10 @@
 
             <div @click="forgot">
                 <p style="font: 20px 'Rubik'; color: #2588B2; text-align: center; cursor:pointer">I forgot my password</p> 
-            </div>
-
-            <div class="submit">
-              <button class="formbutton">Continue</button>
-            </div>      
+            </div>              
+            <div style="padding-top: 30px;  text-align: center;" >
+              <p style="font: 20px 'Rubik'; color: #2588B2; font-weight: bold; cursor: pointer;" @click="handleSubmit">Continue</p> 
+            </div>    
         </div>
     </form>
     </div> 
