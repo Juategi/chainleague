@@ -22,10 +22,10 @@ sort = 'asc'
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 day = 86400/2
 delay = 120
-statusmeta = u'meta'
-statusorders = u'orders'
-contract = busd
-net = mainnet
+statusmeta = u'metadev'
+statusorders = u'ordersdev'
+contract = testtoken
+net = testnet
 ico = {
     11: [0.0025, 2000000],
     12: [0.0030, 5000000],

@@ -21,7 +21,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 articulos, ico cmc, icolists, 
-comprar views
-arreglar linkedn
-dapp partner
-progress bar
+partners
+maxinput monedas

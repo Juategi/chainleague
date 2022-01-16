@@ -94,7 +94,7 @@
   </div> -->
 
   <div class="mid">  
-    <div style="width: 100%; float: left; overflow: hidden; margin: auto;  margin-top:-1%;">
+    <div style="width: 100%; float: left; overflow: hidden; margin: auto;  margin-top:-1.5%;">
           <!--<p class="midf">Total launch invested</p>
           <b style="margin-top: 2%;  font-weight: bold;  " >{{Math.round(invested).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}$</b>   -->
           <p class="midf">Phase - {{phase_name}} {{subphase}} </p>   
