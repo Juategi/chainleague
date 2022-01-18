@@ -49,7 +49,7 @@ const routes = [
     name: 'Whitepaper',
     component: Whitepaper
   },
-  {
+  /*{
     path: '/terms',
     name: 'Terms',
     component: Terms
@@ -58,7 +58,7 @@ const routes = [
     path: '/buy',
     name: 'Buy',
     component: Buy
-  },
+  },*/
   {
     path: '/orders',
     name: 'Orders',

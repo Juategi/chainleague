@@ -1,5 +1,5 @@
 <template>
-  
+    
   <div style="height:400px; width: 100%; max-width: 2000px;">
     <div style="margin-left: 20px; width: 40%; float: left; overflow: hidden; margin-top:50px">
           <p >The first play-to-earn cryptocurrency based on League of Legends.</p>
@@ -15,6 +15,7 @@
                
     </div>   
 
+     
 
     <div style="margin-right: 20px; width: 40%; float: right; overflow: hidden; margin-top:35px">
           <p style="font-weight: bold; font-size: 20px;">We are now on pre-sale!</p>
@@ -55,8 +56,30 @@
             </div>
           </div>
         </NotificationGroup>
+
+        <GDialog v-model="modal" max-width="400">
+          <div style="padding: 3% 20%;" >
+            <div >
+              <p style="font: 25px 'Rubik'; font-weight: bold; color: #2588B2; ">Buy tokens</p> 
+            </div>
+              <div >
+              <p style="font: 20px 'Rubik'; color: #2588B2; ">A new Coinbase Commerce tab will open, so you can buy with different cryptocurrencies the amount of CLG you want.</p> 
+            </div>   
+            <div >
+              <p style="font: 20px 'Rubik'; color: #2588B2; ">CLG price: <span style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{clg_price}} $</span></p> 
+            </div>
+            <div >
+              <p style="font: 20px 'Rubik'; color: #2588B2; "> Keep in mind that until the payment is confirmed, the price of CLG may vary if there is a phase change, so the amount of CLG will be adjusted.</p> 
+            </div>
+            <div >
+              <p style="font: 20px 'Rubik'; color: #2588B2; ">If the payment is done successfully, you will see the tokens in your account.</p> 
+            </div>            
+              <p id="pay" style="font: 22px 'Rubik'; font-weight: bold; color: #d39521; cursor:pointer; padding-top:70px" v-if="!loading " @click="cbuy">Buy</p> 
+              <div class="loading" v-if="loading "></div>  
+            </div>   
+       </GDialog>
           <div style="text-align: center; margin-right: 25%">
-             <button class="white" style="margin-top:10px; "  @click="buy"  >Buy tokens</button>
+             <button class="white" style="margin-top:10px; "  @click="showBuy" >Buy tokens</button>
              
           </div> 
          
@@ -232,6 +255,8 @@ import { useRouter } from 'vue-router'
 import firebase from 'firebase/compat/app';
 import "vue3-circle-progress/dist/circle-progress.css";
 import CircleProgress from "vue3-circle-progress";
+import "gitart-vue-dialog/dist/style.css";
+import { GDialog } from "gitart-vue-dialog";
 
 scroll = false
 
@@ -243,7 +268,7 @@ export default ({
             this.circular = 100
         }
     },
-  components: {CircleProgress},
+  components: {CircleProgress, GDialog},
   mounted() {
         this.$nextTick(() => {
             window.addEventListener('resize', this.onResize);
@@ -350,13 +375,18 @@ export default ({
       phase_total: 0,
       subphase: "",
       circular: 190,
-      windowWidth: window.innerWidth
+      windowWidth: window.innerWidth,
+      modal: false,
+      loading: false
     }
   },
   methods: {
     onResize() {
       this.windowWidth = window.innerWidth
       this.circular = this.windowWidth/5
+    },
+    showBuy(){
+      this.modal = true
     },
     getImgUrl() {
       var images = require.context('../assets/ranks/', false, /\.png$/)
@@ -380,6 +410,20 @@ export default ({
     },
     signup() {
       this.$router.push({ name: 'Signup' })
+    },
+    async cbuy() {
+      this.loading = true
+      const res = await fetch('http://62.43.69.155:5000/a',
+      {
+        headers: {
+        'Content-Type': 'text/plain',
+        'user' : firebase.auth().currentUser.uid
+      }
+      });
+      const data = await res.json();
+      this.loading = false
+      this.modal = false
+      window.open(data.hosted_url, '_blank');     
     },
     buy() {
       console.log(this.userData['wallet'])

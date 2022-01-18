@@ -4,61 +4,22 @@
        <p style="font: 25px 'Rubik'; font-weight: bold; color: #2588B2; ">Buy tokens</p> 
      </div>
       <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">This is the wallet you are sending the tokens from, if you want to use another or if it is empty, please go to the main page and change it there.</p> 
-     </div>
-     <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">Once the payment is in process you won't be able to change it.</p> 
-     </div>
-     <div >
-       <p style="font: 18px 'Rubik'; font-weight: bold; color: #2588B2; ">Your wallet:</p> 
-     </div>
-      <div >
-       <p class="wallet" >{{ wallet }}</p> 
-     </div>
-     <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">Select the amount of CLG tokens you want to buy, it must be at least 200.</p> 
-     </div>
+       <p style="font: 20px 'Rubik'; color: #2588B2; ">A new Coinbase Commerce tab will open, so you can buy with different cryptocurrencies the amount of CLG you want.</p> 
+     </div>   
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">CLG price: <span style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{clg_price}} $</span></p> 
      </div>
-    <div >
-      <input v-model="clg" @keypress="isNumber($event)">
-    </div>
-    <div >
-       <p style="font: 23px 'Rubik'; font-weight: bold; color: #2588B2; ">{{(clg * clg_price).toFixed(2)}} $</p> 
-     </div>
-    <!-- <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">Binance Coin (BNB) price: <span style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{bnb_price}} $</span></p> 
-     </div>
      <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">Amount of BNB to deposit: {{(clg * clg_price/bnb_price).toFixed(5)}}</p> 
-     </div> -->
-     <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">Please send that amount of Binance USD (BUSD) to the following address through the Binance Smart Chain (BEP20).</p> 
-     </div>
-     <div >
-       <p class="wallet">0xEaDA375B9F1B4A39624396cfe3833184b3F817a8</p> 
-     </div>
-     <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; "> If you send a different number, we will adjust the amount of CLG you will receive. When the transaction is done, press 'Done'. If we don't recieve the payment after a while, the order will be cancelled.</p> 
+       <p style="font: 20px 'Rubik'; color: #2588B2; "> Keep in mind that until the payment is confirmed, the price of CLG may vary if there is a phase change, so the amount of CLG will be adjusted.</p> 
      </div>
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">If the payment is done successfully, you will see the tokens in your account.</p> 
      </div>
-       <p style="font: 22px 'Rubik'; font-weight: bold; color: #d39521; cursor:pointer; padding-top:70px" @click="buy">Done</p> 
+    
+       <p id="pay" style="font: 22px 'Rubik'; font-weight: bold; color: #d39521; cursor:pointer; padding-top:70px" v-if="!loading && !buying" @click="cbuy">Buy</p> 
+        <div class="loading" v-if="loading "></div>  
     </div>   
 
-    <div style="padding: 7% 20%;" v-if="end">
-      <div >
-       <p style="font: 25px 'Rubik'; font-weight: bold; color: #2588B2; ">Order in process!</p> 
-     </div>
-      <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">The order is now in process, it may take up to 72 hours to be confirmed, once it is done you will be able to see your tokens on the main page.</p> 
-     </div>
-      <div>
-       <p style="font: 22px 'Rubik'; font-weight: bold; color: #d39521; cursor:pointer; padding-top:70px" @click="goback">Go back</p> 
-      </div>   
-    </div>
     
 </template>
 
@@ -75,6 +36,9 @@ export default {
       meta: firebase.firestore().collection("/meta"),
       wallet: null,
       end: false,
+      loading: false,
+      buying: false,
+      source: ""
     }
   },
   methods: {
@@ -102,6 +66,20 @@ export default {
     },
     goback() {
       this.$router.push({ name: 'Home' })
+    },
+    async cbuy() {
+      this.loading = true
+      const pay = document.getElementById('pay'); 
+      firebase.auth().currentUser.uid
+      const res = await fetch('https://us-central1-chain-league.cloudfunctions.net/createCharge');
+      const data = await res.json();
+
+      //this.source = data.hosted_url
+
+      window.open(data.hosted_url, '_blank');
+      //pay.innerHTML = `<a href="${data.hosted_url}">Pay Now!</a>`
+      //this.loading = false
+      //this.buying = true
     },
     async buy() {
       var ready = true
@@ -196,6 +174,16 @@ export default {
     animation: spin 1s linear infinite;
     margin-top: 100px;
     background-color: #ffffff;  
+  }
+
+  #app, #app iframe {
+    height: 80vh;
+    width: 64vw;
+    border: none;
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
   }
 
   @keyframes spin {

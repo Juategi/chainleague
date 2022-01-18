@@ -137,7 +137,8 @@ export default {
             if(this.summoners == '' || this.server == ''){
                 this.summoners = ''
                 this.server = ''
-                this.wallet = true
+                //this.wallet = true
+                this.end = true
             }
             else{
               this.riot = true
@@ -233,7 +234,33 @@ export default {
           }
         }
         else if(this.end){   
-          this.$router.push({ name: 'Home'}) 
+          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((data) => {
+            console.log('Successfully registered!');
+            this.myReferal = "clg_" + data.user.uid
+            data.user.sendEmailVerification()
+            usersRef.doc(data.user.uid).set({
+              email: this.email,
+              referal: this.referal,          
+              summoners: this.summoners,
+              server: this.server,
+              wallet: this.walletId,
+              myreferal: this.myReferal
+          })
+          .then(function(docRef) {
+              console.log("User created with ID: ", docRef);
+              this.wallet = false
+              this.end = true
+          })
+          .catch(function(error) {
+              console.error("Error adding User: ", error);
+              this.loading = false;
+          });           
+          }).catch(error => {
+            console.log(error.code)
+            alert(error.message);
+            this.loading = false;
+          });                    
+          //this.$router.push({ name: 'Home'}) 
         }
         this.loading = false
     },

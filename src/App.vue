@@ -22,11 +22,11 @@
     </div>
     <div class="rectangleInfo" v-if="userData['on'] && ($route.name == 'Home' )">
       <p style="color: #050617;  ">{{ userData['summoners'] }} <span style="font-weight: bold;"> {{ userData['server'] }} </span> </p>
-      <p style="color: #050617; font: 15px 'Rubik;">Tokens: {{userData['tokens']}}</p>
-      <p style="color: #050617; font: 15px 'Rubik; font-weight: bold; color: #2588B2; cursor:pointer;" @click="orders">Orders history</p>
+      <p style="color: #050617; font: 16px 'Rubik;">Tokens: {{userData['tokens']}}</p>
+      <p style="color: #050617; font: 18px 'Rubik; font-weight: bold; color: #2588B2; cursor:pointer;" @click="orders">Orders history</p>
       <p style="color: #050617; ">Referal: </p>
-      <p style="color: #050617; font: 13px 'Rubik;">{{ userData['myreferal'] }} </p>
-      <div style="width: 100%;">
+      <p style="color: #050617; font: 14px 'Rubik;">{{ userData['myreferal'] }} </p>
+      <!--<div style="width: 100%;">
         <div >
             <div style="float: left; overflow:hidden; margin-left: 10%;">
               <p style="color:#F3BA2F; font: 18px 'Rubik; font-weight: bold; '">Your Wallet </p> 
@@ -39,8 +39,8 @@
            <img src="./assets/edit.png" class="edit" @click="editWallet" v-if="walletDisabled">
            <img src="./assets/save.png" class="edit" @click="saveWallet" v-else>
         </div>
-      </div>
-      <input type="text" v-model="wallet" :disabled="walletDisabled" style="width:80%">
+      </div> 
+      <input type="text" v-model="wallet" :disabled="walletDisabled" style="width:80%"> -->
     </div>
   </div>
   
