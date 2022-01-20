@@ -4,7 +4,7 @@
        <p style="font: 25px 'Rubik'; font-weight: bold; color: #2588B2; ">Buy tokens</p> 
      </div>
       <div >
-       <p style="font: 20px 'Rubik'; color: #2588B2; ">A new Coinbase Commerce tab will open, so you can buy with different cryptocurrencies the amount of CLG you want.</p> 
+       <p style="font: 20px 'Rubik'; color: #2588B2; ">A new Coinbase Commerce tab will open, so you can buy with different cryptocurrencies, the amount of CLG you want.</p> 
      </div>   
      <div >
        <p style="font: 20px 'Rubik'; color: #2588B2; ">CLG price: <span style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{clg_price}} $</span></p> 

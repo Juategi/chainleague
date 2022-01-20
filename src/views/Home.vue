@@ -5,12 +5,10 @@
           <p >The first play-to-earn cryptocurrency based on League of Legends.</p>
           <p >Win tokens just by playing normal and ranked games in League of Legends.</p>
          <!-- <p style="font-weight: bold; ">Enter the Rift, enter the Blockchain.</p>  -->
-          <div style="margin-top: 18px; ">
-             <p >Powered by</p>
-          </div>
-          <div style="padding-top: 0px;">
-            <img src="../assets/bsct.png" class="bsct" >
-          </div>   
+         <p style="font-weight: bold; font-size: 25px;">Sign up to win more CLG!</p>
+          <p >Use your referral code to get more players to sign up.</p>
+          <p >You will earn 10% of all the tokens they have purchased.</p>
+          
          
                
     </div>   
@@ -74,13 +72,12 @@
             <div >
               <p style="font: 20px 'Rubik'; color: #2588B2; ">If the payment is done successfully, you will see the tokens in your account.</p> 
             </div>            
-              <p id="pay" style="font: 22px 'Rubik'; font-weight: bold; color: #d39521; cursor:pointer; padding-top:70px" v-if="!loading " @click="cbuy">Buy</p> 
+              <p id="pay" style="font: 22px 'Rubik'; font-weight: bold; color: #d39521; cursor:pointer; padding-top:70px" v-if="!loading " @click="cbuy">Buy tokens</p> 
               <div class="loading" v-if="loading "></div>  
             </div>   
        </GDialog>
           <div style="text-align: center; margin-right: 25%">
-             <button class="white" style="margin-top:10px; "  @click="showBuy" >Buy tokens</button>
-             
+             <button class="white" style="margin-top:10px; "  @click="showBuy" >Buy tokens</button>            
           </div> 
          
                     
@@ -88,11 +85,14 @@
   </div>
 
   <div style=" height:255px; overflow: hidden;">
-    <p style="font-weight: bold; font-size: 25px;">Sign up to win more CLG!</p>
-    <p >Use your referral code to get more players to sign up.</p>
-    <p >You will earn 10% of all the tokens they have purchased.</p>
     <p > Smart contract address:</p>   
     <p class="addressfont">0x918A0f8B19e9308B4C4aA418ecd6CBb5BE6411db</p>  
+    <div style="margin-top: 18px; ">
+        <p >Powered by</p>
+    </div>
+    <div style="padding-top: 0px;">
+      <img src="../assets/bsct.png" class="bsct" >
+    </div>   
   </div>  
 
   <!--<div class="mid">
@@ -413,7 +413,7 @@ export default ({
     },
     async cbuy() {
       this.loading = true
-      const res = await fetch('http://62.43.69.155:5000/a',
+      const res = await fetch('https://us-central1-chain-league.cloudfunctions.net/createCharge',
       {
         headers: {
         'Content-Type': 'text/plain',
