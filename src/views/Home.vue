@@ -70,7 +70,7 @@
               <p style="font: 20px 'Rubik'; color: #2588B2; "> Keep in mind that until the payment is confirmed, the price of CLG may vary if there is a phase change, so the amount of CLG will be adjusted.</p> 
             </div>
             <div >
-              <p style="font: 20px 'Rubik'; color: #2588B2; ">If the payment is done successfully, you will see the tokens in your account.</p> 
+              <p style="font: 20px 'Rubik'; color: #2588B2; ">Once the payment is completed successfully, you will see the tokens in your account after a while.</p> 
             </div>            
               <p id="pay" style="font: 22px 'Rubik'; font-weight: bold; color: #d39521; cursor:pointer; padding-top:70px" v-if="!loading " @click="cbuy">Buy tokens</p> 
               <div class="loading" v-if="loading "></div>  
