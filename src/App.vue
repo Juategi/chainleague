@@ -8,7 +8,7 @@
       
       <div @click="home" v-if="$route.name != 'NotFound'">
         <img src="./assets/icon.svg" class="logo">
-        <b class="title" >Chain League</b>
+        <b class="title"  >Chain League</b>
       </div>
       
       <div style="margin-top:2%" v-if="$route.name == 'Home'">       

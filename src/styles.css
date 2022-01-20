@@ -7,6 +7,13 @@
     background: #050617;  
 }
 
+
+@font-face {
+  font-family: "hudsonny";
+  src: local("./assets/font/hudsonny.otf"),   url(./assets/font/hudsonny.otf) format("opentype");
+}
+
+
 .loading {
   border: 8px solid #f3f3f3;
   border-top: 8px solid #2588B2; 
@@ -71,8 +78,9 @@ p.addressfont{
 }
 
 a{
-  font: 20px 'Rubik' ;
+  font: 10px 'Rubik' ;
   color: #ffffff;
+  
 }
 
 b.bar{
@@ -155,12 +163,12 @@ button.big:hover {
 }
 
 .title{
-  font: 35px 'Rubik' ;
+  font: 45px 'hudsonny'  ;
   font-weight: bold;
   color: #2588B2;
   cursor: pointer; 
   position: relative;
-  top: 11px;
+  top: 0px;
   left: 20px;
   float: left;
 }
@@ -489,12 +497,12 @@ input{
   }
 
   .title{
-    font: 25px 'Rubik' ;
+    font: 30px 'hudsonny' ;
     font-weight: bold;
     color: #2588B2;
     cursor: pointer; 
     position: relative;
-    top: 6px;
+    top: 0px;
     left: 15px;
     float: left;
   }
@@ -781,12 +789,12 @@ input{
   }
 
   .title{
-    font: 12px 'Rubik' ;
+    font: 18px 'hudsonny' ;
     font-weight: bold;
     color: #2588B2;
     cursor: pointer; 
     position: relative;
-    top: 10px;
+    top: 0px;
     left: 8px;
     float: left;
   }
