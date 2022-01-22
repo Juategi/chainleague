@@ -55,24 +55,24 @@
           </div>
         </NotificationGroup>
 
-        <GDialog v-model="modal" max-width="400">
+        <GDialog v-model="modal" max-width="50vw">
           <div style="padding: 3% 20%;" >
             <div >
-              <p style="font: 25px 'Rubik'; font-weight: bold; color: #2588B2; ">Buy tokens</p> 
+              <p style="font-weight: bold; color: #2588B2; ">Buy tokens</p> 
             </div>
               <div >
-              <p style="font: 20px 'Rubik'; color: #2588B2; ">A new Coinbase Commerce tab will open, so you can buy with different cryptocurrencies the amount of CLG you want.</p> 
+              <p style=" color: #2588B2; ">A new Coinbase Commerce tab will open, so you can buy with different cryptocurrencies the amount of CLG you want.</p> 
             </div>   
             <div >
-              <p style="font: 20px 'Rubik'; color: #2588B2; ">CLG price: <span style="font: 20px 'Rubik'; font-weight: bold; color: #2588B2; ">{{clg_price}} $</span></p> 
+              <p style="color: #2588B2; ">CLG price: <span style="font-weight: bold; color: #2588B2; ">{{clg_price}} $</span></p> 
             </div>
             <div >
-              <p style="font: 20px 'Rubik'; color: #2588B2; "> Keep in mind that until the payment is confirmed, the price of CLG may vary if there is a phase change, so the amount of CLG will be adjusted.</p> 
+              <p style=" color: #2588B2; "> Keep in mind that until the payment is confirmed, the price of CLG may vary if there is a phase change, so the amount of CLG will be adjusted.</p> 
             </div>
             <div >
-              <p style="font: 20px 'Rubik'; color: #2588B2; ">Once the payment is completed successfully, you will see the tokens in your account after a while.</p> 
+              <p style="color: #2588B2; ">Once the payment is completed successfully, you will see the tokens in your account after a while.</p> 
             </div>            
-              <p id="pay" style="font: 22px 'Rubik'; font-weight: bold; color: #d39521; cursor:pointer; padding-top:70px" v-if="!loading " @click="cbuy">Buy tokens</p> 
+              <p id="pay" style="font-weight: bold; color: #d39521; cursor:pointer; padding-top:2%" v-if="!loading " @click="cbuy">Buy tokens</p> 
               <div class="loading" v-if="loading "></div>  
             </div>   
        </GDialog>
@@ -386,7 +386,21 @@ export default ({
       this.circular = this.windowWidth/5
     },
     showBuy(){
-      this.modal = true
+      if(!this.userData['on'])
+        this.$router.push({ name: 'Signup' })
+      else{
+        if(firebase.auth().currentUser.emailVerified){
+          this.modal = true  
+        }
+        else{
+          this.$notify({
+            group: "foo",
+            title: "Warning",
+            text: "Please verify your email to buy tokens! ",
+            text2: "If you already did, please refresh the page"
+          }, 2000) 
+        }
+      }  
     },
     getImgUrl() {
       var images = require.context('../assets/ranks/', false, /\.png$/)
@@ -412,6 +426,19 @@ export default ({
       this.$router.push({ name: 'Signup' })
     },
     async cbuy() {
+      if(!this.userData['on'])
+        this.$router.push({ name: 'Signup' })
+      else{
+        if(!firebase.auth().currentUser.emailVerified){
+          this.$notify({
+            group: "foo",
+            title: "Warning",
+            text: "Please verify your email to buy tokens! ",
+            text2: "If you already did, please refresh the page"
+          }, 2000) 
+          return;
+        }
+      }
       this.loading = true
       const res = await fetch('https://us-central1-chain-league.cloudfunctions.net/createCharge',
       {

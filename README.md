@@ -22,4 +22,3 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 articulos, ico cmc, icolists, 
 partners
-revisar email spam

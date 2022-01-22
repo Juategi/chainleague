@@ -110,6 +110,46 @@ export default {
       this.walletId = id
     },
     async handleSubmit() {
+        if(this.sign){
+          this.loading = true
+          this.passwordError = this.password.length > 5 && this.password == this.cpassword ?
+          '' : 'Passwords must match and be at least 6 characters long'
+          if(this.passwordError == ''){
+            var usersRef = firebase.firestore().collection("/users");
+            firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((data) => {
+              console.log('Successfully registered!');
+              this.myReferal = "clg_" + data.user.uid
+              data.user.sendEmailVerification()
+              usersRef.doc(data.user.uid).set({
+                email: this.email,
+                referal: this.referal,          
+                //summoners: this.summoners,
+                //server: this.server,
+                //wallet: this.walletId,
+                myreferal: this.myReferal
+            })
+            .then(function(docRef) {
+                console.log("User created with ID: ", docRef);
+                this.loading = false;
+                this.end = true
+                this.sign = false
+            })
+            .catch(function(error) {
+                console.error("Error adding User: ", error);
+            });           
+            }).catch(error => {
+              console.log(error.code)
+              alert(error.message);
+            });           
+          }
+          else{
+            this.loading = false
+          }
+        }   
+        else if(this.end){
+          this.$router.push({ name: 'Home'}) 
+        }
+        /*
         this.loading = true
         this.passwordError = this.password.length > 5 && this.password == this.cpassword ?
         '' : 'Passwords must match and be at least 6 characters long'
@@ -241,9 +281,9 @@ export default {
             usersRef.doc(data.user.uid).set({
               email: this.email,
               referal: this.referal,          
-              summoners: this.summoners,
-              server: this.server,
-              wallet: this.walletId,
+              //summoners: this.summoners,
+              //server: this.server,
+              //wallet: this.walletId,
               myreferal: this.myReferal
           })
           .then(function(docRef) {
@@ -263,6 +303,8 @@ export default {
           //this.$router.push({ name: 'Home'}) 
         }
         this.loading = false
+
+        */
     },
     login(){
       this.$router.push({ name: 'Login'}) 
