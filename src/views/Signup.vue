@@ -12,6 +12,7 @@
 
           <label>Referal (optional)</label>
           <input type="text" v-model="referal">
+          <div v-if="refError" class="error">{{ refError }}</div>
 
           <label>Password</label>
           <input type="password" v-model="password" required>
@@ -86,6 +87,7 @@ export default {
       summoners:'',
       server:'',
       passwordError: '',
+      refError: '',
       walletId: '',
       myReferal:'',
       summonerError: '',
@@ -114,7 +116,12 @@ export default {
           this.loading = true
           this.passwordError = this.password.length > 5 && this.password == this.cpassword ?
           '' : 'Passwords must match and be at least 6 characters long'
-          if(this.passwordError == ''){
+          if(this.referal != '' && this.referal.substring(0,4) != 'clg_' && this.referal.length != 32){
+            this.refError = "The code format is not correct"
+          } else{
+            this.refError = ''
+          }
+          if(this.passwordError == '' && this.refError == ''){
             var usersRef = firebase.firestore().collection("/users");
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((data) => {
               console.log('Successfully registered!');

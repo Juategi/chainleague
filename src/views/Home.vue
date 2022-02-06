@@ -7,7 +7,7 @@
          <!-- <p style="font-weight: bold; ">Enter the Rift, enter the Blockchain.</p>  -->
          <p style="font-weight: bold; font-size: 25px;">Sign up to win more CLG!</p>
           <p >Use your referral code to get more players to sign up.</p>
-          <p >You will earn 10% of all the tokens they have purchased.</p>
+          <p >You will earn 10% of all the tokens they have purchased and a 5% of extra tokens if you use a referral code too.</p>
           
          
                
