@@ -173,6 +173,17 @@ button.big:hover {
   float: left;
 }
 
+.titlew{
+  font: 45px 'hudsonny'  ;
+  font-weight: bold;
+  color: #ffffff;
+  cursor: pointer; 
+  position: relative;
+  top: 0px;
+  left: 20px;
+  float: left;
+}
+
 .rank{
   width:140px; 
   height:140px; 
@@ -290,6 +301,28 @@ img.mediaS:hover{
 
 .mid{
   background: url("./assets/B2.png");
+  background-size: 100%;
+  height: 400px;
+  min-height: 500px;
+  min-width: 1200px;
+  max-width: 2000px;
+  background-repeat: no-repeat;
+  margin:0 auto;
+}
+
+.tokeno{
+  background: url("./assets/tokens.png");
+  background-size: 100%;
+  height: 750px;
+  min-height: 850px;
+  min-width: 1200px;
+  max-width: 2000px;
+  background-repeat: no-repeat;
+  margin:0 auto;
+}
+
+.test{
+  background-color: #005F88;
   background-size: 100%;
   height: 400px;
   min-height: 500px;
@@ -540,7 +573,7 @@ input{
 
   .rectangleInfo {
     margin:auto;
-    height: 170px;
+    height: 200px;
     width: 290px;
     background-color: #f1f0f0;
     border-top-left-radius: 20px;
@@ -574,6 +607,17 @@ input{
     background: url("./assets/B2.png");
     background-size: 100%;
     height: 300px;
+    min-height: 400px;
+    min-width: 800px;
+    max-width: 1200px;
+    background-repeat: no-repeat;
+    margin:0 auto;
+  }
+
+  .tokeno{
+    background: url("./assets/tokens.png");
+    background-size: 100%;
+    height: 400px;
     min-height: 400px;
     min-width: 800px;
     max-width: 1200px;
@@ -834,7 +878,7 @@ input{
 
   .rectangleInfo {
     margin:auto;
-    height: 160px;
+    height: 200px;
     width: 290px;
     background-color: #f1f0f0;
     border-top-left-radius: 20px;
@@ -893,6 +937,17 @@ input{
     min-height: 200px;
     min-width: 370px;
     max-width: 600px;
+    background-repeat: no-repeat;
+    margin:0 auto;
+  }
+
+  .tokeno{
+    background: url("./assets/tokens.png");
+    background-size: 100%;
+    height: 200px;
+    min-height: 250px;
+    min-width: 400px;
+    max-width: 500px;
     background-repeat: no-repeat;
     margin:0 auto;
   }

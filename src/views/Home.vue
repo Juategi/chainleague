@@ -7,11 +7,13 @@
          <!-- <p style="font-weight: bold; ">Enter the Rift, enter the Blockchain.</p>  -->
          <p style="font-weight: bold; font-size: 25px;">Sign up to win more CLG!</p>
           <p >Use your referral code to get more players to sign up.</p>
-          <p >You will earn 10% of all the tokens they have purchased and a 5% of extra tokens if you use a referral code too.</p>
+          <p >You will earn 10% of all the tokens they have purchased, and an extra 5% of tokens you purchase, if you use a referral code too.</p>
           
          
                
     </div>   
+
+    
 
      
 
@@ -131,6 +133,11 @@
     </div> 
   </div>
 
+  <div class="tokeno">  
+    
+  </div>
+
+  
     <div class="x900">          
           <p style="font-weight: bold; font-size: 23px; margin-top: 5%">How will it work?</p>    
           <div class="how"></div>
@@ -217,7 +224,7 @@
             <img src="../assets/dc.png" class="media">
           </a>
           
-          <a href="https://t.me/+uO2m5PrKYJI3MWNk" target="_blank">
+          <a href="https://t.me/chainleagueofficial" target="_blank">
             <img src="../assets/tg.png" class="media" >
           </a>
           
@@ -347,16 +354,16 @@ export default ({
             this.phase_name = "Iron"    
         }
         switch(this.phase.toString().substring(1)){
-          case "1":
+          case "4":
             this.subphase = "I"
             break;
-          case "2":
+          case "3":
             this.subphase = "II"
             break;
-          case "3":
+          case "2":
             this.subphase = "III"
             break;
-          case "4":
+          case "1":
             this.subphase = "IV"
             break;
           default:

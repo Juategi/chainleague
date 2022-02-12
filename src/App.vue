@@ -21,8 +21,8 @@
       
     </div>
     <div class="rectangleInfo" v-if="userData['on'] && ($route.name == 'Home' )">
-      <p style="color: #050617;  ">{{ userData['summoners'] }} <span style="font-weight: bold;"> {{ userData['server'] }} </span> </p>
-      <p style="color: #050617; font: 16px 'Rubik;">Tokens: {{userData['tokens']}}</p>
+      <p style="color: #050617; font: 16px 'Rubik;">{{ userData['email'] }} </p>
+      <p style="color: #050617; font: 16px 'Rubik;">CLG: {{userData['tokens']}}</p>
       <p style="color: #050617; font: 18px 'Rubik; font-weight: bold; color: #2588B2; cursor:pointer;" @click="orders">Orders history</p>
       <p style="color: #050617; ">Referal: </p>
       <p style="color: #050617; font: 14px 'Rubik;">{{ userData['myreferal'] }} </p>
